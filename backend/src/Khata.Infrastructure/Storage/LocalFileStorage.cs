@@ -60,7 +60,15 @@ public class LocalFileStorage : IFileStorage
         var root = Path.GetFullPath(_root);
         var full = Path.GetFullPath(Path.Combine(root, relative));
 
-        if (!full.StartsWith(root, StringComparison.OrdinalIgnoreCase))
+        // Compare against the root *plus its separator*. A bare StartsWith(root)
+        // also accepts a sibling directory that merely shares the prefix —
+        // "…/storage-evil" starts with "…/storage" — so "../storage-evil/x"
+        // would have escaped the sandbox.
+        var rootWithSeparator = root.EndsWith(Path.DirectorySeparatorChar)
+            ? root
+            : root + Path.DirectorySeparatorChar;
+
+        if (!full.StartsWith(rootWithSeparator, StringComparison.OrdinalIgnoreCase))
             throw new InvalidOperationException($"Storage key '{key}' escapes the storage root.");
 
         return full;

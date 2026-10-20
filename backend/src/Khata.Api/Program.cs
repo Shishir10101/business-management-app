@@ -1,4 +1,5 @@
 using System.Text.Json.Serialization;
+using System.Threading.RateLimiting;
 using FluentValidation;
 using FluentValidation.AspNetCore;
 using Khata.Infrastructure.Configuration;
@@ -6,6 +7,7 @@ using Khata.Infrastructure.Data;
 using Khata.Infrastructure.Mongo;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.HttpOverrides;
+using Microsoft.AspNetCore.RateLimiting;
 using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -105,10 +107,88 @@ builder.Services.Configure<ForwardedHeadersOptions>(options =>
     options.KnownProxies.Clear();
 });
 
+// --- Fail fast on a weak signing key ---
+// HMAC-SHA256 needs 256 bits of key material. A short key does not fail at
+// startup — it throws when the first user signs in, which reads as an outage
+// rather than a misconfiguration. The shipped placeholder is public, so anyone
+// who can read the repository could forge tokens signed with it.
+const string PlaceholderJwtSecret =
+    "CHANGE_ME_IN_PRODUCTION_USE_A_256_BIT_KEY_AT_LEAST_32_CHARACTERS_LONG_2026";
+
+var jwtSecret = builder.Configuration["Jwt:Secret"];
+if (string.IsNullOrWhiteSpace(jwtSecret) ||
+    System.Text.Encoding.UTF8.GetByteCount(jwtSecret) < 32)
+{
+    throw new InvalidOperationException(
+        "Jwt:Secret is missing or shorter than 32 bytes. Set Jwt__Secret to a random value of at " +
+        "least 32 characters (for example: openssl rand -base64 48).");
+}
+
+if (jwtSecret == PlaceholderJwtSecret &&
+    !builder.Environment.IsDevelopment() &&
+    !builder.Environment.IsEnvironment("Testing"))
+{
+    throw new InvalidOperationException(
+        "Jwt:Secret is still the placeholder committed to appsettings.json. Anyone with the " +
+        "repository can forge tokens with it — set Jwt__Secret before deploying.");
+}
+
+// --- Rate limiting ---
+// Per-account lockout already exists (5 tries / 15 minutes), but it cannot stop
+// a spray of one password across thousands of accounts, and it lets anyone lock
+// a known user out with five deliberate failures. Throttling per client IP
+// closes both. RemoteIpAddress is only the real client because
+// UseForwardedHeaders runs first.
+var isTesting = builder.Environment.IsEnvironment("Testing");
+builder.Services.AddRateLimiter(options =>
+{
+    options.RejectionStatusCode = StatusCodes.Status429TooManyRequests;
+    options.AddPolicy("auth", context =>
+        RateLimitPartition.GetFixedWindowLimiter(
+            context.Connection.RemoteIpAddress?.ToString() ?? "unknown",
+            _ => new FixedWindowRateLimiterOptions
+            {
+                // The test suite shares one process and one client address, so a
+                // real window would throttle the tests themselves.
+                PermitLimit = isTesting ? int.MaxValue : 10,
+                Window = TimeSpan.FromMinutes(1),
+                QueueLimit = 0,
+            }));
+});
+
 var app = builder.Build();
 
 // --- Middleware Pipeline ---
 app.UseForwardedHeaders();
+
+// --- Security headers ---
+app.Use(async (context, next) =>
+{
+    var headers = context.Response.Headers;
+    headers["X-Content-Type-Options"] = "nosniff";
+    headers["X-Frame-Options"] = "DENY";
+    headers["Referrer-Policy"] = "no-referrer";
+    headers["X-Permitted-Cross-Domain-Policies"] = "none";
+
+    // Auth responses carry bearer tokens. Without this a shared proxy or a
+    // browser cache can serve one user's token to the next request.
+    if (context.Request.Path.StartsWithSegments("/api/auth"))
+    {
+        headers["Cache-Control"] = "no-store";
+        headers["Pragma"] = "no-cache";
+    }
+
+    await next();
+});
+
+if (!app.Environment.IsDevelopment() && !isTesting)
+{
+    // One year, subdomains included. Only meaningful over HTTPS — which is what
+    // forwarded headers make visible behind a cloud proxy.
+    app.UseHsts();
+}
+
+app.UseRateLimiter();
 app.UseExceptionHandler();
 app.UseSerilogRequestLogging();
 
