@@ -4,6 +4,17 @@ A production-quality, Nepal-focused digital business management application comb
 digital khata (ledger), sales, purchases, inventory, invoicing, and reporting for
 small and medium businesses in Nepal.
 
+## Download the app
+
+**Latest APK:** [github.com/Shishir10101/business-management-app/releases/latest](https://github.com/Shishir10101/business-management-app/releases/latest)
+
+Every version ships as a GitHub Release with the `.apk` attached. Release assets are **not**
+part of the repository file tree, so the APK will never appear in the code listing above —
+it lives under **Releases**, in the right-hand sidebar of the repository page.
+
+Installed copies check for a newer release on launch and offer the download themselves, so
+publishing a release is all it takes to ship an update.
+
 ## Monorepo Structure
 
 ```
