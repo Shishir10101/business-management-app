@@ -87,6 +87,11 @@ khata_demo.db-wal
 *.key
 !infrastructure/**/*.env.example
 
+# --- E2E artifacts ---
+# Written by scripts/e2e/seed_demo_account.py; holds a live account password.
+scripts/e2e/demo_account.json
+scripts/e2e/walk.log
+
 # --- Docker ---
 .docker/
 
