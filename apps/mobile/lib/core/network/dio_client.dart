@@ -56,7 +56,19 @@ class AuthInterceptor extends Interceptor {
   /// preventing infinite refresh loops.
   static const _retriedFlag = 'auth_retry';
 
+  /// The refresh currently in flight, shared by every request that 401s at the
+  /// same moment.
+  ///
+  /// Without this, two parallel requests each rotate the refresh token; the
+  /// second one presents a token the server has already seen, which is
+  /// indistinguishable from a stolen copy — and the server now revokes the
+  /// whole family in that case, signing the user out mid-session.
+  Future<(String, String)?>? _refreshing;
+
   AuthInterceptor(this._ref);
+
+  Future<(String, String)?> _refreshOnce() =>
+      _refreshing ??= _refreshTokens().whenComplete(() => _refreshing = null);
 
   @override
   void onRequest(
@@ -80,7 +92,7 @@ class AuthInterceptor extends Interceptor {
     }
 
     try {
-      final refreshed = await _refreshTokens();
+      final refreshed = await _refreshOnce();
       if (refreshed == null) {
         handler.next(err);
         return;

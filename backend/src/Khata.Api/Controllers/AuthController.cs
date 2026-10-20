@@ -35,14 +35,10 @@ public class AuthController : ControllerBase
                 Detail = $"The email '{request.Email}' is already registered."
             });
 
-        // Validate password
-        if (request.Password.Length < 8)
-            return BadRequest(new ProblemDetails
-            {
-                Title = "Password too short",
-                Status = 400,
-                Detail = "Password must be at least 8 characters."
-            });
+        // Password strength is enforced by Identity's policy (see
+        // AddKhataInfrastructure) and surfaces through CreateUserAsync as a
+        // ValidationException. Deliberately not duplicated here: a second copy
+        // of the rule drifts, and then the error message contradicts the policy.
 
         // Create user (password is hashed internally by Identity UserManager)
         // We pass the plain password as the "passwordHash" param — the AuthRepository

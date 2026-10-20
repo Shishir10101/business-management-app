@@ -87,11 +87,27 @@ public class AuthRepository : IAuthRepository
     public async Task<bool> VerifyPasswordAsync(string email, string password, CancellationToken cancellationToken = default)
     {
         var user = await _userManager.FindByEmailAsync(email);
-        if (user is null || !user.IsActive) return false;
+        if (user is null || !user.IsActive)
+        {
+            // Hash a throwaway value anyway. Returning immediately makes an
+            // unknown email answer in microseconds while a real one spends tens
+            // of milliseconds in PBKDF2 — a reliable account-existence oracle
+            // even though both paths return the same 401.
+            _userManager.PasswordHasher.VerifyHashedPassword(
+                new AppUser(), DummyPasswordHash, password);
+            return false;
+        }
 
         var result = await _signInManager.CheckPasswordSignInAsync(user, password, lockoutOnFailure: true);
         return result.Succeeded;
     }
+
+    /// <summary>
+    /// A valid hash of a value nobody can sign in with, used only to equalise
+    /// the cost of verifying a password for an account that does not exist.
+    /// </summary>
+    private static readonly string DummyPasswordHash =
+        new PasswordHasher<AppUser>().HashPassword(new AppUser(), "unused-placeholder-9F3a");
 
     public async Task UpdateUserLoginAsync(long userId, CancellationToken cancellationToken = default)
     {

@@ -71,11 +71,25 @@ public class JwtTokenService : ITokenService
         string refreshToken, CancellationToken cancellationToken = default)
     {
         var hash = HashToken(refreshToken);
+        // Look the hash up regardless of revocation. A token that was already
+        // rotated being presented again is the signature of a stolen copy, and
+        // that is only visible if revoked rows are included.
         var stored = await _db.Set<RefreshToken>()
-            .FirstOrDefaultAsync(rt => rt.TokenHash == hash && rt.RevokedAt == null, cancellationToken);
+            .FirstOrDefaultAsync(rt => rt.TokenHash == hash, cancellationToken);
 
         if (stored is null || stored.ExpiresAt < DateTime.UtcNow)
             throw new SecurityTokenException("Invalid or expired refresh token.");
+
+        if (stored.RevokedAt is not null)
+        {
+            // Replay of an already-used token. Either the client refreshed twice
+            // in parallel, or the token was stolen and both parties are using
+            // it. Neither case can be told apart, so the whole family is
+            // revoked: the legitimate user signs in again, and the thief's copy
+            // stops working instead of staying valid for 30 days.
+            await RevokeAllForUserAsync(stored.UserId, cancellationToken);
+            throw new SecurityTokenException("Refresh token has already been used.");
+        }
 
         // Revoke old token (rotation)
         stored.RevokedAt = DateTime.UtcNow;
@@ -134,6 +148,31 @@ public class JwtTokenService : ITokenService
         };
 
         _db.Set<RefreshToken>().Add(refreshToken);
+        await _db.SaveChangesAsync(ct);
+    }
+
+    /// <summary>
+    /// Revokes every live refresh token for a user.
+    /// </summary>
+    /// <remarks>
+    /// Used when a rotated token is replayed. Revoking only the replayed row
+    /// would leave the thief's freshly-issued sibling valid, which is the
+    /// opposite of what reuse detection is for.
+    /// </remarks>
+    private async Task RevokeAllForUserAsync(long userId, CancellationToken ct)
+    {
+        var live = await _db.Set<RefreshToken>()
+            .Where(rt => rt.UserId == userId && rt.RevokedAt == null)
+            .ToListAsync(ct);
+
+        if (live.Count == 0) return;
+
+        var now = DateTime.UtcNow;
+        foreach (var token in live)
+        {
+            token.RevokedAt = now;
+        }
+
         await _db.SaveChangesAsync(ct);
     }
 

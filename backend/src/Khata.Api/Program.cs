@@ -154,6 +154,26 @@ builder.Services.AddRateLimiter(options =>
                 Window = TimeSpan.FromMinutes(1),
                 QueueLimit = 0,
             }));
+
+    // Everything else: a loose ceiling that only stops runaway loops or a
+    // scraped endpoint, not normal use. The platform health check is exempt so
+    // a burst of real traffic can never mark the service unhealthy.
+    options.GlobalLimiter = PartitionedRateLimiter.Create<HttpContext, string>(context =>
+    {
+        if (context.Request.Path.StartsWithSegments("/health"))
+        {
+            return RateLimitPartition.GetNoLimiter("health");
+        }
+
+        return RateLimitPartition.GetFixedWindowLimiter(
+            context.Connection.RemoteIpAddress?.ToString() ?? "unknown",
+            _ => new FixedWindowRateLimiterOptions
+            {
+                PermitLimit = isTesting ? int.MaxValue : 600,
+                Window = TimeSpan.FromMinutes(1),
+                QueueLimit = 0,
+            });
+    });
 });
 
 var app = builder.Build();

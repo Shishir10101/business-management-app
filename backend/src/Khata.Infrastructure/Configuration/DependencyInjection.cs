@@ -79,12 +79,16 @@ public static class DependencyInjection
         // ASP.NET Core Identity
         services.AddIdentity<AppUser, AppRole>(options =>
         {
-            // Password settings
-            options.Password.RequiredLength = 8;
+            // Password settings.
+            //
+            // 8 characters with only a digit requirement is below current
+            // guidance and allowed "password1" style secrets. Requiring mixed
+            // case costs the user nothing and closes the weakest half.
+            options.Password.RequiredLength = 10;
             options.Password.RequireDigit = true;
+            options.Password.RequireLowercase = true;
+            options.Password.RequireUppercase = true;
             options.Password.RequireNonAlphanumeric = false;
-            options.Password.RequireUppercase = false;
-            options.Password.RequireLowercase = false;
 
             // Lockout settings
             options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(15);
