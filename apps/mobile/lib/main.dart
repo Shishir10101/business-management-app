@@ -1,13 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:url_launcher/url_launcher.dart';
 
+import 'core/config/app_config.dart';
 import 'core/l10n/calendar_provider.dart';
 import 'core/l10n/locale_provider.dart';
 import 'core/onboarding/onboarding_provider.dart';
 import 'core/router/app_router.dart';
 import 'core/theme/app_theme.dart';
 import 'core/theme/theme_provider.dart';
+import 'core/update/update_dialog.dart';
+import 'core/update/update_providers.dart';
 import 'features/auth/presentation/providers/auth_providers.dart';
 import 'features/settings/presentation/pages/lock_screen.dart';
 import 'features/settings/presentation/providers/app_lock_provider.dart';
@@ -57,6 +61,49 @@ class _KhataAppState extends ConsumerState<KhataApp>
     // Resolve whether a PIN exists before the first frame, so the lock gate
     // never flashes open on a device that should be locked.
     Future.microtask(() => ref.read(appLockProvider.notifier).load());
+    // Update check runs after the first frame so it can never delay startup:
+    // this app is expected to open instantly and work with no network.
+    if (AppConfig.updateCheckEnabled) {
+      WidgetsBinding.instance.addPostFrameCallback((_) => _checkForUpdate());
+    }
+  }
+
+  /// Asks GitHub for a newer build and offers it.
+  ///
+  /// Silent on every failure path. A shopkeeper opening the khata to record a
+  /// sale must never meet an error dialog because GitHub was unreachable.
+  Future<void> _checkForUpdate() async {
+    final info = await ref.read(updateServiceProvider).check();
+    if (info == null || !mounted) {
+      return;
+    }
+
+    // showDialog needs a context *below* the Navigator. This state sits above
+    // MaterialApp, so borrow the router's own navigator key rather than adding
+    // a second one — GoRouter rebuilds when auth changes, and a key we owned
+    // would collide with the rebuild.
+    final navigatorContext =
+        ref.read(appRouterProvider).routerDelegate.navigatorKey.currentContext;
+    if (navigatorContext == null || !navigatorContext.mounted) {
+      return;
+    }
+
+    final wantsDownload = await showUpdateDialog(navigatorContext, info);
+    if (!wantsDownload || !mounted) {
+      return;
+    }
+
+    final launched = await launchUrl(
+      Uri.parse(info.downloadUrl),
+      mode: LaunchMode.externalApplication,
+    );
+    if (!launched) {
+      ScaffoldMessenger.maybeOf(navigatorContext)?.showSnackBar(
+        SnackBar(
+          content: Text(AppLocalizations.of(navigatorContext).updateLinkFailed),
+        ),
+      );
+    }
   }
 
   @override

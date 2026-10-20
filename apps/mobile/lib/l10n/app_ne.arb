@@ -1529,5 +1529,12 @@
   "welcomeSlide2Body": "बिक्री र खरिदले स्टक आफैं घटाउँछ, र सामान सकिनु अघि नै चेतावनी आउँछ।",
   "welcomeSlide3Title": "काम लाग्ने हिसाब",
   "welcomeSlide3Body": "दैनिक नाफा, उठाउनु पर्ने र तिर्नु पर्ने — ईस्वी वा वि.सं. मितिमा, तपाईंको भाषामा।",
-  "tryDemo": "डेमो हेर्नुहोस्"
+  "tryDemo": "डेमो हेर्नुहोस्",
+  "updateTitle": "अपडेट उपलब्ध छ",
+  "updateBody": "तपाईंसँग संस्करण {current} छ। संस्करण {latest} स्थापना गर्न तयार छ।",
+  "updateSize": "डाउनलोड आकार: {size}",
+  "updateNotesLabel": "नयाँ के छ",
+  "updateDownload": "डाउनलोड",
+  "updateLater": "पछि",
+  "updateLinkFailed": "डाउनलोड लिंक खोल्न सकिएन।"
 }

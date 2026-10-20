@@ -2652,4 +2652,29 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get tryDemo => 'डेमो देखें';
+
+  @override
+  String get updateTitle => 'अपडेट उपलब्ध है';
+
+  @override
+  String updateBody(String current, String latest) {
+    return 'आपके पास संस्करण $current है। संस्करण $latest इंस्टॉल के लिए तैयार है।';
+  }
+
+  @override
+  String updateSize(String size) {
+    return 'डाउनलोड आकार: $size';
+  }
+
+  @override
+  String get updateNotesLabel => 'नया क्या है';
+
+  @override
+  String get updateDownload => 'डाउनलोड';
+
+  @override
+  String get updateLater => 'बाद में';
+
+  @override
+  String get updateLinkFailed => 'डाउनलोड लिंक नहीं खुल सका।';
 }

@@ -1551,5 +1551,12 @@
   "welcomeSlide2Body": "बिक्री और खरीद से स्टॉक खुद घटता है, और सामान खत्म होने से पहले चेतावनी मिलती है।",
   "welcomeSlide3Title": "काम आने वाले आँकड़े",
   "welcomeSlide3Body": "रोज़ का मुनाफ़ा, वसूली और देय — ईस्वी या वि.सं. तिथि में, आपकी भाषा में।",
-  "tryDemo": "डेमो देखें"
+  "tryDemo": "डेमो देखें",
+  "updateTitle": "अपडेट उपलब्ध है",
+  "updateBody": "आपके पास संस्करण {current} है। संस्करण {latest} इंस्टॉल के लिए तैयार है।",
+  "updateSize": "डाउनलोड आकार: {size}",
+  "updateNotesLabel": "नया क्या है",
+  "updateDownload": "डाउनलोड",
+  "updateLater": "बाद में",
+  "updateLinkFailed": "डाउनलोड लिंक नहीं खुल सका।"
 }

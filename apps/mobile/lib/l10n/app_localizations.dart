@@ -4887,6 +4887,48 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Try the demo'**
   String get tryDemo;
+
+  /// No description provided for @updateTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Update available'**
+  String get updateTitle;
+
+  /// No description provided for @updateBody.
+  ///
+  /// In en, this message translates to:
+  /// **'You have version {current}. Version {latest} is ready to install.'**
+  String updateBody(String current, String latest);
+
+  /// No description provided for @updateSize.
+  ///
+  /// In en, this message translates to:
+  /// **'Download size: {size}'**
+  String updateSize(String size);
+
+  /// No description provided for @updateNotesLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'What\'s new'**
+  String get updateNotesLabel;
+
+  /// No description provided for @updateDownload.
+  ///
+  /// In en, this message translates to:
+  /// **'Download'**
+  String get updateDownload;
+
+  /// No description provided for @updateLater.
+  ///
+  /// In en, this message translates to:
+  /// **'Later'**
+  String get updateLater;
+
+  /// No description provided for @updateLinkFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Could not open the download link.'**
+  String get updateLinkFailed;
 }
 
 class _AppLocalizationsDelegate

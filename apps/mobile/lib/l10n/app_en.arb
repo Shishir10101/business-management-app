@@ -1551,5 +1551,29 @@
   "welcomeSlide2Body": "Sales and purchases move stock automatically, and you are warned before an item runs out.",
   "welcomeSlide3Title": "Numbers you can act on",
   "welcomeSlide3Body": "Daily profit, what to collect and what to pay — in AD or BS dates, in your language.",
-  "tryDemo": "Try the demo"
+  "tryDemo": "Try the demo",
+  "updateTitle": "Update available",
+  "updateBody": "You have version {current}. Version {latest} is ready to install.",
+  "@updateBody": {
+    "placeholders": {
+      "current": {
+        "type": "String"
+      },
+      "latest": {
+        "type": "String"
+      }
+    }
+  },
+  "updateSize": "Download size: {size}",
+  "@updateSize": {
+    "placeholders": {
+      "size": {
+        "type": "String"
+      }
+    }
+  },
+  "updateNotesLabel": "What's new",
+  "updateDownload": "Download",
+  "updateLater": "Later",
+  "updateLinkFailed": "Could not open the download link."
 }

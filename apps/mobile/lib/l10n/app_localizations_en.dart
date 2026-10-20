@@ -2650,4 +2650,29 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get tryDemo => 'Try the demo';
+
+  @override
+  String get updateTitle => 'Update available';
+
+  @override
+  String updateBody(String current, String latest) {
+    return 'You have version $current. Version $latest is ready to install.';
+  }
+
+  @override
+  String updateSize(String size) {
+    return 'Download size: $size';
+  }
+
+  @override
+  String get updateNotesLabel => 'What\'s new';
+
+  @override
+  String get updateDownload => 'Download';
+
+  @override
+  String get updateLater => 'Later';
+
+  @override
+  String get updateLinkFailed => 'Could not open the download link.';
 }

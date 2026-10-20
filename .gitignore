@@ -99,6 +99,10 @@ scripts/e2e/walk.log
 *.log
 logs/
 
+# --- Python ---
+__pycache__/
+*.pyc
+
 # --- Build outputs ---
 dist/
 out/

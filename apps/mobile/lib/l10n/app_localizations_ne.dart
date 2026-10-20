@@ -2645,4 +2645,29 @@ class AppLocalizationsNe extends AppLocalizations {
 
   @override
   String get tryDemo => 'डेमो हेर्नुहोस्';
+
+  @override
+  String get updateTitle => 'अपडेट उपलब्ध छ';
+
+  @override
+  String updateBody(String current, String latest) {
+    return 'तपाईंसँग संस्करण $current छ। संस्करण $latest स्थापना गर्न तयार छ।';
+  }
+
+  @override
+  String updateSize(String size) {
+    return 'डाउनलोड आकार: $size';
+  }
+
+  @override
+  String get updateNotesLabel => 'नयाँ के छ';
+
+  @override
+  String get updateDownload => 'डाउनलोड';
+
+  @override
+  String get updateLater => 'पछि';
+
+  @override
+  String get updateLinkFailed => 'डाउनलोड लिंक खोल्न सकिएन।';
 }

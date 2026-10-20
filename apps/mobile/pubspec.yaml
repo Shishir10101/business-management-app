@@ -1,7 +1,7 @@
 name: khata
 description: Nepal Digital Khata — Business Management App
 publish_to: 'none'
-version: 0.1.0+1
+version: 1.0.0+1
 
 environment:
   sdk: '>=3.2.0 <4.0.0'
@@ -45,6 +45,13 @@ dependencies:
   uuid: ^4.4.0
   shared_preferences: ^2.2.3
   nepali_utils: ^3.0.8
+
+  # Updates (version check + APK download)
+  # package_info_plus is held at 9.x: 10.x requires win32 ^6, which conflicts
+  # with share_plus 7.2.2's win32 <6 constraint. Moving both together is a
+  # separate change (share_plus 10 changes its call sites).
+  package_info_plus: ^9.0.1
+  url_launcher: ^6.3.3
 
   # Notifications
   flutter_local_notifications: ^17.1.2
