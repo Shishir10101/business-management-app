@@ -142,3 +142,10 @@ public enum SupportTicketPriority
     High = 3,
     Urgent = 4
 }
+
+/// <summary>Which side of the VAT register to return.</summary>
+public enum VatRegisterType
+{
+    Sales = 1,
+    Purchases = 2,
+}

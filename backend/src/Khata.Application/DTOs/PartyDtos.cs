@@ -143,6 +143,18 @@ public record PartyLedgerDto(
     PaginationInfo Pagination
 );
 
+/// <summary>
+/// A public customer statement: everything needed to render a shareable
+/// HTML page without authentication.
+/// </summary>
+public record PublicStatementDto(
+    string BusinessName,
+    string? BusinessPhone,
+    string CustomerName,
+    string? CustomerPhone,
+    PartyLedgerDto Ledger
+);
+
 // --- Queries ---
 
 /// <summary>Party list query. Search matches name and phone.</summary>

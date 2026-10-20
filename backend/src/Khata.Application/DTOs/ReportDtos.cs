@@ -180,3 +180,63 @@ public record ReceivablePayableReportDto(
     IReadOnlyList<OutstandingPartyDto> Receivables,
     IReadOnlyList<OutstandingPartyDto> Payables
 );
+
+/// <summary>
+/// One line of a VAT register. Nepal files two of these with IRD: Anusuchi 5
+/// (sales) and Anusuchi 6 (purchases). <see cref="TaxableAmount"/> is the value
+/// VAT is charged on — subtotal after discount, before tax.
+/// </summary>
+public record VatRegisterRowDto(
+    DateOnly Date,
+    string DocumentNumber,
+    string PartyName,
+    string? PartyPan,
+    long TaxableAmount,
+    long TaxAmount,
+    long TotalAmount
+);
+
+/// <summary>
+/// A VAT register for one date range. <see cref="TotalTaxable"/>,
+/// <see cref="TotalTax"/> and <see cref="TotalAmount"/> are what actually goes
+/// on the return; the rows exist so an inspector can trace them.
+/// </summary>
+public record VatRegisterDto(
+    DateOnly From,
+    DateOnly To,
+    int RowCount,
+    long TotalTaxable,
+    long TotalTax,
+    long TotalAmount,
+    IReadOnlyList<VatRegisterRowDto> Rows
+);
+
+/// <summary>
+/// One customer's outstanding balance split by how long it has been owed.
+/// Buckets are by invoice age, since the khata records a due amount rather than
+/// a due date.
+/// </summary>
+public record AgingRowDto(
+    long CustomerId,
+    string CustomerName,
+    string? PhoneNumber,
+    long Current,
+    long Days1To30,
+    long Days31To60,
+    long Days61To90,
+    long Over90,
+    long Total
+);
+
+/// <summary>Receivables aging across every customer with an open balance.</summary>
+public record ReceivablesAgingDto(
+    DateOnly AsOf,
+    int CustomerCount,
+    long TotalCurrent,
+    long Total1To30,
+    long Total31To60,
+    long Total61To90,
+    long TotalOver90,
+    long Total,
+    IReadOnlyList<AgingRowDto> Rows
+);

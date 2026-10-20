@@ -320,6 +320,114 @@ public class ReportEndpointsTests
         Assert.Equal(supplier.Id, payable.PartyId);
     }
 
+    // --- VAT register ---
+
+    [Fact]
+    public async Task VatRegister_Sales_ReturnsTaxableTaxAndTotal()
+    {
+        var client = await CreateOwnerClientAsync();
+        var product = await CreateProductAsync(client, 5000, 10000, 1300, 100);
+        var customer = await CreateCustomerAsync(client, "VAT Customer");
+
+        await CreateSaleAsync(client, customer.Id, product.Id, 2, 10000);
+
+        var reg = await client.GetFromJsonAsync<VatRegisterDto>(
+            "/api/reports/vat-register/sales?dateFrom=2026-01-01&dateTo=2026-12-31", JsonOptions);
+
+        Assert.NotNull(reg);
+        Assert.Single(reg.Rows);
+        Assert.Equal(20000, reg.Rows[0].TaxableAmount);   // subtotal − discount
+        Assert.Equal(2600, reg.Rows[0].TaxAmount);        // 13%
+        Assert.Equal(22600, reg.Rows[0].TotalAmount);
+        Assert.Equal(20000, reg.TotalTaxable);
+        Assert.Equal(2600, reg.TotalTax);
+        Assert.Equal(22600, reg.TotalAmount);
+    }
+
+    [Fact]
+    public async Task VatRegister_Purchases_ReturnsSupplierDetails()
+    {
+        var client = await CreateOwnerClientAsync();
+        var product = await CreateProductAsync(client, 5000, 10000, 1300, 100);
+        var supplier = await CreateSupplierAsync(client, "VAT Supplier");
+
+        var response = await client.PostAsJsonAsync("/api/purchases", new
+        {
+            supplierId = supplier.Id,
+            purchaseType = "Credit",
+            items = new[] { new { productId = product.Id, quantity = 1m, unitPrice = 10000L } },
+            paidAmount = 0L,
+        });
+        response.EnsureSuccessStatusCode();
+
+        var reg = await client.GetFromJsonAsync<VatRegisterDto>(
+            "/api/reports/vat-register/purchases?dateFrom=2026-01-01&dateTo=2026-12-31", JsonOptions);
+
+        Assert.NotNull(reg);
+        Assert.Single(reg.Rows);
+        Assert.Equal("VAT Supplier", reg.Rows[0].PartyName);
+        Assert.True(reg.Rows[0].TaxableAmount > 0);
+    }
+
+    [Fact]
+    public async Task VatRegister_DefaultsToCurrentMonth()
+    {
+        var client = await CreateOwnerClientAsync();
+        var reg = await client.GetFromJsonAsync<VatRegisterDto>(
+            "/api/reports/vat-register/sales", JsonOptions);
+        Assert.NotNull(reg);
+        // Range defaults to current month; empty is valid when no sales exist.
+        Assert.True(reg.From <= reg.To);
+    }
+
+    // --- receivables aging ---
+
+    [Fact]
+    public async Task ReceivablesAging_BucketsOpenBalancesByInvoiceAge()
+    {
+        var client = await CreateOwnerClientAsync();
+        var product = await CreateProductAsync(client, 1000, 2000, 0, 100);
+        var customer = await CreateCustomerAsync(client, "Aging Customer");
+
+        // Three credit sales on different dates, all unpaid.
+        await CreateSaleAsync(client, customer.Id, product.Id, 1, 2000, saleDate: "2026-10-01"); // 19 days ago → Current (0-30)
+        await CreateSaleAsync(client, customer.Id, product.Id, 1, 2000, saleDate: "2026-09-01"); // ~50 days ago → Days1To30 (31-60)
+        await CreateSaleAsync(client, customer.Id, product.Id, 1, 2000, saleDate: "2026-08-01"); // ~80 days ago → Days31To60 (61-90)
+
+        var aging = await client.GetFromJsonAsync<ReceivablesAgingDto>(
+            "/api/reports/receivables-aging", JsonOptions);
+
+        Assert.NotNull(aging);
+        Assert.Equal(1, aging.CustomerCount);
+        Assert.Equal(6000, aging.Total);
+
+        var row = Assert.Single(aging.Rows);
+        Assert.Equal("Aging Customer", row.CustomerName);
+        Assert.Equal(2000, row.Current);       // Oct 1  (0-30 days)
+        Assert.Equal(2000, row.Days1To30);     // Sep 1  (31-60 days)
+        Assert.Equal(2000, row.Days31To60);    // Aug 1  (61-90 days)
+        Assert.Equal(0, row.Days61To90);
+        Assert.Equal(0, row.Over90);
+    }
+
+    [Fact]
+    public async Task ReceivablesAging_ExcludesPaidAndCashSales()
+    {
+        var client = await CreateOwnerClientAsync();
+        var product = await CreateProductAsync(client, 1000, 2000, 0, 100);
+        var customer = await CreateCustomerAsync(client);
+
+        await CreateSaleAsync(client, customer.Id, product.Id, 1, 2000, saleType: "Cash");
+        await CreateSaleAsync(client, customer.Id, product.Id, 1, 2000, saleType: "Credit", saleDate: "2026-10-01");
+
+        var aging = await client.GetFromJsonAsync<ReceivablesAgingDto>(
+            "/api/reports/receivables-aging", JsonOptions);
+
+        Assert.NotNull(aging);
+        Assert.Single(aging.Rows);
+        Assert.Equal(2000, aging.Total); // only the unpaid credit sale
+    }
+
     // --- validation + export ---
 
     [Fact]

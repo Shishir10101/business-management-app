@@ -132,6 +132,7 @@ public static class DependencyInjection
         services.AddScoped<ISyncService, SyncService>();
         services.AddScoped<INotificationService, NotificationService>();
         services.AddScoped<IReminderService, ReminderService>();
+        services.AddScoped<IStatementService, StatementService>();
         services.AddScoped<IBackupService, BackupService>();
         services.AddScoped<IImportService, ImportService>();
         services.AddScoped<IAdminService, AdminService>();

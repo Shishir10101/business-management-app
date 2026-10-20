@@ -108,6 +108,36 @@ public class ReportsController : ControllerBase
     public async Task<ActionResult<ReceivablePayableReportDto>> GetReceivablePayable()
         => Ok(await _reports.GetReceivablePayableAsync());
 
+    /// <summary>VAT sales register (Anusuchi 5). Defaults to current month.</summary>
+    [HttpGet("vat-register/sales")]
+    [Authorize(Policy = Permissions.ReportsView)]
+    [ProducesResponseType(typeof(VatRegisterDto), StatusCodes.Status200OK)]
+    public async Task<ActionResult<VatRegisterDto>> GetVatSalesRegister(
+        [FromQuery] DateOnly? dateFrom, [FromQuery] DateOnly? dateTo)
+    {
+        var (from, to) = ResolveRange(dateFrom, dateTo);
+        return Ok(await _reports.GetVatSalesRegisterAsync(from, to));
+    }
+
+    /// <summary>VAT purchase register (Anusuchi 6). Defaults to current month.</summary>
+    [HttpGet("vat-register/purchases")]
+    [Authorize(Policy = Permissions.ReportsView)]
+    [ProducesResponseType(typeof(VatRegisterDto), StatusCodes.Status200OK)]
+    public async Task<ActionResult<VatRegisterDto>> GetVatPurchaseRegister(
+        [FromQuery] DateOnly? dateFrom, [FromQuery] DateOnly? dateTo)
+    {
+        var (from, to) = ResolveRange(dateFrom, dateTo);
+        return Ok(await _reports.GetVatPurchaseRegisterAsync(from, to));
+    }
+
+    /// <summary>Receivables aging: open balances bucketed by invoice age.</summary>
+    [HttpGet("receivables-aging")]
+    [Authorize(Policy = Permissions.ReportsView)]
+    [ProducesResponseType(typeof(ReceivablesAgingDto), StatusCodes.Status200OK)]
+    public async Task<ActionResult<ReceivablesAgingDto>> GetReceivablesAging(
+        [FromQuery] DateOnly? asOf = null)
+        => Ok(await _reports.GetReceivablesAgingAsync(asOf));
+
     /// <summary>
     /// Downloads a report as CSV. <paramref name="type"/> is one of
     /// <c>sales</c>, <c>purchases</c>, <c>expenses</c>, <c>income</c>,

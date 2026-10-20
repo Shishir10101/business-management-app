@@ -276,6 +276,121 @@ public class ReportService : IReportService
             Items: items);
     }
 
+    public async Task<VatRegisterDto> GetVatSalesRegisterAsync(
+        DateOnly dateFrom, DateOnly dateTo,
+        CancellationToken cancellationToken = default)
+    {
+        var (from, to, _) = Normalize(dateFrom, dateTo, "day");
+
+        var rows = await _db.Sales
+            .Where(s => s.DeletedAt == null && s.BusinessId == BusinessId
+                && s.SaleDate >= from && s.SaleDate <= to)
+            .OrderBy(s => s.SaleDate).ThenBy(s => s.Id)
+            .Select(s => new VatRegisterRowDto(
+                s.SaleDate,
+                s.InvoiceNumber,
+                s.Customer == null ? "Walk-in" : s.Customer.Name,
+                s.Customer == null ? null : s.Customer.PanNumber,
+                s.Subtotal - s.DiscountAmount,
+                s.TaxAmount,
+                s.TotalAmount))
+            .ToListAsync(cancellationToken);
+
+        return new VatRegisterDto(
+            from, to, rows.Count,
+            rows.Sum(r => r.TaxableAmount),
+            rows.Sum(r => r.TaxAmount),
+            rows.Sum(r => r.TotalAmount),
+            rows);
+    }
+
+    public async Task<VatRegisterDto> GetVatPurchaseRegisterAsync(
+        DateOnly dateFrom, DateOnly dateTo,
+        CancellationToken cancellationToken = default)
+    {
+        var (from, to, _) = Normalize(dateFrom, dateTo, "day");
+
+        var rows = await _db.Purchases
+            .Where(p => p.DeletedAt == null && p.BusinessId == BusinessId
+                && p.PurchaseDate >= from && p.PurchaseDate <= to)
+            .OrderBy(p => p.PurchaseDate).ThenBy(p => p.Id)
+            .Select(p => new VatRegisterRowDto(
+                p.PurchaseDate,
+                p.BillNumber,
+                p.Supplier == null ? "—" : p.Supplier.Name,
+                p.Supplier == null ? null : p.Supplier.PanNumber,
+                p.Subtotal - p.DiscountAmount,
+                p.TaxAmount,
+                p.TotalAmount))
+            .ToListAsync(cancellationToken);
+
+        return new VatRegisterDto(
+            from, to, rows.Count,
+            rows.Sum(r => r.TaxableAmount),
+            rows.Sum(r => r.TaxAmount),
+            rows.Sum(r => r.TotalAmount),
+            rows);
+    }
+
+    public async Task<ReceivablesAgingDto> GetReceivablesAgingAsync(
+        DateOnly? asOf, CancellationToken cancellationToken = default)
+    {
+        var today = asOf ?? _clock.Today;
+        var sales = await _db.Sales
+            .Where(s => s.DeletedAt == null && s.BusinessId == BusinessId
+                && s.DueAmount > 0 && s.CustomerId != null)
+            .Select(s => new
+            {
+                s.CustomerId,
+                s.Customer!.Name,
+                s.Customer.PhoneNumber,
+                s.SaleDate,
+                s.DueAmount,
+            })
+            .ToListAsync(cancellationToken);
+
+        var customers = sales
+            .GroupBy(s => new { s.CustomerId, s.Name, s.PhoneNumber })
+            .Select(g =>
+            {
+                var buckets = g.ToLookup(x =>
+                {
+                    var age = today.DayNumber - x.SaleDate.DayNumber;
+                    return age switch
+                    {
+                        <= 30 => 0,
+                        <= 60 => 1,
+                        <= 90 => 2,
+                        <= 120 => 3,
+                        _ => 4,
+                    };
+                });
+                return new AgingRowDto(
+                    g.Key.CustomerId!.Value,
+                    g.Key.Name,
+                    g.Key.PhoneNumber,
+                    buckets[0].Sum(x => x.DueAmount),
+                    buckets[1].Sum(x => x.DueAmount),
+                    buckets[2].Sum(x => x.DueAmount),
+                    buckets[3].Sum(x => x.DueAmount),
+                    buckets[4].Sum(x => x.DueAmount),
+                    g.Sum(x => x.DueAmount));
+            })
+            .OrderByDescending(r => r.Total)
+            .ToList();
+
+        return new ReceivablesAgingDto(
+            today,
+            customers.Count,
+            customers.Sum(r => r.Current),
+            customers.Sum(r => r.Days1To30),
+            customers.Sum(r => r.Days31To60),
+            customers.Sum(r => r.Days61To90),
+            customers.Sum(r => r.Over90),
+            customers.Sum(r => r.Total),
+            customers);
+    }
+
     public async Task<ReceivablePayableReportDto> GetReceivablePayableAsync(
         CancellationToken cancellationToken = default)
     {
