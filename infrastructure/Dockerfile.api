@@ -14,8 +14,20 @@ COPY backend/ .
 RUN dotnet publish src/Khata.Api/Khata.Api.csproj -c Release -o /app/publish --no-restore
 
 FROM mcr.microsoft.com/dotnet/aspnet:10.0 AS runtime
+
+# QuestPDF renders through SkiaSharp, which needs fontconfig on Linux. The
+# ASP.NET image does not ship it, and without it every invoice and backup PDF
+# throws only at the moment a user asks for one — never at startup, so the
+# failure hides until someone needs a document.
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends fontconfig libfontconfig1 \
+    && rm -rf /var/lib/apt/lists/*
+
 WORKDIR /app
 COPY --from=build /app/publish .
+
+# Most PaaS platforms inject PORT and route to that port; binding a fixed one
+# leaves the service unreachable with no obvious error. Local runs fall back.
 ENV ASPNETCORE_URLS=http://0.0.0.0:5000
 EXPOSE 5000
-ENTRYPOINT ["dotnet", "Khata.Api.dll"]
+ENTRYPOINT ["sh", "-c", "exec dotnet Khata.Api.dll --urls http://0.0.0.0:${PORT:-5000}"]

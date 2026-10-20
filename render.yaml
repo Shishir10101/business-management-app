@@ -1,0 +1,43 @@
+# Render blueprint for the API.
+#
+# Why Render: it builds the existing Dockerfile as-is, and the free web tier is
+# enough to prove the app works without the developer's laptop. It sleeps after
+# ~15 minutes of inactivity, so the first request afterwards pays a cold start
+# of roughly 50 seconds — fine for a demo, not for a shop opening the khata at
+# 7am. Remove that cost with any paid always-on tier.
+#
+# Secrets are marked `sync: false`: Render prompts for them once in the
+# dashboard and stores them, so nothing sensitive lives in this file.
+services:
+  - type: web
+    name: khata-api
+    runtime: docker
+    dockerfilePath: ./infrastructure/Dockerfile.api
+    dockerContext: .
+    plan: free
+    region: singapore
+    healthCheckPath: /health
+    envVars:
+      - key: ASPNETCORE_ENVIRONMENT
+        value: Production
+
+      # Supabase session pooler string (IPv4). See README / project notes.
+      - key: ConnectionStrings__DefaultConnection
+        sync: false
+
+      # HMAC-SHA256 needs 256 bits of key material. A shorter value does not
+      # fail at startup — it throws when the first user tries to sign in.
+      - key: Jwt__Secret
+        generateValue: true
+
+      - key: Mongo__Enabled
+        value: "true"
+      - key: Mongo__ConnectionString
+        sync: false
+
+      # Without these the seeder creates no super admin against a real database
+      # (deliberate: no default password is ever written to production).
+      - key: Admin__Bootstrap__Email
+        sync: false
+      - key: Admin__Bootstrap__Password
+        sync: false

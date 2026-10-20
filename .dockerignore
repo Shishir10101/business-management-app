@@ -1,0 +1,17 @@
+# Keep the build context small: the mobile app's build output alone is hundreds
+# of megabytes and none of it belongs in the API image.
+**/bin/
+**/obj/
+**/build/
+**/.dart_tool/
+**/node_modules/
+**/__pycache__/
+dist/
+docs/
+apps/
+*.db
+*.db-shm
+*.db-wal
+*.log
+.git/
+.workbuddy-ai/

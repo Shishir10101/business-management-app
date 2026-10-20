@@ -5,6 +5,7 @@ using Khata.Infrastructure.Configuration;
 using Khata.Infrastructure.Data;
 using Khata.Infrastructure.Mongo;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.HttpOverrides;
 using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -74,16 +75,40 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy("Default", policy =>
     {
-        policy.WithOrigins(builder.Configuration["Cors:AllowedOrigins"]?.Split(",") ?? [])
-              .AllowAnyHeader()
-              .AllowAnyMethod()
-              .AllowCredentials();
+        var origins = (builder.Configuration["Cors:AllowedOrigins"] ?? string.Empty)
+            .Split(',', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
+
+        // A mobile client sends no Origin header, so an empty list is a valid
+        // deployment. WithOrigins("") would instead throw on the first
+        // preflight request, which only shows up once a browser client exists.
+        if (origins.Length > 0)
+        {
+            policy.WithOrigins(origins);
+        }
+
+        policy.AllowAnyHeader().AllowAnyMethod().AllowCredentials();
     });
+});
+
+// --- Reverse proxy (cloud hosting) ---
+// Every PaaS terminates TLS at its edge and forwards plain HTTP, so without
+// this the app cannot tell a request is already secure: UseHttpsRedirection
+// would redirect endlessly and audit rows would record the proxy's IP instead
+// of the client's. Safe locally, where there is no proxy to spoof.
+builder.Services.Configure<ForwardedHeadersOptions>(options =>
+{
+    options.ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto;
+    // The proxy's address is assigned by the platform and not known in advance.
+    // The platform network is the trust boundary here; do not run this on a host
+    // that the public internet can reach directly.
+    options.KnownIPNetworks.Clear();
+    options.KnownProxies.Clear();
 });
 
 var app = builder.Build();
 
 // --- Middleware Pipeline ---
+app.UseForwardedHeaders();
 app.UseExceptionHandler();
 app.UseSerilogRequestLogging();
 
