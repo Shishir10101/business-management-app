@@ -1,0 +1,324 @@
+/* Khata platform admin console. Deliberately plain: an internal tool that
+   reads clearly on a laptop, with no build step and no CSS framework. */
+
+:root {
+    --bg: #f5f6f8;
+    --surface: #ffffff;
+    --border: #dfe3e8;
+    --text: #1d2733;
+    --muted: #6b7683;
+    --primary: #1a5276;
+    --primary-hover: #16435f;
+    --danger: #b3261e;
+    --danger-bg: #fdecea;
+    --ok: #1e6f42;
+    --ok-bg: #e8f5ee;
+    --warn: #8a5a00;
+    --warn-bg: #fdf3e0;
+    --info: #1a5276;
+    --info-bg: #e8f1f7;
+}
+
+* { box-sizing: border-box; }
+
+body {
+    margin: 0;
+    font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+    font-size: 14px;
+    color: var(--text);
+    background: var(--bg);
+}
+
+/* ---------- shell ---------- */
+
+.admin-shell {
+    display: flex;
+    min-height: 100vh;
+}
+
+.admin-nav {
+    width: 210px;
+    flex: 0 0 210px;
+    background: #16222e;
+    color: #cfd8e0;
+    padding: 16px 0;
+}
+
+.admin-brand {
+    font-size: 18px;
+    font-weight: 600;
+    color: #fff;
+    padding: 0 20px 18px;
+    letter-spacing: 0.5px;
+}
+
+.admin-nav nav { display: flex; flex-direction: column; }
+
+.admin-nav a {
+    color: #cfd8e0;
+    text-decoration: none;
+    padding: 10px 20px;
+    border-left: 3px solid transparent;
+}
+
+.admin-nav a:hover { background: #1d2b39; color: #fff; }
+
+.admin-nav a.active {
+    background: #223243;
+    color: #fff;
+    border-left-color: #4a9fd4;
+    font-weight: 600;
+}
+
+.admin-main { flex: 1; display: flex; flex-direction: column; min-width: 0; }
+
+.admin-topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    padding: 12px 24px;
+}
+
+.admin-topbar-title { font-weight: 600; }
+
+.admin-user { color: var(--muted); }
+
+.admin-link-button {
+    background: none;
+    border: none;
+    color: var(--primary);
+    cursor: pointer;
+    font-size: 14px;
+    margin-left: 12px;
+    padding: 0;
+    text-decoration: underline;
+}
+
+.admin-content { padding: 24px; }
+
+.admin-loading { padding: 40px; color: var(--muted); }
+
+h1 { font-size: 22px; margin: 0 0 16px; }
+
+/* FocusOnNavigate focuses the h1 on every navigation; the browser ring is
+   noise there (the heading is not interactive). */
+h1:focus { outline: none; }
+h2 { font-size: 17px; margin: 0 0 10px; }
+
+.muted { color: var(--muted); }
+.num { text-align: right; }
+.nowrap { white-space: nowrap; }
+
+/* ---------- dashboard ---------- */
+
+.stat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 14px;
+    margin-bottom: 18px;
+}
+
+.stat-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px;
+}
+
+.stat-label { color: var(--muted); font-size: 12px; text-transform: uppercase; letter-spacing: 0.4px; }
+.stat-value { font-size: 26px; font-weight: 600; margin: 6px 0 2px; }
+.stat-note { color: var(--muted); font-size: 12px; }
+
+/* ---------- tables ---------- */
+
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.data-table th,
+.data-table td {
+    text-align: left;
+    padding: 10px 12px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+}
+
+.data-table th {
+    background: #f0f2f5;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+    color: var(--muted);
+}
+
+.data-table tr:last-child td { border-bottom: none; }
+.row-muted td { background: #fafbfc; color: var(--muted); }
+.actions { white-space: nowrap; }
+
+code {
+    font-family: "Cascadia Mono", Consolas, monospace;
+    font-size: 12.5px;
+    background: #f0f2f5;
+    padding: 1px 5px;
+    border-radius: 4px;
+}
+
+/* ---------- pills ---------- */
+
+.pill {
+    display: inline-block;
+    padding: 2px 9px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.pill-ok { background: var(--ok-bg); color: var(--ok); }
+.pill-off { background: #eceff2; color: var(--muted); }
+.pill-warn { background: var(--warn-bg); color: var(--warn); }
+.pill-danger { background: var(--danger-bg); color: var(--danger); }
+.pill-info { background: var(--info-bg); color: var(--info); }
+
+/* ---------- controls ---------- */
+
+.toolbar {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    margin-bottom: 14px;
+    flex-wrap: wrap;
+}
+
+.input {
+    padding: 8px 10px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    font-size: 14px;
+    font-family: inherit;
+    background: var(--surface);
+    color: var(--text);
+    min-width: 180px;
+}
+
+.btn {
+    padding: 8px 14px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    background: var(--surface);
+    color: var(--text);
+    font-size: 14px;
+    font-family: inherit;
+    cursor: pointer;
+}
+
+.btn:hover:not(:disabled) { background: #f0f2f5; }
+.btn:disabled { opacity: 0.55; cursor: not-allowed; }
+
+.btn-primary {
+    background: var(--primary);
+    border-color: var(--primary);
+    color: #fff;
+}
+
+.btn-primary:hover:not(:disabled) { background: var(--primary-hover); }
+
+.btn-danger {
+    background: var(--danger);
+    border-color: var(--danger);
+    color: #fff;
+}
+
+.btn-danger:hover:not(:disabled) { filter: brightness(0.93); }
+
+.btn-sm { padding: 4px 10px; font-size: 13px; }
+
+/* ---------- alerts ---------- */
+
+.alert {
+    padding: 10px 14px;
+    border-radius: 8px;
+    margin-bottom: 14px;
+    border: 1px solid transparent;
+}
+
+.alert-error { background: var(--danger-bg); color: var(--danger); border-color: #f3c9c5; }
+.alert-ok { background: var(--ok-bg); color: var(--ok); border-color: #bfe3ce; }
+
+/* ---------- pager ---------- */
+
+.pager {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 14px;
+}
+
+.pager-info { color: var(--muted); }
+
+/* ---------- modal ---------- */
+
+.modal-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(22, 34, 46, 0.45);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.modal {
+    background: var(--surface);
+    border-radius: 12px;
+    padding: 22px;
+    width: 100%;
+    max-width: 440px;
+}
+
+.modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+    margin-top: 18px;
+}
+
+/* ---------- forms ---------- */
+
+.field { margin-bottom: 14px; display: flex; flex-direction: column; gap: 6px; }
+.field label { font-weight: 600; font-size: 13px; }
+
+/* ---------- login ---------- */
+
+.admin-empty-layout { min-height: 100vh; }
+
+.login-page {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #16222e;
+    padding: 20px;
+}
+
+.login-card {
+    background: var(--surface);
+    border-radius: 14px;
+    padding: 30px;
+    width: 100%;
+    max-width: 380px;
+}
+
+.login-card h1 { font-size: 19px; margin-bottom: 4px; }
+.login-subtitle { color: var(--muted); margin: 0 0 20px; }
+.login-note { color: var(--muted); font-size: 12.5px; margin-top: 18px; line-height: 1.5; }
+
+.login-card .btn { width: 100%; margin-top: 6px; }
+.login-card .input { width: 100%; }

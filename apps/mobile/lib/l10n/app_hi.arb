@@ -1,0 +1,1555 @@
+{
+  "@@locale": "hi",
+  "appName": "डिजिटल खाता",
+  "login": "साइन इन करें",
+  "register": "साइन अप करें",
+  "email": "ईमेल",
+  "password": "पासवर्ड",
+  "fullName": "पूरा नाम",
+  "phoneNumber": "फ़ोन नंबर",
+  "confirmPassword": "पासवर्ड की पुष्टि करें",
+  "createAccount": "खाता बनाएँ",
+  "alreadyHaveAccount": "पहले से खाता है? साइन इन करें",
+  "dontHaveAccount": "खाता नहीं है? साइन अप करें",
+  "dashboard": "डैशबोर्ड",
+  "transactions": "लेन-देन",
+  "khata": "खाता",
+  "reports": "रिपोर्ट",
+  "more": "और",
+  "todaysSales": "आज की बिक्री",
+  "todaysPurchases": "आज की खरीद",
+  "todaysExpenses": "आज का खर्च",
+  "todaysProfit": "आज का लाभ",
+  "totalReceivable": "कुल लेना है",
+  "totalPayable": "कुल देना है",
+  "stockValue": "स्टॉक का मूल्य",
+  "lowStock": "कम स्टॉक",
+  "syncNow": "अभी सिंक करें",
+  "settings": "सेटिंग्स",
+  "logout": "लॉग आउट",
+  "createBusiness": "व्यवसाय बनाएँ",
+  "businessSetupTitle": "अपना व्यवसाय सेट करें",
+  "businessSetupSubtitle": "आप पूर्ण अधिकार के साथ मालिक होंगे।",
+  "businessName": "व्यवसाय का नाम",
+  "businessType": "व्यवसाय का प्रकार (जैसे खुदरा)",
+  "panNumber": "पैन नंबर",
+  "businessEmail": "व्यवसाय का ईमेल",
+  "address": "पता",
+  "city": "शहर",
+  "district": "ज़िला",
+  "province": "प्रांत",
+  "wardNumber": "वार्ड नंबर",
+  "myBusinesses": "मेरे व्यवसाय",
+  "switchBusiness": "व्यवसाय बदलें",
+  "active": "सक्रिय",
+  "noBusinesses": "अभी कोई व्यवसाय नहीं",
+  "createFirstBusiness": "अपना पहला व्यवसाय बनाएँ",
+  "staff": "स्टाफ़",
+  "invite": "आमंत्रित करें",
+  "inviteMember": "स्टाफ़ सदस्य को आमंत्रित करें",
+  "changeRole": "भूमिका बदलें",
+  "remove": "हटाएँ",
+  "profile": "प्रोफ़ाइल",
+  "editProfile": "प्रोफ़ाइल संपादित करें",
+  "saveChanges": "बदलाव सहेजें",
+  "cancel": "रद्द करें",
+  "language": "भाषा",
+  "retry": "फिर कोशिश करें",
+  "loading": "लोड हो रहा है",
+  "products": "उत्पाद",
+  "product": "उत्पाद",
+  "addProduct": "उत्पाद जोड़ें",
+  "editProduct": "उत्पाद संपादित करें",
+  "newProduct": "नया उत्पाद",
+  "productName": "उत्पाद का नाम",
+  "sku": "एसकेयू",
+  "barcode": "बारकोड",
+  "categories": "श्रेणियाँ",
+  "addCategory": "श्रेणी जोड़ें",
+  "newCategory": "नई श्रेणी",
+  "category": "श्रेणी",
+  "units": "इकाइयाँ",
+  "addUnit": "इकाई जोड़ें",
+  "newUnit": "नई इकाई",
+  "unit": "इकाई",
+  "costPrice": "लागत मूल्य",
+  "sellingPrice": "बिक्री मूल्य",
+  "wholesalePrice": "थोक मूल्य",
+  "taxRate": "कर दर",
+  "openingStock": "प्रारंभिक स्टॉक",
+  "minQuantity": "कम स्टॉक चेतावनी",
+  "inventory": "भंडार",
+  "adjustStock": "स्टॉक समायोजित करें",
+  "stockHistory": "स्टॉक इतिहास",
+  "quickAdjust": "त्वरित समायोजन",
+  "customQuantity": "अपनी मात्रा",
+  "notes": "टिप्पणियाँ",
+  "applyAdjustment": "समायोजन लागू करें",
+  "lowStockOnly": "केवल कम स्टॉक",
+  "sortByName": "नाम से क्रमबद्ध करें",
+  "sortByQuantity": "मात्रा से क्रमबद्ध करें",
+  "searchProducts": "उत्पाद खोजें",
+  "inStock": "स्टॉक में",
+  "lowStockAlert": "कम स्टॉक",
+  "stockAdded": "स्टॉक जोड़ा गया",
+  "stockRemoved": "स्टॉक हटाया गया",
+  "customers": "ग्राहक",
+  "customer": "ग्राहक",
+  "addCustomer": "ग्राहक जोड़ें",
+  "newCustomer": "नया ग्राहक",
+  "editCustomer": "ग्राहक संपादित करें",
+  "searchCustomers": "ग्राहक खोजें",
+  "suppliers": "आपूर्तिकर्ता",
+  "supplier": "आपूर्तिकर्ता",
+  "addSupplier": "आपूर्तिकर्ता जोड़ें",
+  "newSupplier": "नया आपूर्तिकर्ता",
+  "editSupplier": "आपूर्तिकर्ता संपादित करें",
+  "searchSuppliers": "आपूर्तिकर्ता खोजें",
+  "searchPartyHint": "नाम या फ़ोन खोजें",
+  "ledger": "खाता बही",
+  "openingBalance": "प्रारंभिक शेष",
+  "creditLimit": "उधार सीमा",
+  "creditLimitOptional": "उधार सीमा (वैकल्पिक)",
+  "closingBalance": "अंतिम शेष",
+  "totalDebit": "कुल नामे",
+  "totalCredit": "कुल जमा",
+  "toCollect": "लेना है",
+  "toPay": "देना है",
+  "advance": "अग्रिम",
+  "settled": "चुकता",
+  "noCustomers": "अभी कोई ग्राहक नहीं",
+  "noSuppliers": "अभी कोई आपूर्तिकर्ता नहीं",
+  "noTransactions": "अभी कोई लेन-देन नहीं",
+  "partyDeleted": "हटा दिया गया",
+  "deletePartyTitle": "पक्षकार हटाएँ?",
+  "sales": "बिक्री",
+  "sale": "बिक्री",
+  "newSale": "नई बिक्री",
+  "purchases": "खरीद",
+  "purchase": "खरीद",
+  "newPurchase": "नई खरीद",
+  "expenses": "खर्च",
+  "expense": "खर्च",
+  "addExpense": "खर्च जोड़ें",
+  "income": "आय",
+  "addIncome": "आय जोड़ें",
+  "invoiceNumber": "इनवॉइस नंबर",
+  "billNumber": "बिल नंबर",
+  "saleType": "बिक्री का प्रकार",
+  "paymentStatus": "भुगतान स्थिति",
+  "paid": "भुगतान हुआ",
+  "due": "बकाया",
+  "addItem": "वस्तु जोड़ें",
+  "searchSales": "बिक्री खोजें",
+  "searchPurchases": "खरीद खोजें",
+  "searchExpenses": "खर्च खोजें",
+  "searchIncome": "आय खोजें",
+  "walkIn": "सीधा ग्राहक",
+  "cash": "नकद",
+  "credit": "उधार",
+  "partial": "आंशिक",
+  "noSales": "अभी कोई बिक्री नहीं",
+  "noPurchases": "अभी कोई खरीद नहीं",
+  "noExpenses": "अभी कोई खर्च नहीं",
+  "noIncome": "अभी कोई आय नहीं",
+  "payments": "भुगतान",
+  "payment": "भुगतान",
+  "recordPayment": "भुगतान दर्ज करें",
+  "paymentMethods": "भुगतान के तरीके",
+  "addPaymentMethod": "तरीका जोड़ें",
+  "receive": "प्राप्त करें",
+  "pay": "भुगतान करें",
+  "method": "तरीका",
+  "defaultLabel": "डिफ़ॉल्ट",
+  "reference": "संदर्भ",
+  "noPayments": "अभी कोई भुगतान नहीं",
+  "onAccount": "कोई नहीं (खाते में)",
+  "applyToDocument": "इनवॉइस/बिल पर लागू करें",
+  "advances": "अग्रिम",
+  "inactive": "निष्क्रिय",
+  "invoices": "इनवॉइस",
+  "invoice": "इनवॉइस",
+  "newInvoice": "नया इनवॉइस",
+  "quotations": "कोटेशन",
+  "quotation": "कोटेशन",
+  "newQuotation": "नया कोटेशन",
+  "issueDate": "जारी करने की तारीख़",
+  "dueDate": "देय तिथि",
+  "validUntil": "मान्य तारीख़ तक",
+  "terms": "शर्तें",
+  "share": "साझा करें",
+  "downloadPdf": "PDF डाउनलोड करें",
+  "convertToSale": "बिक्री में बदलें",
+  "status": "स्थिति",
+  "draft": "ड्राफ़्ट",
+  "sent": "भेजा गया",
+  "accepted": "स्वीकृत",
+  "rejected": "अस्वीकृत",
+  "expired": "समाप्त",
+  "overdue": "अतिदेय",
+  "noInvoices": "अभी कोई इनवॉइस नहीं",
+  "noQuotations": "अभी कोई कोटेशन नहीं",
+  "generateFromSale": "बिक्री से बनाएँ",
+  "fromSale": "बिक्री से",
+  "notifications": "सूचनाएँ",
+  "notificationSettings": "सूचना सेटिंग्स",
+  "noNotifications": "अभी कोई सूचना नहीं",
+  "nothingMatchesFilter": "इस फ़िल्टर से कुछ मेल नहीं खाता",
+  "markAllRead": "सभी पढ़े हुए चिह्नित करें",
+  "markRead": "पढ़ा हुआ चिह्नित करें",
+  "markedReadCount": "{count} पढ़े हुए चिह्नित",
+  "@markedReadCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "nothingToMark": "चिह्नित करने के लिए कुछ नहीं",
+  "filterAllCategories": "सभी श्रेणियाँ",
+  "pushNotifications": "पुश सूचनाएँ",
+  "enablePush": "पुश चालू करें",
+  "enablePushSubtitle": "इस डिवाइस के लिए मुख्य स्विच",
+  "notificationsInAppNote": "ऐप में सूचनाएँ हमेशा दर्ज होती हैं। ये स्विच केवल पुश डिलीवरी नियंत्रित करते हैं।",
+  "registeredDevices": "पंजीकृत डिवाइस",
+  "noDevices": "अभी कोई डिवाइस पंजीकृत नहीं",
+  "deviceActive": "सक्रिय",
+  "deviceInactive": "निष्क्रिय",
+  "categoryReminders": "रिमाइंडर",
+  "categoryRemindersSubtitle": "जब कोई रिमाइंडर देय हो",
+  "categoryLowStock": "कम स्टॉक",
+  "categoryLowStockSubtitle": "जब कोई उत्पाद न्यूनतम तक पहुँचे",
+  "categoryPaymentDue": "भुगतान देय",
+  "categoryPaymentDueSubtitle": "जब कोई बिल देय तिथि के पास या पार हो",
+  "categoryBackup": "बैकअप",
+  "categoryBackupSubtitle": "बैकअप पूरा हुआ या विफल",
+  "categorySystem": "सिस्टम",
+  "categorySystemSubtitle": "खाता और ऐप की घोषणाएँ",
+  "reminders": "रिमाइंडर",
+  "newReminder": "नया रिमाइंडर",
+  "editReminder": "रिमाइंडर संपादित करें",
+  "noReminders": "यहाँ कुछ नहीं",
+  "needsAttention": "ध्यान चाहिए",
+  "scheduled": "निर्धारित",
+  "addReminder": "रिमाइंडर जोड़ें",
+  "reminderTitle": "शीर्षक",
+  "reminderTitleHint": "बकाया बिल के बारे में राम को फ़ोन करें",
+  "reminderTitleRequired": "शीर्षक आवश्यक है",
+  "dueTime": "देय समय",
+  "repeat": "दोहराएँ",
+  "repeatOnce": "एक बार",
+  "repeatDaily": "हर दिन",
+  "repeatWeekly": "हर हफ़्ते",
+  "repeatMonthly": "हर महीने",
+  "repeatYearly": "हर साल",
+  "recurringNote": "दोहराने वाला रिमाइंडर चलने के बाद पूरा होने के बजाय खुद को फिर से निर्धारित करता है, इसलिए वह हमेशा अगली आने वाली तारीख़ पर आता है।",
+  "saveReminder": "रिमाइंडर सहेजें",
+  "reminderSaved": "रिमाइंडर सहेजा गया",
+  "markDone": "पूर्ण चिह्नित करें",
+  "dismiss": "खारिज करें",
+  "markedDone": "पूर्ण चिह्नित",
+  "checkDueReminders": "देय रिमाइंडर जाँचें",
+  "nothingDue": "अभी कुछ भी देय नहीं",
+  "remindersFiredCount": "{count} रिमाइंडर चले",
+  "@remindersFiredCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "dueToday": "आज",
+  "dueTomorrow": "कल",
+  "dueYesterday": "बीता कल",
+  "reminderStatusPending": "लंबित",
+  "reminderStatusDone": "पूर्ण",
+  "reminderStatusDismissed": "खारिज",
+  "backupAndRestore": "बैकअप और पुनर्स्थापना",
+  "exportBackup": "बैकअप निर्यात करें",
+  "restoreFromLastExport": "पिछले निर्यात से पुनर्स्थापित करें",
+  "restoreFromPastedJson": "चिपकाए गए JSON से पुनर्स्थापित करें",
+  "backupExportBody": "सक्रिय व्यवसाय के हर उत्पाद, पक्षकार, बिक्री, खरीद, खर्च, आय, भुगतान, इनवॉइस और कोटेशन को सहेजता है। नरम रूप से हटाए गए रिकॉर्ड भी रखे जाते हैं, ताकि इतिहास बचा रहे।",
+  "backupRestoreBody": "पुनर्स्थापना बैकअप को इस व्यवसाय में मिलाती है। जो रिकॉर्ड पहले से हैं वे छोड़ दिए जाते हैं — कुछ भी अधिलेखित नहीं होता, क्योंकि बदली हुई बिक्री या भुगतान से खाता बही आपस में मेल नहीं खाती।",
+  "backupNotIncludedTitle": "क्या शामिल नहीं है",
+  "backupNotIncludedBody": "खाता बही की प्रविष्टियाँ और स्टॉक मूवमेंट ऊपर दिए दस्तावेज़ों से बनते हैं, इसलिए वे उन क्रियाओं को दोबारा चलाकर बनाए जाते हैं, कॉपी नहीं किए जाते। इसलिए पुनर्स्थापना आपके रिकॉर्ड लौटाती है, कैश किए गए जोड़ नहीं।",
+  "restoreConfirmTitle": "यह बैकअप पुनर्स्थापित करें?",
+  "restoreConfirmBody": "इस व्यवसाय में पहले से मौजूद रिकॉर्ड छोड़ दिए जाएँगे। यहाँ मौजूद कुछ भी बदला या हटाया नहीं जाएगा।",
+  "restoreComplete": "पुनर्स्थापना पूर्ण",
+  "restoreAddedCount": "{count} रिकॉर्ड जोड़े गए",
+  "@restoreAddedCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "restoreSkippedCount": "{count} पहले से मौजूद, छोड़े गए",
+  "@restoreSkippedCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "recordsAdded": "{count} जोड़े गए",
+  "@recordsAdded": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "recordsAddedKept": "{count} जोड़े गए, {kept} रखे गए",
+  "@recordsAddedKept": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      },
+      "kept": {
+        "type": "int"
+      }
+    }
+  },
+  "clipboardEmpty": "क्लिपबोर्ड खाली है",
+  "notAKhataBackup": "यह फ़ाइल खाता बैकअप नहीं है।",
+  "save": "सहेजें",
+  "change": "बदलें",
+  "all": "सभी",
+  "none": "कोई नहीं",
+  "code": "कोड",
+  "role": "भूमिका",
+  "filter": "फ़िल्टर",
+  "sort": "क्रमबद्ध करें",
+  "optional": "वैकल्पिक",
+  "pendingChanges": "लंबित बदलाव",
+  "confirm": "पुष्टि करें",
+  "close": "बंद करें",
+  "yes": "हाँ",
+  "no": "नहीं",
+  "signInToYourAccount": "अपने खाते में साइन इन करें",
+  "createYourAccountTitle": "अपना डिजिटल खाता बनाएँ",
+  "getStarted": "शुरू करें",
+  "fullNamePlaceholder": "पूरा नाम",
+  "phoneNumberPlaceholder": "फ़ोन नंबर",
+  "phoneOptional": "फ़ोन नंबर (वैकल्पिक)",
+  "pan": "पैन",
+  "businessNameRequired": "व्यवसाय का नाम *",
+  "createNewBusiness": "नया व्यवसाय बनाएँ",
+  "businesses": "व्यवसाय",
+  "couldNotCreateBusiness": "व्यवसाय नहीं बनाया जा सका: {error}",
+  "@couldNotCreateBusiness": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "couldNotSwitchBusiness": "व्यवसाय नहीं बदला जा सका: {error}",
+  "@couldNotSwitchBusiness": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "couldNotUpdateProfile": "प्रोफ़ाइल अपडेट नहीं हो सकी: {error}",
+  "@couldNotUpdateProfile": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "profileUpdated": "प्रोफ़ाइल अपडेट हुई",
+  "changeRoleFor": "भूमिका बदलें — {name}",
+  "@changeRoleFor": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "couldNotChangeRole": "भूमिका नहीं बदली जा सकी: {error}",
+  "@couldNotChangeRole": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "removeMember": "{name} को हटाएँ?",
+  "@removeMember": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "removeMemberWarning": "उनकी इस व्यवसाय तक पहुँच समाप्त हो जाएगी।",
+  "couldNotRemoveMember": "सदस्य नहीं हटाया जा सका: {error}",
+  "@couldNotRemoveMember": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "inviteFailed": "आमंत्रण विफल: {error}",
+  "@inviteFailed": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "noStaffMembersYet": "अभी कोई स्टाफ़ सदस्य नहीं",
+  "productNameRequired": "उत्पाद का नाम *",
+  "searchNameSkuBarcode": "नाम, एसकेयू या बारकोड खोजें",
+  "noProductsFound": "कोई उत्पाद नहीं मिला",
+  "costPriceRs": "लागत मूल्य (रु.)",
+  "sellingPriceRsRequired": "बिक्री मूल्य (रु.) *",
+  "wholesalePriceRs": "थोक मूल्य (रु.)",
+  "taxRatePercent": "कर दर (%)",
+  "openingStockQuantity": "प्रारंभिक स्टॉक मात्रा",
+  "minimumQuantityHint": "न्यूनतम मात्रा (0 = कोई चेतावनी नहीं)",
+  "inactiveProductsNote": "निष्क्रिय उत्पाद रहते हैं पर बिक्री में नहीं दिखते",
+  "deleteProductQuestion": "उत्पाद हटाएँ?",
+  "deleteProductWarning": "उत्पाद कैटलॉग से छिप जाएगा। स्टॉक इतिहास सुरक्षित रहेगा।",
+  "loadingProduct": "उत्पाद लोड हो रहा है…",
+  "couldNotLoadProduct": "उत्पाद लोड नहीं हो सका: {error}",
+  "@couldNotLoadProduct": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "byCategory": "श्रेणी के अनुसार",
+  "expensesByCategory": "श्रेणी के अनुसार खर्च",
+  "categoriesNoCategories": "अभी कोई श्रेणी नहीं",
+  "noCategory": "कोई श्रेणी नहीं",
+  "deleteCategoryQuestion": "श्रेणी हटाएँ?",
+  "categoryDeleteNote": "इस श्रेणी के उत्पाद बिना श्रेणी के भी काम करते रहेंगे।",
+  "categoryRequired": "श्रेणी *",
+  "noUnit": "कोई इकाई नहीं",
+  "unitNameHint": "नाम * (जैसे पीस)",
+  "unitShortHint": "संक्षिप्त नाम * (जैसे pc)",
+  "unitsNoUnits": "अभी कोई इकाई नहीं",
+  "deleteUnitQuestion": "इकाई हटाएँ?",
+  "unitDeleteNote": "इस इकाई वाले उत्पाद बिना इकाई के भी काम करते रहेंगे।",
+  "movementHistory": "मूवमेंट इतिहास",
+  "noStockMovementsYet": "अभी कोई स्टॉक मूवमेंट नहीं",
+  "customQuantityHint": "अपनी मात्रा (+ अंदर / - बाहर)",
+  "quantityExample": "जैसे 2.5 या -3",
+  "reasonExample": "जैसे स्टॉक गणना, नुकसान",
+  "stockValuation": "स्टॉक मूल्यांकन",
+  "currentStockIs": "वर्तमान स्टॉक: {quantity}",
+  "@currentStockIs": {
+    "placeholders": {
+      "quantity": {
+        "type": "String"
+      }
+    }
+  },
+  "balanceIs": "शेष {quantity}",
+  "@balanceIs": {
+    "placeholders": {
+      "quantity": {
+        "type": "String"
+      }
+    }
+  },
+  "nameRequired": "नाम *",
+  "partyNameExample": "नाम * (जैसे राम बहादुर)",
+  "creditLimitRs": "उधार सीमा (रु.)",
+  "openingBalanceRs": "प्रारंभिक शेष (रु.)",
+  "walkInNone": "सीधा ग्राहक / कोई नहीं",
+  "deletePartyQuestion": "{kind} हटाएँ?",
+  "@deletePartyQuestion": {
+    "placeholders": {
+      "kind": {
+        "type": "String"
+      }
+    }
+  },
+  "partyDeleteNote": "पक्षकार सूचियों से छिप जाएगा। खाता इतिहास सुरक्षित रहेगा।",
+  "khataHistoryKept": "खाता इतिहास सुरक्षित रहेगा।",
+  "createSale": "बिक्री बनाएँ",
+  "createPurchase": "खरीद बनाएँ",
+  "createInvoice": "इनवॉइस बनाएँ",
+  "createQuotation": "कोटेशन बनाएँ",
+  "noItemsYetAddProduct": "अभी कोई वस्तु नहीं — उत्पाद जोड़ें",
+  "addFreeText": "मुक्त पाठ जोड़ें",
+  "items": "वस्तुएँ",
+  "itemsCount": "वस्तुएँ ({count})",
+  "@itemsCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "extraDiscountRs": "अतिरिक्त छूट (रु.)",
+  "paidNowRs": "अभी भुगतान (रु.)",
+  "paidAmountRs": "भुगतान राशि (रु.)",
+  "amountRsRequired": "राशि (रु.) *",
+  "lineTotalIs": "पंक्ति कुल: {total}",
+  "@lineTotalIs": {
+    "placeholders": {
+      "total": {
+        "type": "String"
+      }
+    }
+  },
+  "invoiceNumberLabel": "इनवॉइस {number}",
+  "@invoiceNumberLabel": {
+    "placeholders": {
+      "number": {
+        "type": "String"
+      }
+    }
+  },
+  "quotationNumberLabel": "कोटेशन {number}",
+  "@quotationNumberLabel": {
+    "placeholders": {
+      "number": {
+        "type": "String"
+      }
+    }
+  },
+  "issuedOn": "जारी {date}",
+  "@issuedOn": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "dueOn": "देय {date}",
+  "@dueOn": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "validUntilOn": "{date} तक मान्य",
+  "@validUntilOn": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "convertedToSale": "बिक्री #{id} में बदला गया",
+  "@convertedToSale": {
+    "placeholders": {
+      "id": {
+        "type": "int"
+      }
+    }
+  },
+  "@fromSale": {
+    "placeholders": {
+      "number": {
+        "type": "String"
+      }
+    }
+  },
+  "lineItemsCopiedNote": "वस्तुएँ चुनी गई बिक्री से कॉपी होंगी और उनके दाम वही रहेंगे।",
+  "noneBuildManually": "कोई नहीं (खुद बनाएँ)",
+  "notesOptional": "टिप्पणियाँ (वैकल्पिक)",
+  "termsLabel": "शर्तें: {terms}",
+  "@termsLabel": {
+    "placeholders": {
+      "terms": {
+        "type": "String"
+      }
+    }
+  },
+  "notesLabel": "टिप्पणियाँ: {notes}",
+  "@notesLabel": {
+    "placeholders": {
+      "notes": {
+        "type": "String"
+      }
+    }
+  },
+  "sharePdf": "PDF साझा करें",
+  "exportCsv": "CSV निर्यात करें",
+  "deleteSaleQuestion": "बिक्री हटाएँ?",
+  "deletePurchaseQuestion": "खरीद हटाएँ?",
+  "deleteInvoiceQuestion": "इनवॉइस हटाएँ?",
+  "deleteQuotationQuestion": "कोटेशन हटाएँ?",
+  "deleteExpenseQuestion": "खर्च हटाएँ?",
+  "deleteIncomeQuestion": "आय हटाएँ?",
+  "deleteMethodQuestion": "तरीका हटाएँ?",
+  "saleDeleteNote": "स्टॉक लौटाया जाएगा और ग्राहक का खाता उलटा किया जाएगा।",
+  "purchaseDeleteNote": "स्टॉक घटाया जाएगा और आपूर्तिकर्ता का खाता उलटा किया जाएगा।",
+  "expenseDeleteNote": "यह खर्च स्थायी रूप से हट जाएगा।",
+  "incomeDeleteNote": "यह आय प्रविष्टि स्थायी रूप से हट जाएगी।",
+  "invoiceDeleteNote": "यह इनवॉइस स्थायी रूप से हट जाएगा।",
+  "quotationDeleteNote": "यह कोटेशन स्थायी रूप से हट जाएगा।",
+  "searchInvoiceOrCustomer": "इनवॉइस या ग्राहक खोजें",
+  "searchBillOrSupplier": "बिल या आपूर्तिकर्ता खोजें",
+  "searchQuotationOrCustomer": "कोटेशन या ग्राहक खोजें",
+  "searchPartyOrReference": "पक्षकार या संदर्भ खोजें",
+  "paymentMethod": "भुगतान का तरीका",
+  "addMethod": "तरीका जोड़ें",
+  "noPaymentMethodsYet": "अभी कोई भुगतान तरीका नहीं",
+  "setAsDefault": "डिफ़ॉल्ट बनाएँ",
+  "methodChangeNote": "इस तरीके से पहले दर्ज भुगतान काम करते रहेंगे।",
+  "advanceIs": "अग्रिम {amount}",
+  "@advanceIs": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "dueToCustomerKhata": "बकाया {amount} → ग्राहक खाता",
+  "@dueToCustomerKhata": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "dueToSupplierKhata": "बकाया {amount} → आपूर्तिकर्ता खाता",
+  "@dueToSupplierKhata": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "advancesAreMoney": "अग्रिम वह पैसा है जो आपके पास पहले से है, इसलिए वह पहले लगाया जाता है।",
+  "advancesLabel": "अग्रिम: {list}",
+  "@advancesLabel": {
+    "placeholders": {
+      "list": {
+        "type": "String"
+      }
+    }
+  },
+  "addProductButton": "उत्पाद जोड़ें",
+  "addReminderButton": "रिमाइंडर जोड़ें",
+  "receivablesAndPayables": "लेना और देना",
+  "receivablesCount": "लेना · {count}",
+  "@receivablesCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "payablesCount": "देना · {count}",
+  "@payablesCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "profitAndLoss": "लाभ और हानि",
+  "salesReportTitle": "बिक्री रिपोर्ट",
+  "revenueExcludesVat": "राजस्व में VAT शामिल नहीं है।",
+  "salesTrendLast14": "बिक्री रुझान · पिछले 14 दिन",
+  "salesTrendScope": "बिक्री रुझान · {scope}",
+  "@salesTrendScope": {
+    "placeholders": {
+      "scope": {
+        "type": "String"
+      }
+    }
+  },
+  "topProducts": "सर्वाधिक उत्पाद",
+  "topCustomers": "सर्वाधिक ग्राहक",
+  "bySource": "स्रोत के अनुसार",
+  "incomeTrend": "आय रुझान",
+  "lastCycle": "पिछला चक्र",
+  "noDataYet": "अभी कोई डेटा नहीं",
+  "couldNotLoad": "लोड नहीं हो सका: {error}",
+  "@couldNotLoad": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "couldNotLoadSummary": "सारांश लोड नहीं हो सका",
+  "dashboardUnavailable": "डैशबोर्ड उपलब्ध नहीं",
+  "productsCount": "{count} उत्पाद",
+  "@productsCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "unitsDocsCount": "{quantity} इकाई · {count} दस्तावेज़",
+  "@unitsDocsCount": {
+    "placeholders": {
+      "quantity": {
+        "type": "String"
+      },
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "quantityTimesPrice": "{quantity} × {price}",
+  "@quantityTimesPrice": {
+    "placeholders": {
+      "quantity": {
+        "type": "String"
+      },
+      "price": {
+        "type": "String"
+      }
+    }
+  },
+  "lowStockNote": "{name} का स्टॉक कम है",
+  "@lowStockNote": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "syncTitle": "सिंक",
+  "syncStatusTitle": "सिंक स्थिति",
+  "lastSyncLabel": "पिछला सिंक",
+  "pendingChangesCount": "लंबित बदलाव",
+  "syncFailed": "सिंक विफल: {error}",
+  "@syncFailed": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "operationFailed": "{operation} विफल",
+  "@operationFailed": {
+    "placeholders": {
+      "operation": {
+        "type": "String"
+      }
+    }
+  },
+  "conflicts": "टकराव",
+  "noConflicts": "कोई टकराव नहीं",
+  "entityRef": "{type} #{id}",
+  "@entityRef": {
+    "placeholders": {
+      "type": {
+        "type": "String"
+      },
+      "id": {
+        "type": "int"
+      }
+    }
+  },
+  "serverChanged": "सर्वर पर बदला: ",
+  "serverVersion": "सर्वर संस्करण: {json}",
+  "@serverVersion": {
+    "placeholders": {
+      "json": {
+        "type": "String"
+      }
+    }
+  },
+  "operationDetail": "क्रिया: {operation}",
+  "@operationDetail": {
+    "placeholders": {
+      "operation": {
+        "type": "String"
+      }
+    }
+  },
+  "pushed": "भेजे गए",
+  "pulled": "प्राप्त किए गए",
+  "rejectedWithError": "अस्वीकृत: {error}",
+  "@rejectedWithError": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "backupSubject": "खाता बैकअप",
+  "backupShareText": "इस डिवाइस से खाता बैकअप निर्यात किया गया।",
+  "recordsAddedCount": "{count} रिकॉर्ड जोड़े गए",
+  "@recordsAddedCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "alreadyPresentCount": "{count} पहले से मौजूद, छोड़े गए",
+  "@alreadyPresentCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "addedCount": "{count} जोड़े गए",
+  "@addedCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "addedKeptCount": "{count} जोड़े गए, {kept} रखे गए",
+  "@addedKeptCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      },
+      "kept": {
+        "type": "int"
+      }
+    }
+  },
+  "reminderRepeatNote": "दोहराने वाला रिमाइंडर चलने के बाद खुद को फिर से निर्धारित करता है।",
+  "profileLabel": "प्रोफ़ाइल",
+  "languageEnglish": "English",
+  "languageNepali": "नेपाली",
+  "calendarLabel": "कैलेंडर",
+  "generalSection": "सामान्य",
+  "dateLabel": "दिनांक",
+  "descriptionLabel": "विवरण",
+  "fromLabel": "से",
+  "toLabel": "तक",
+  "titleRequired": "शीर्षक *",
+  "sourceRequired": "स्रोत *",
+  "taxExample": "जैसे 13",
+  "amountExample": "जैसे 20.00",
+  "quantityExample16": "जैसे 16.00",
+  "rateExample": "जैसे 25",
+  "plusOne": "+1",
+  "plusTen": "+10",
+  "minusOne": "-1",
+  "minusTen": "-10",
+  "phonePrefixHint": "+977 98XXXXXXXX",
+  "rankLabel": "#",
+  "editKind": "{kind} संपादित करें",
+  "@editKind": {
+    "placeholders": {
+      "kind": {
+        "type": "String"
+      }
+    }
+  },
+  "newKind": "नया {kind}",
+  "@newKind": {
+    "placeholders": {
+      "kind": {
+        "type": "String"
+      }
+    }
+  },
+  "delete": "हटाएँ",
+  "edit": "संपादित करें",
+  "convert": "बदलें",
+  "exportTitle": "निर्यात",
+  "restoreTitle": "पुनर्स्थापित करें",
+  "expenseTrend": "खर्च रुझान",
+  "opening": "प्रारंभिक",
+  "filterByCategory": "श्रेणी से फ़िल्टर करें",
+  "phoneLabel": "फ़ोन",
+  "emailMustHaveAccount": "ईमेल (खाता होना चाहिए)",
+  "advancesExplainer": "अग्रिम वह पैसा है जो आपके पास पहले से है (ग्राहक) या जो आप दे चुके हैं (आपूर्तिकर्ता), इसलिए वह नए भुगतान से पहले लगाया जाता है।",
+  "backupExportExplainerFull": "सक्रिय व्यवसाय के हर उत्पाद, पक्षकार, बिक्री, खरीद, खर्च, आय, भुगतान, इनवॉइस और कोटेशन को सहेजता है। नरम रूप से हटाए गए रिकॉर्ड भी रखे जाते हैं, ताकि इतिहास बचा रहे।",
+  "backupRestoreExplainerFull": "पुनर्स्थापना बैकअप को इस व्यवसाय में मिलाती है। जो रिकॉर्ड पहले से हैं वे छोड़ दिए जाते हैं — कुछ भी अधिलेखित नहीं होता, क्योंकि बदली हुई बिक्री या भुगतान से खाता बही आपस में मेल नहीं खाती।",
+  "backupNotIncludedExplainer": "खाता बही की प्रविष्टियाँ और स्टॉक मूवमेंट ऊपर दिए दस्तावेज़ों से बनते हैं, इसलिए वे उन क्रियाओं को दोबारा चलाकर बनाए जाते हैं, कॉपी नहीं किए जाते। इसलिए पुनर्स्थापना आपके रिकॉर्ड लौटाती है, कैश किए गए जोड़ नहीं।",
+  "restoreConfirmBodyFull": "इस व्यवसाय में पहले से मौजूद रिकॉर्ड छोड़ दिए जाएँगे। यहाँ मौजूद कुछ भी बदला या हटाया नहीं जाएगा।",
+  "methodChangeNoteFull": "इस तरीके से पहले दर्ज भुगतान काम करते रहेंगे। तरीके का नाम बदलने से इतिहास नहीं बदलता।",
+  "saleDeleteNoteFull": "स्टॉक लौटाया जाएगा और ग्राहक का खाता उलटा किया जाएगा।",
+  "purchaseDeleteNoteFull": "स्टॉक घटाया जाएगा और आपूर्तिकर्ता का खाता उलटा किया जाएगा।",
+  "lineItemsCopiedNoteFull": "वस्तुएँ चुनी गई बिक्री से कॉपी होंगी और उनके दाम वही रहेंगे।",
+  "notificationsInAppNoteFull": "ऐप में सूचनाएँ हमेशा दर्ज होती हैं। ये स्विच केवल पुश डिलीवरी नियंत्रित करते हैं।",
+  "unitNameShort": "{name} ({short})",
+  "@unitNameShort": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      },
+      "short": {
+        "type": "String"
+      }
+    }
+  },
+  "retailValue": "खुदरा {amount}",
+  "@retailValue": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "advanceAmount": "अग्रिम {amount}",
+  "@advanceAmount": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "quantityWithUnit": "{quantity}{unit}",
+  "@quantityWithUnit": {
+    "placeholders": {
+      "quantity": {
+        "type": "String"
+      },
+      "unit": {
+        "type": "String"
+      }
+    }
+  },
+  "productPricePair": "{price}  •  ",
+  "@productPricePair": {
+    "placeholders": {
+      "price": {
+        "type": "String"
+      }
+    }
+  },
+  "saleCustomerLine": "{number} — {customer}",
+  "@saleCustomerLine": {
+    "placeholders": {
+      "number": {
+        "type": "String"
+      },
+      "customer": {
+        "type": "String"
+      }
+    }
+  },
+  "lineTotalAmount": "पंक्ति कुल: {amount}",
+  "@lineTotalAmount": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "conflictsCount": "{count} टकराव",
+  "@conflictsCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "noDataInRange": "इस अवधि में कोई डेटा नहीं",
+  "nothingToBreakDown": "विभाजन के लिए कुछ नहीं",
+  "noProductsMatchFilter": "इस फ़िल्टर से कोई उत्पाद मेल नहीं खाता",
+  "noProductsSoldInRange": "इस अवधि में कोई उत्पाद नहीं बिका",
+  "noSalesToCustomersInRange": "इस अवधि में ग्राहकों को कोई बिक्री नहीं",
+  "nobodyOwesYou": "कोई आपका देनदार नहीं",
+  "youOweNobody": "आप किसी के देनदार नहीं",
+  "addLabel": "{label} जोड़ें",
+  "@addLabel": {
+    "placeholders": {
+      "label": {
+        "type": "String"
+      }
+    }
+  },
+  "couldNotLoadX": "{subject} लोड नहीं हो सका।\n{error}",
+  "@couldNotLoadX": {
+    "placeholders": {
+      "subject": {
+        "type": "String"
+      },
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "balances": "शेष",
+  "expenseReport": "खर्च रिपोर्ट",
+  "incomeReport": "आय रिपोर्ट",
+  "stockReportTitle": "स्टॉक रिपोर्ट",
+  "expenseReportTitle": "खर्च रिपोर्ट",
+  "incomeReportTitle": "आय रिपोर्ट",
+  "profitAndLossTitle": "लाभ और हानि",
+  "stockMovements": "स्टॉक मूवमेंट",
+  "devices": "डिवाइस",
+  "emailAndRole": "{email}\n{role}",
+  "@emailAndRole": {
+    "placeholders": {
+      "email": {
+        "type": "String"
+      },
+      "role": {
+        "type": "String"
+      }
+    }
+  },
+  "addKind": "{kind} जोड़ें",
+  "@addKind": {
+    "placeholders": {
+      "kind": {
+        "type": "String"
+      }
+    }
+  },
+  "lowAtOrBelow": "कम: {quantity}{unit} या उससे नीचे",
+  "@lowAtOrBelow": {
+    "placeholders": {
+      "quantity": {
+        "type": "String"
+      },
+      "unit": {
+        "type": "String"
+      }
+    }
+  },
+  "minimumIs": "न्यूनतम {quantity}{unit}",
+  "@minimumIs": {
+    "placeholders": {
+      "quantity": {
+        "type": "String"
+      },
+      "unit": {
+        "type": "String"
+      }
+    }
+  },
+  "savedTo": "{path} में सहेजा गया",
+  "@savedTo": {
+    "placeholders": {
+      "path": {
+        "type": "String"
+      }
+    }
+  },
+  "emailRequired": "कृपया अपना ईमेल दर्ज करें",
+  "emailInvalid": "कृपया मान्य ईमेल दर्ज करें",
+  "passwordRequired": "कृपया अपना पासवर्ड दर्ज करें",
+  "passwordRegisterRequired": "कृपया पासवर्ड दर्ज करें",
+  "passwordTooShort": "पासवर्ड कम से कम 8 अक्षरों का होना चाहिए",
+  "passwordNeedsDigit": "पासवर्ड में कम से कम एक अंक होना चाहिए",
+  "confirmPasswordRequired": "कृपया पासवर्ड की पुष्टि करें",
+  "passwordsDoNotMatch": "पासवर्ड मेल नहीं खाते",
+  "fullNameRequired": "कृपया अपना पूरा नाम दर्ज करें",
+  "fullNameIsRequired": "पूरा नाम आवश्यक है",
+  "businessNameIsRequired": "व्यवसाय का नाम आवश्यक है",
+  "amountRequired": "राशि आवश्यक है",
+  "amountInvalid": "मान्य राशि दर्ज करें",
+  "amountInvalidFull": "मान्य राशि दर्ज करें।",
+  "amountMustBePositive": "राशि शून्य से अधिक होनी चाहिए।",
+  "quantityInvalid": "मान्य मात्रा दर्ज करें",
+  "percentRange": "0–100 दर्ज करें",
+  "panMustBe9Digits": "पैन 9 अंकों का होना चाहिए।",
+  "panMustBe9DigitNumber": "पैन 9 अंकों की संख्या होनी चाहिए",
+  "phoneInvalid": "फ़ोन नंबर का प्रारूप गलत है।",
+  "emailAddressRequired": "मान्य ईमेल पता आवश्यक है।",
+  "invalidEmailOrPassword": "ईमेल या पासवर्ड गलत है।",
+  "checkYourInput": "कृपया अपनी जानकारी जाँचें।",
+  "somethingWentWrong": "कुछ गड़बड़ हो गई। कृपया फिर कोशिश करें।",
+  "returnIn": "वापसी अंदर",
+  "returnOut": "वापसी बाहर",
+  "week": "सप्ताह",
+  "month": "महीना",
+  "day": "दिन",
+  "todayAt": "आज {time}",
+  "@todayAt": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "tomorrowAt": "कल {time}",
+  "@tomorrowAt": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "yesterdayAt": "बीता कल {time}",
+  "@yesterdayAt": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "noKindMatchSearch": "आपकी खोज से कोई {kind} मेल नहीं खाता",
+  "@noKindMatchSearch": {
+    "placeholders": {
+      "kind": {
+        "type": "String"
+      }
+    }
+  },
+  "noKindYet": "अभी कोई {kind} नहीं",
+  "@noKindYet": {
+    "placeholders": {
+      "kind": {
+        "type": "String"
+      }
+    }
+  },
+  "categoryReminder": "रिमाइंडर",
+  "saved": "सहेजा गया",
+  "productSaved": "उत्पाद सहेजा गया",
+  "walkInCustomer": "सीधा ग्राहक",
+  "notSet": "तय नहीं",
+  "unpaid": "अवैतनिक",
+  "noSupplier": "कोई आपूर्तिकर्ता नहीं",
+  "paidInFull": "पूरा भुगतान हुआ",
+  "exporting": "निर्यात हो रहा है...",
+  "saving": "सहेजा जा रहा है...",
+  "noLowStockProducts": "कोई कम-स्टॉक उत्पाद नहीं — सब ठीक है!",
+  "noProductsMatchSearch": "आपकी खोज से कोई उत्पाद मेल नहीं खाता",
+  "showingUnread": "अपठित दिखा रहे हैं",
+  "customerKhata": "ग्राहक खाता",
+  "debit": "नामे",
+  "recordReceipt": "रसीद दर्ज करें",
+  "applyToInvoice": "इनवॉइस पर लागू करें",
+  "receipt": "रसीद",
+  "roleViewer": "दर्शक",
+  "never": "कभी नहीं",
+  "syncing": "सिंक हो रहा है…",
+  "moneyInOut": "अंदर {inAmount} · बाहर {outAmount}",
+  "@moneyInOut": {
+    "placeholders": {
+      "inAmount": {
+        "type": "String"
+      },
+      "outAmount": {
+        "type": "String"
+      }
+    }
+  },
+  "dueAmount": "बकाया {amount}",
+  "@dueAmount": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "created": "बनाया गया",
+  "productCreated": "उत्पाद बनाया गया",
+  "toCollectAmount": "लेना है {amount}",
+  "@toCollectAmount": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "toPayAmount": "देना है {amount}",
+  "@toPayAmount": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "createProduct": "उत्पाद बनाएँ",
+  "create": "बनाएँ",
+  "noProductsYet": "अभी कोई उत्पाद नहीं",
+  "noProductsYetAddFirst": "अभी कोई उत्पाद नहीं — अपना पहला उत्पाद जोड़ें",
+  "subtotal": "उप-योग",
+  "total": "कुल",
+  "discount": "छूट",
+  "rateRs": "दर (रु.)",
+  "discountRs": "छूट (रु.)",
+  "addAtLeastOneItem": "कम से कम एक वस्तु जोड़ें",
+  "costValue": "लागत मूल्य",
+  "potentialMargin": "संभावित मार्जिन",
+  "invoiceCreated": "इनवॉइस बनाया गया",
+  "invoiceDeleted": "इनवॉइस हटाया गया",
+  "quotationCreated": "कोटेशन बनाया गया",
+  "quotationDeleted": "कोटेशन हटाया गया",
+  "convertedToSaleToast": "बिक्री में बदला गया",
+  "saleCreated": "बिक्री बनाई गई",
+  "saleReversed": "बिक्री उलटी की गई",
+  "saleKeptAsReversed": "बिक्री इतिहास में उलटी के रूप में रखी गई है।",
+  "creditSaleNeedsCustomer": "उधार बिक्री के लिए ग्राहक आवश्यक है",
+  "purchaseCreated": "खरीद बनाई गई",
+  "purchaseReversed": "खरीद उलटी की गई",
+  "purchaseKeptAsReversed": "खरीद इतिहास में उलटी के रूप में रखी गई है।",
+  "creditPurchaseNeedsSupplier": "उधार खरीद के लिए आपूर्तिकर्ता आवश्यक है",
+  "paymentRecorded": "भुगतान दर्ज हुआ",
+  "methodSaved": "तरीका सहेजा गया",
+  "methodDeleted": "तरीका हटाया गया",
+  "categorySaved": "श्रेणी सहेजी गई",
+  "categoryDeleted": "श्रेणी हटाई गई",
+  "productDeleted": "उत्पाद हटाया गया",
+  "unitSaved": "इकाई सहेजी गई",
+  "unitDeleted": "इकाई हटाई गई",
+  "settingsSaved": "सेटिंग्स सहेजी गईं",
+  "atLeastOneMethodMustRemain": "कम से कम एक भुगतान तरीका रहना चाहिए।",
+  "notAkhataBackup": "यह खाता बैकअप नहीं है।",
+  "enterNonZeroQuantity": "शून्य से भिन्न मात्रा दर्ज करें",
+  "enterAmountGreaterThanZero": "शून्य से अधिक राशि दर्ज करें",
+  "balanceAfterIs": "शेष {quantity}",
+  "@balanceAfterIs": {
+    "placeholders": {
+      "quantity": {
+        "type": "String"
+      }
+    }
+  },
+  "rejectedAndFailed": "अस्वीकृत और विफल",
+  "entries": "प्रविष्टियाँ",
+  "average": "औसत",
+  "sources": "स्रोत",
+  "revenue": "राजस्व",
+  "costOfGoodsSold": "बेचे गए माल की लागत",
+  "grossProfit": "सकल लाभ",
+  "otherIncome": "अन्य आय",
+  "netProfit": "शुद्ध लाभ",
+  "taxCollectedInPeriod": "इस अवधि में वसूला गया कर: ",
+  "customerAdvances": "ग्राहक अग्रिम",
+  "supplierAdvances": "आपूर्तिकर्ता अग्रिम",
+  "advancesExplain": "अग्रिम वह पैसा है जो आपके पास पहले से है (ग्राहक) या जो आपने अधिक दे दिया है (आपूर्तिकर्ता)।",
+  "reportSalesBlurb": "रुझान, जोड़, सर्वाधिक उत्पाद और ग्राहक",
+  "reportProfitLossBlurb": "राजस्व, माल की लागत और शुद्ध लाभ",
+  "reportExpenseBlurb": "पैसा कहाँ गया, श्रेणी के अनुसार",
+  "reportIncomeBlurb": "स्रोत के अनुसार अन्य आय",
+  "reportStockBlurb": "हाथ में मौजूद स्टॉक का लागत और खुदरा मूल्य",
+  "reportReceivableBlurb": "कौन आपका देनदार है और आप किसके",
+  "ledgerOwesYouHint": "वे आपके कितने देनदार हैं (ग्राहक) / आपने कितना दिया (आपूर्तिकर्ता)",
+  "ledgerYouOweHint": "आपको कितना मिला (ग्राहक) / आप कितने देनदार हैं (आपूर्तिकर्ता)",
+  "roleOwner": "मालिक",
+  "roleAdmin": "एडमिन",
+  "roleManager": "मैनेजर",
+  "roleAccountant": "लेखाकार",
+  "noBusiness": "कोई व्यवसाय नहीं",
+  "couldNotLoadProducts": "उत्पाद लोड नहीं हो सके।\n{error}",
+  "@couldNotLoadProducts": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "lineItemsCopiedFromSale": "वस्तुएँ चुनी गई बिक्री से कॉपी होंगी और उसका इनवॉइस नंबर दोबारा इस्तेमाल होगा।",
+  "bsRange": "वि.सं.: {from}  →  {to}",
+  "@bsRange": {
+    "placeholders": {
+      "from": {
+        "type": "String"
+      },
+      "to": {
+        "type": "String"
+      }
+    }
+  },
+  "conflictsNamed": "टकराव ({count})",
+  "@conflictsNamed": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "retailValueReport": "खुदरा मूल्य",
+  "selectPartyKind": "{kind} चुनें",
+  "@selectPartyKind": {
+    "placeholders": {
+      "kind": {
+        "type": "String"
+      }
+    }
+  },
+  "tax": "कर",
+  "qty": "मात्रा",
+  "adjustment": "समायोजन",
+  "showingAll": "सभी दिखा रहे हैं",
+  "supplierKhata": "आपूर्तिकर्ता खाता",
+  "applyToBill": "बिल पर लागू करें",
+  "newMethod": "नया तरीका",
+  "today": "आज",
+  "municipality": "नगरपालिका",
+  "selectProvinceHint": "प्रांत चुनें",
+  "selectDistrictHint": "ज़िला चुनें",
+  "selectMunicipalityHint": "नगरपालिका चुनें",
+  "municipalityFreeTextHint": "नगरपालिका लिखें — यहाँ हर स्थानीय इकाई सूचीबद्ध नहीं है।",
+  "phoneInvalidNepali": "मान्य नेपाली फ़ोन नंबर दर्ज करें, जैसे 98XXXXXXXX",
+  "fromDate": "से",
+  "toDate": "तक",
+  "back": "पीछे",
+  "next": "आगे",
+  "endBeforeStart": "अंतिम तिथि प्रारंभिक तिथि से पहले नहीं हो सकती।",
+  "dateRange": "तिथि सीमा",
+  "toolsTitle": "औज़ार",
+  "emiCalculator": "ईएमआई कैलकुलेटर",
+  "loanAmount": "ऋण राशि (रु.)",
+  "annualInterestRate": "वार्षिक ब्याज दर (%)",
+  "loanTermMonths": "ऋण अवधि (महीने)",
+  "monthlyEmi": "मासिक ईएमआई",
+  "totalPayment": "कुल भुगतान",
+  "totalInterest": "कुल ब्याज",
+  "interestCalculator": "ब्याज कैलकुलेटर",
+  "simpleInterest": "साधारण ब्याज",
+  "compoundInterest": "चक्रवृद्धि ब्याज",
+  "principal": "मूलधन",
+  "years": "वर्ष",
+  "compoundingPerYear": "प्रति वर्ष चक्रवृद्धि",
+  "interestEarned": "अर्जित ब्याज",
+  "profitCalculator": "लाभ कैलकुलेटर",
+  "profit": "लाभ",
+  "profitMargin": "लाभ मार्जिन",
+  "markup": "मार्कअप",
+  "enterValidAmount": "मान्य राशि दर्ज करें",
+  "maturityAmount": "परिपक्वता राशि",
+  "calculate": "गणना करें",
+  "lossWarning": "यह लाभ नहीं, हानि है।",
+  "appLock": "ऐप लॉक",
+  "appLockDescription": "ऐप खोलने के लिए पिन आवश्यक करें",
+  "setPin": "पिन सेट करें",
+  "changePin": "पिन बदलें",
+  "enterPin": "अपना पिन दर्ज करें",
+  "confirmPin": "पिन की पुष्टि करें",
+  "currentPin": "वर्तमान पिन",
+  "newPin": "नया पिन",
+  "pinMustBe4To6Digits": "पिन 4 से 6 अंकों का होना चाहिए",
+  "pinsDoNotMatch": "पिन मेल नहीं खाते",
+  "incorrectPin": "गलत पिन",
+  "unlock": "खोलें",
+  "turnOffAppLock": "ऐप लॉक बंद करें",
+  "appLockNowOn": "ऐप लॉक चालू है",
+  "appLockNowOff": "ऐप लॉक बंद है",
+  "attemptsLeft": "{count} प्रयास शेष",
+  "bankAccounts": "बैंक खाते",
+  "bankName": "बैंक का नाम",
+  "accountName": "खाताधारक का नाम",
+  "accountNumber": "खाता संख्या",
+  "branch": "शाखा",
+  "defaultAccount": "डिफ़ॉल्ट खाता",
+  "noBankAccountsYet": "अभी कोई बैंक खाता नहीं। लेन-देन दर्ज करने के लिए एक जोड़ें।",
+  "addBankAccount": "बैंक खाता जोड़ें",
+  "paymentsThroughAccount": "{count} भुगतान · {total}",
+  "deleted": "हटाया गया",
+  "@paymentsThroughAccount": {
+    "description": "Summary of payments recorded through one bank account.",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "3"
+      },
+      "total": {
+        "type": "String",
+        "example": "Rs 12,500.00"
+      }
+    }
+  },
+  "@attemptsLeft": {
+    "description": "Remaining unlock attempts after a wrong PIN.",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "3"
+      }
+    }
+  },
+  "importTile": "आयात",
+  "importTitle": "Excel से आयात करें",
+  "importExplainerTitle": "यह कैसे काम करता है",
+  "importExplainerBody": "अपनी स्प्रेडशीट की पंक्तियाँ यहाँ चिपकाएँ। टेम्पलेट कॉपी करें, Excel में भरें, CSV के रूप में सहेजें और वापस चिपकाएँ। कुछ भी लिखने से पहले हर पंक्ति जाँची जाती है — एक पंक्ति भी गलत हुई तो कुछ भी आयात नहीं होता।",
+  "importCopyTemplate": "टेम्पलेट कॉपी करें",
+  "importTemplateCopied": "टेम्पलेट कॉपी हुआ — इसे Excel में चिपकाएँ",
+  "importPasteFromClipboard": "क्लिपबोर्ड से चिपकाएँ",
+  "importCsvLabel": "CSV पंक्तियाँ",
+  "importCheckFile": "फ़ाइल जाँचें",
+  "importChecking": "जाँच हो रही है…",
+  "importRun": "आयात करें",
+  "importImporting": "आयात हो रहा है…",
+  "importPreviewTitle": "जाँच परिणाम",
+  "importRowsTotal": "पंक्तियाँ",
+  "importRowsValid": "तैयार",
+  "importRowsDuplicate": "पहले से मौजूद",
+  "importRowsInvalid": "सुधार चाहिए",
+  "importBlockedHint": "जब तक हर पंक्ति ठीक न हो, कुछ भी आयात नहीं होगा।",
+  "importIgnoredColumns": "छोड़े गए कॉलम: {columns}",
+  "@importIgnoredColumns": {
+    "placeholders": {
+      "columns": {
+        "type": "String"
+      }
+    }
+  },
+  "importIssuesTitle": "सुधारने योग्य पंक्तियाँ",
+  "importIssueLine": "पंक्ति {row}: {message}",
+  "@importIssueLine": {
+    "placeholders": {
+      "row": {
+        "type": "int"
+      },
+      "message": {
+        "type": "String"
+      }
+    }
+  },
+  "importIssueLineWithColumn": "पंक्ति {row} · {column}: {message}",
+  "@importIssueLineWithColumn": {
+    "placeholders": {
+      "row": {
+        "type": "int"
+      },
+      "column": {
+        "type": "String"
+      },
+      "message": {
+        "type": "String"
+      }
+    }
+  },
+  "importMoreIssues": "…और {count} अन्य",
+  "@importMoreIssues": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "importConfirmTitle": "ये पंक्तियाँ आयात करें?",
+  "importConfirmBody": "पहले से मौजूद पंक्तियाँ छोड़ दी जाएँगी; कुछ भी अधिलेखित नहीं होगा।",
+  "importCompleteTitle": "आयात पूर्ण",
+  "importCreatedCount": "{count} रिकॉर्ड बनाए गए",
+  "@importCreatedCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "importSkippedCount": "{count} पहले से थे और छोड़ दिए गए",
+  "@importSkippedCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "importRejected": "कुछ भी आयात नहीं हुआ — नीचे की पंक्तियाँ ठीक करें और फिर कोशिश करें।",
+  "importClear": "साफ़ करें",
+  "importExpectedColumns": "अपेक्षित कॉलम",
+  "cachedDataNote": "सहेजा गया डेटा दिख रहा है। ताज़ा करने के लिए फिर से जुड़ें।",
+  "cachedDataNoteAt": "{time} का सहेजा गया डेटा दिख रहा है। ताज़ा करने के लिए फिर से जुड़ें।",
+  "@cachedDataNoteAt": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "offlineDataTitle": "ऑफ़लाइन डेटा",
+  "offlineDataExplainer": "आपके खोले गए विवरण इस डिवाइस पर सहेजे जाते हैं, इसलिए इंटरनेट बंद होने पर भी खुलते हैं।",
+  "offlineDataSavedLabel": "सहेजे गए विवरण",
+  "offlineDataSavedCount": "{lists} विवरण · {size}",
+  "@offlineDataSavedCount": {
+    "placeholders": {
+      "lists": {
+        "type": "int"
+      },
+      "size": {
+        "type": "String"
+      }
+    }
+  },
+  "offlineDataClear": "सहेजा डेटा हटाएँ",
+  "offlineDataClearConfirm": "सहेजे गए विवरण हटाएँ? अगली बार खोलने पर वे फिर डाउनलोड होंगे।",
+  "offlineDataCleared": "सहेजा डेटा हटा दिया गया",
+  "loadMoreRemaining": "और दिखाएँ ({count} शेष)",
+  "@loadMoreRemaining": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "pageNotFound": "पृष्ठ नहीं मिला",
+  "pageNotFoundBody": "यह पृष्ठ उपलब्ध नहीं है। हो सकता है इसे स्थानांतरित किया गया हो, या लिंक गलत हो।",
+  "fileSaveNotSupported": "फ़ाइल सहेजने और साझा करने के लिए फ़ोन पर ऐप चाहिए — ब्राउज़र संस्करण फ़ाइल नहीं लिख सकता।",
+  "savedOffline": "ऑफ़लाइन सहेजा गया — जुड़ते ही सिंक हो जाएगा।",
+  "offlineBannerNote": "ऑफ़लाइन — जुड़ने पर बदलाव सिंक होंगे",
+  "languageHindi": "हिन्दी",
+  "calendarAd": "ईस्वी (AD)",
+  "calendarBs": "वि.सं. (बिक्रम संवत)",
+  "calendarNote": "तिथियाँ इसी कैलेंडर में दिखेंगी और चुनी जाएँगी।",
+  "pendingWritesCount": "{count} शेष",
+  "@pendingWritesCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "navHome": "होम",
+  "navParties": "खाते",
+  "navItems": "सामान",
+  "monthToDate": "इस माह {amount}",
+  "@monthToDate": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "lowStockCountLabel": "{count} सामान का स्टॉक कम",
+  "@lowStockCountLabel": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "recentActivity": "हाल की गतिविधि",
+  "viewAll": "सभी देखें",
+  "getStartedTitle": "शुरू करें",
+  "getStartedStepProduct": "पहला सामान जोड़ें",
+  "getStartedStepCustomer": "ग्राहक जोड़ें",
+  "getStartedStepSale": "पहली बिक्री दर्ज करें",
+  "shareReminder": "रिमाइंडर भेजें",
+  "reminderShareMessage": "नमस्ते {name}, {business} में आपका बकाया {amount} है। सुविधा होने पर भुगतान कर दें। धन्यवाद।",
+  "@reminderShareMessage": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      },
+      "business": {
+        "type": "String"
+      },
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "moreSalesDocs": "बिक्री और दस्तावेज़",
+  "moreItems": "सामान और स्टॉक",
+  "moreInsights": "विश्लेषण",
+  "moreTools": "उपकरण और सेटिंग",
+  "moreAccount": "खाता",
+  "balanceShort": "बकाया {amount}",
+  "@balanceShort": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "moreActions": "और क्रियाएँ",
+  "welcomeChooseLanguage": "अपनी भाषा चुनें",
+  "welcomeSkip": "छोड़ें",
+  "welcomeSlide1Title": "कभी न भूलने वाला खाता",
+  "welcomeSlide1Body": "हर उधार बिक्री, हर भुगतान और हर बकाया — एक बार लिखा, हमेशा सही।",
+  "welcomeSlide2Title": "खुद गिनने वाला स्टक",
+  "welcomeSlide2Body": "बिक्री और खरीद से स्टॉक खुद घटता है, और सामान खत्म होने से पहले चेतावनी मिलती है।",
+  "welcomeSlide3Title": "काम आने वाले आँकड़े",
+  "welcomeSlide3Body": "रोज़ का मुनाफ़ा, वसूली और देय — ईस्वी या वि.सं. तिथि में, आपकी भाषा में।",
+  "tryDemo": "डेमो देखें"
+}

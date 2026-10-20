@@ -1,0 +1,21 @@
+FROM mcr.microsoft.com/dotnet/sdk:10.0 AS build
+WORKDIR /src
+
+# Copy csproj files and restore
+COPY backend/src/Khata.Domain/Khata.Domain.csproj Khata.Domain/
+COPY backend/src/Khata.Application/Khata.Application.csproj Khata.Application/
+COPY backend/src/Khata.Infrastructure/Khata.Infrastructure.csproj Khata.Infrastructure/
+COPY backend/src/Khata.Api/Khata.Api.csproj Khata.Api/
+COPY backend/Khata.sln .
+RUN dotnet restore Khata.sln
+
+# Copy all source and build
+COPY backend/ .
+RUN dotnet publish src/Khata.Api/Khata.Api.csproj -c Release -o /app/publish --no-restore
+
+FROM mcr.microsoft.com/dotnet/aspnet:10.0 AS runtime
+WORKDIR /app
+COPY --from=build /app/publish .
+ENV ASPNETCORE_URLS=http://0.0.0.0:5000
+EXPOSE 5000
+ENTRYPOINT ["dotnet", "Khata.Api.dll"]

@@ -1,0 +1,192 @@
+@page "/users"
+@attribute [Authorize]
+@inject AdminApiClient Api
+
+<PageTitle>Users — Khata admin</PageTitle>
+
+<h1>Users</h1>
+
+<div class="toolbar">
+    <input class="input" placeholder="Search email or name" @bind="_search"
+           @bind:event="oninput" @onkeydown="OnSearchKeyDown" />
+    <select class="input" @bind="_activeFilter">
+        <option value="all">All</option>
+        <option value="active">Active only</option>
+        <option value="inactive">Suspended only</option>
+    </select>
+    <button class="btn" @onclick="() => LoadAsync(1)" disabled="@_busy">Search</button>
+</div>
+
+@if (_error is not null)
+{
+    <div class="alert alert-error" role="alert">@_error</div>
+}
+@if (_message is not null)
+{
+    <div class="alert alert-ok" role="status">@_message</div>
+}
+
+@if (_page is null && _error is null)
+{
+    <p class="muted">Loading users…</p>
+}
+else if (_page is not null)
+{
+    <table class="data-table">
+        <thead>
+            <tr>
+                <th>Email</th>
+                <th>Name</th>
+                <th>Locale</th>
+                <th class="num">Businesses</th>
+                <th>Created</th>
+                <th>Status</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var user in _page.Data)
+            {
+                <tr class="@(user.IsActive ? null : "row-muted")">
+                    <td>@user.Email</td>
+                    <td>@user.FullName</td>
+                    <td>@user.Locale</td>
+                    <td class="num">@user.BusinessCount</td>
+                    <td>@user.CreatedAt.ToString("yyyy-MM-dd")</td>
+                    <td>
+                        <span class="pill @(user.IsActive ? "pill-ok" : "pill-off")">
+                            @(user.IsActive ? "Active" : "Suspended")
+                        </span>
+                    </td>
+                    <td class="actions">
+                        @if (user.IsActive)
+                        {
+                            <button class="btn btn-danger btn-sm"
+                                    @onclick="() => PromptSuspendAsync(user)">
+                                Suspend
+                            </button>
+                        }
+                        else
+                        {
+                            <button class="btn btn-sm"
+                                    @onclick="() => SetActiveAsync(user, true)">
+                                Reactivate
+                            </button>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <Pager Info="_page.Pagination" OnPage="LoadAsync" />
+
+    @if (_pendingSuspend is not null)
+    {
+        <div class="modal-backdrop">
+            <div class="modal">
+                <h2>Suspend @_pendingSuspend.Email?</h2>
+                <p class="muted">
+                    They will be signed out of new logins immediately. Recorded in
+                    the audit log.
+                </p>
+                <div class="field">
+                    <label for="reason">Reason (optional)</label>
+                    <input id="reason" class="input" @bind="_reason" />
+                </div>
+                <div class="modal-actions">
+                    <button class="btn" @onclick="() => _pendingSuspend = null">Cancel</button>
+                    <button class="btn btn-danger" @onclick="ConfirmSuspendAsync">
+                        Suspend
+                    </button>
+                </div>
+            </div>
+        </div>
+    }
+}
+
+@code {
+    private PagedResult<AdminUserDto>? _page;
+    private string _search = string.Empty;
+    private string _activeFilter = "all";
+    private string? _error;
+    private string? _message;
+    private bool _busy;
+
+    private AdminUserDto? _pendingSuspend;
+    private string? _reason;
+
+    protected override Task OnInitializedAsync() => LoadAsync(1);
+
+    private bool? ActiveFilter => _activeFilter switch
+    {
+        "active" => true,
+        "inactive" => false,
+        _ => null,
+    };
+
+    private async Task LoadAsync(int page)
+    {
+        _busy = true;
+        _error = null;
+        try
+        {
+            _page = await Api.GetUsersAsync(_search, ActiveFilter, page, 20);
+        }
+        catch (AdminApiException ex)
+        {
+            _error = ex.Message;
+        }
+        catch (HttpRequestException)
+        {
+            _error = "Could not reach the API.";
+        }
+        finally
+        {
+            _busy = false;
+        }
+    }
+
+    private async Task OnSearchKeyDown(KeyboardEventArgs args)
+    {
+        if (args.Key == "Enter")
+            await LoadAsync(1);
+    }
+
+    private void PromptSuspendAsync(AdminUserDto user)
+    {
+        _pendingSuspend = user;
+        _reason = null;
+    }
+
+    private async Task ConfirmSuspendAsync()
+    {
+        if (_pendingSuspend is null) return;
+        await SetActiveAsync(_pendingSuspend, false, _reason);
+        _pendingSuspend = null;
+    }
+
+    private async Task SetActiveAsync(AdminUserDto user, bool isActive, string? reason = null)
+    {
+        _error = null;
+        _message = null;
+        try
+        {
+            var updated = isActive
+                ? await Api.ActivateUserAsync(user.Id, reason)
+                : await Api.SuspendUserAsync(user.Id, reason);
+            _message = updated.IsActive
+                ? $"{updated.Email} reactivated."
+                : $"{updated.Email} suspended.";
+            await LoadAsync(_page?.Pagination.Page ?? 1);
+        }
+        catch (AdminApiException ex)
+        {
+            _error = ex.Message;
+        }
+        catch (HttpRequestException)
+        {
+            _error = "Could not reach the API.";
+        }
+    }
+}

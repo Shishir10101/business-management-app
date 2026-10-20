@@ -1,0 +1,75 @@
+@page "/"
+@attribute [Authorize]
+@inject AdminApiClient Api
+
+<PageTitle>Dashboard — Khata admin</PageTitle>
+
+<h1>Dashboard</h1>
+
+@if (_error is not null)
+{
+    <div class="alert alert-error" role="alert">@_error</div>
+}
+
+@if (_stats is null && _error is null)
+{
+    <p class="muted">Loading platform statistics…</p>
+}
+else if (_stats is not null)
+{
+    <div class="stat-grid">
+        @foreach (var card in BuildCards(_stats))
+        {
+            <StatCard Label="@card.Label" Value="@card.Value" Note="@card.Note" />
+        }
+    </div>
+
+    <p class="muted">
+        Totals cover every tenant on the platform. Money is shown in NPR
+        (paisa converted for display only).
+    </p>
+}
+
+@code {
+    private PlatformStatsDto? _stats;
+    private string? _error;
+
+    private sealed record Card(string Label, string Value, string? Note);
+
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            _stats = await Api.GetStatsAsync();
+        }
+        catch (AdminApiException ex)
+        {
+            _error = ex.Message;
+        }
+        catch (HttpRequestException)
+        {
+            _error = "Could not reach the API.";
+        }
+    }
+
+    /// <summary>Cards are built in code rather than inline in the markup: the
+    /// notes need string interpolation, and nested quotes inside a Razor
+    /// attribute break the parser.</summary>
+    private static IEnumerable<Card> BuildCards(PlatformStatsDto stats) =>
+    [
+        new("Users", stats.TotalUsers.ToString("N0"), $"{stats.ActiveUsers:N0} active"),
+        new("Businesses", stats.TotalBusinesses.ToString("N0"),
+            $"{stats.ActiveBusinesses:N0} active"),
+        new("Sales recorded", stats.TotalSales.ToString("N0"),
+            FormatPaisa(stats.TotalSalesPaisa)),
+        new("Payments recorded", stats.TotalPayments.ToString("N0"),
+            FormatPaisa(stats.TotalPaymentsPaisa)),
+        new("Open tickets", stats.OpenTickets.ToString("N0"),
+            $"of {stats.TotalTickets:N0} total"),
+    ];
+
+    /// <summary>Paisa → "Rs 123,456.78". Paisa is the wire unit; the admin
+    /// console only ever converts for display.</summary>
+    private static string FormatPaisa(long paisa)
+        => "Rs " + (paisa / 100m).ToString("#,##0.00");
+}

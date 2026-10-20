@@ -1,0 +1,100 @@
+@page "/audit-logs"
+@attribute [Authorize]
+@inject AdminApiClient Api
+
+<PageTitle>Audit log — Khata admin</PageTitle>
+
+<h1>Audit log</h1>
+
+<div class="toolbar">
+    <select class="input" @bind="_actionFilter">
+        <option value="">All actions</option>
+        <option value="user.suspend">user.suspend</option>
+        <option value="user.activate">user.activate</option>
+        <option value="business.suspend">business.suspend</option>
+        <option value="business.activate">business.activate</option>
+        <option value="feature_flag.update">feature_flag.update</option>
+        <option value="ticket.create">ticket.create</option>
+        <option value="ticket.status">ticket.status</option>
+    </select>
+    <button class="btn" @onclick="() => LoadAsync(1)" disabled="@_busy">Filter</button>
+</div>
+
+@if (_error is not null)
+{
+    <div class="alert alert-error" role="alert">@_error</div>
+}
+
+@if (_page is null && _error is null)
+{
+    <p class="muted">Loading audit entries…</p>
+}
+else if (_page is not null)
+{
+    @if (_page.Data.Count == 0)
+    {
+        <p class="muted">No audit entries match this filter.</p>
+    }
+    else
+    {
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>When</th>
+                    <th>Action</th>
+                    <th>Entity</th>
+                    <th>Actor</th>
+                    <th>Details</th>
+                    <th>IP</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var log in _page.Data)
+                {
+                    <tr>
+                        <td class="nowrap">@log.OccurredAt.ToString("yyyy-MM-dd HH:mm")</td>
+                        <td><code>@log.Action</code></td>
+                        <td>@(log.EntityType is null ? "—" : $"{log.EntityType} #{log.EntityId}")</td>
+                        <td class="num">@log.ActorUserId</td>
+                        <td>@(log.Details ?? "—")</td>
+                        <td class="muted">@(log.IpAddress ?? "—")</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+        <Pager Info="_page.Pagination" OnPage="LoadAsync" />
+    }
+}
+
+@code {
+    private PagedResult<AuditLogDto>? _page;
+    private string _actionFilter = string.Empty;
+    private string? _error;
+    private bool _busy;
+
+    protected override Task OnInitializedAsync() => LoadAsync(1);
+
+    private async Task LoadAsync(int page)
+    {
+        _busy = true;
+        _error = null;
+        try
+        {
+            _page = await Api.GetAuditLogsAsync(
+                string.IsNullOrWhiteSpace(_actionFilter) ? null : _actionFilter, page, 50);
+        }
+        catch (AdminApiException ex)
+        {
+            _error = ex.Message;
+        }
+        catch (HttpRequestException)
+        {
+            _error = "Could not reach the API.";
+        }
+        finally
+        {
+            _busy = false;
+        }
+    }
+}

@@ -1,0 +1,1555 @@
+{
+  "@@locale": "en",
+  "appName": "Digital Khata",
+  "login": "Sign In",
+  "register": "Sign Up",
+  "email": "Email",
+  "password": "Password",
+  "fullName": "Full Name",
+  "phoneNumber": "Phone Number",
+  "confirmPassword": "Confirm Password",
+  "createAccount": "Create Account",
+  "alreadyHaveAccount": "Already have an account? Sign in",
+  "dontHaveAccount": "Don't have an account? Sign up",
+  "dashboard": "Dashboard",
+  "transactions": "Transactions",
+  "khata": "Khata",
+  "reports": "Reports",
+  "more": "More",
+  "todaysSales": "Today's Sales",
+  "todaysPurchases": "Today's Purchases",
+  "todaysExpenses": "Today's Expenses",
+  "todaysProfit": "Today's Profit",
+  "totalReceivable": "Total Receivable",
+  "totalPayable": "Total Payable",
+  "stockValue": "Stock Value",
+  "lowStock": "Low Stock",
+  "syncNow": "Sync Now",
+  "settings": "Settings",
+  "logout": "Logout",
+  "createBusiness": "Create Business",
+  "businessSetupTitle": "Set up your business",
+  "businessSetupSubtitle": "You will be the Owner with full access.",
+  "businessName": "Business name",
+  "businessType": "Business type (e.g. Retail)",
+  "panNumber": "PAN number",
+  "businessEmail": "Business email",
+  "address": "Address",
+  "city": "City",
+  "district": "District",
+  "province": "Province",
+  "wardNumber": "Ward number",
+  "myBusinesses": "My Businesses",
+  "switchBusiness": "Switch business",
+  "active": "Active",
+  "noBusinesses": "No businesses yet",
+  "createFirstBusiness": "Create your first business",
+  "staff": "Staff",
+  "invite": "Invite",
+  "inviteMember": "Invite staff member",
+  "changeRole": "Change role",
+  "remove": "Remove",
+  "profile": "Profile",
+  "editProfile": "Edit Profile",
+  "saveChanges": "Save Changes",
+  "cancel": "Cancel",
+  "language": "Language",
+  "retry": "Retry",
+  "loading": "Loading",
+  "products": "Products",
+  "product": "Product",
+  "addProduct": "Add product",
+  "editProduct": "Edit product",
+  "newProduct": "New product",
+  "productName": "Product name",
+  "sku": "SKU",
+  "barcode": "Barcode",
+  "categories": "Categories",
+  "addCategory": "Add category",
+  "newCategory": "New category",
+  "category": "Category",
+  "units": "Units",
+  "addUnit": "Add unit",
+  "newUnit": "New unit",
+  "unit": "Unit",
+  "costPrice": "Cost price",
+  "sellingPrice": "Selling price",
+  "wholesalePrice": "Wholesale price",
+  "taxRate": "Tax rate",
+  "openingStock": "Opening stock",
+  "minQuantity": "Low-stock alert at",
+  "inventory": "Inventory",
+  "adjustStock": "Adjust stock",
+  "stockHistory": "Stock history",
+  "quickAdjust": "Quick adjust",
+  "customQuantity": "Custom quantity",
+  "notes": "Notes",
+  "applyAdjustment": "Apply adjustment",
+  "lowStockOnly": "Low stock only",
+  "sortByName": "Sort by name",
+  "sortByQuantity": "Sort by quantity",
+  "searchProducts": "Search products",
+  "inStock": "in stock",
+  "lowStockAlert": "Low stock",
+  "stockAdded": "Stock added",
+  "stockRemoved": "Stock removed",
+  "customers": "Customers",
+  "customer": "Customer",
+  "addCustomer": "Add customer",
+  "newCustomer": "New customer",
+  "editCustomer": "Edit customer",
+  "searchCustomers": "Search customers",
+  "suppliers": "Suppliers",
+  "supplier": "Supplier",
+  "addSupplier": "Add supplier",
+  "newSupplier": "New supplier",
+  "editSupplier": "Edit supplier",
+  "searchSuppliers": "Search suppliers",
+  "searchPartyHint": "Search name or phone",
+  "ledger": "Khata ledger",
+  "openingBalance": "Opening balance",
+  "creditLimit": "Credit limit",
+  "creditLimitOptional": "Credit limit (optional)",
+  "closingBalance": "Closing balance",
+  "totalDebit": "Total debit",
+  "totalCredit": "Total credit",
+  "toCollect": "To collect",
+  "toPay": "To pay",
+  "advance": "Advance",
+  "settled": "Settled",
+  "noCustomers": "No customers yet",
+  "noSuppliers": "No suppliers yet",
+  "noTransactions": "No transactions yet",
+  "partyDeleted": "Deleted",
+  "deletePartyTitle": "Delete party?",
+  "sales": "Sales",
+  "sale": "Sale",
+  "newSale": "New sale",
+  "purchases": "Purchases",
+  "purchase": "Purchase",
+  "newPurchase": "New purchase",
+  "expenses": "Expenses",
+  "expense": "Expense",
+  "addExpense": "Add expense",
+  "income": "Income",
+  "addIncome": "Add income",
+  "invoiceNumber": "Invoice number",
+  "billNumber": "Bill number",
+  "saleType": "Sale type",
+  "paymentStatus": "Payment status",
+  "paid": "Paid",
+  "due": "Due",
+  "addItem": "Add item",
+  "searchSales": "Search sales",
+  "searchPurchases": "Search purchases",
+  "searchExpenses": "Search expenses",
+  "searchIncome": "Search income",
+  "walkIn": "Walk-in",
+  "cash": "Cash",
+  "credit": "Credit",
+  "partial": "Partial",
+  "noSales": "No sales yet",
+  "noPurchases": "No purchases yet",
+  "noExpenses": "No expenses yet",
+  "noIncome": "No income yet",
+  "payments": "Payments",
+  "payment": "Payment",
+  "recordPayment": "Record payment",
+  "paymentMethods": "Payment methods",
+  "addPaymentMethod": "Add method",
+  "receive": "Receive",
+  "pay": "Pay",
+  "method": "Method",
+  "defaultLabel": "Default",
+  "reference": "Reference",
+  "noPayments": "No payments yet",
+  "onAccount": "None (on account)",
+  "applyToDocument": "Apply to invoice/bill",
+  "advances": "Advances",
+  "inactive": "Inactive",
+  "invoices": "Invoices",
+  "invoice": "Invoice",
+  "newInvoice": "New invoice",
+  "quotations": "Quotations",
+  "quotation": "Quotation",
+  "newQuotation": "New quotation",
+  "issueDate": "Issue date",
+  "dueDate": "Due date",
+  "validUntil": "Valid until",
+  "terms": "Terms",
+  "share": "Share",
+  "downloadPdf": "Download PDF",
+  "convertToSale": "Convert to sale",
+  "status": "Status",
+  "draft": "Draft",
+  "sent": "Sent",
+  "accepted": "Accepted",
+  "rejected": "Rejected",
+  "expired": "Expired",
+  "overdue": "Overdue",
+  "noInvoices": "No invoices yet",
+  "noQuotations": "No quotations yet",
+  "generateFromSale": "Generate from a sale",
+  "fromSale": "From sale",
+  "notifications": "Notifications",
+  "notificationSettings": "Notification settings",
+  "noNotifications": "No notifications yet",
+  "nothingMatchesFilter": "Nothing matches this filter",
+  "markAllRead": "Mark all read",
+  "markRead": "Mark read",
+  "markedReadCount": "{count} marked read",
+  "@markedReadCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "nothingToMark": "Nothing to mark",
+  "filterAllCategories": "All categories",
+  "pushNotifications": "Push notifications",
+  "enablePush": "Enable push",
+  "enablePushSubtitle": "Master switch for this device",
+  "notificationsInAppNote": "In-app notifications are always recorded. These switches control push delivery only.",
+  "registeredDevices": "Registered devices",
+  "noDevices": "No devices registered yet",
+  "deviceActive": "Active",
+  "deviceInactive": "Inactive",
+  "categoryReminders": "Reminders",
+  "categoryRemindersSubtitle": "When a reminder falls due",
+  "categoryLowStock": "Low stock",
+  "categoryLowStockSubtitle": "When a product drops to its minimum",
+  "categoryPaymentDue": "Payment due",
+  "categoryPaymentDueSubtitle": "When a bill is close to or past its due date",
+  "categoryBackup": "Backup",
+  "categoryBackupSubtitle": "Backup finished or failed",
+  "categorySystem": "System",
+  "categorySystemSubtitle": "Account and app announcements",
+  "reminders": "Reminders",
+  "newReminder": "New reminder",
+  "editReminder": "Edit reminder",
+  "noReminders": "Nothing here",
+  "needsAttention": "Needs attention",
+  "scheduled": "Scheduled",
+  "addReminder": "Add reminder",
+  "reminderTitle": "Title",
+  "reminderTitleHint": "Call Ram about the pending bill",
+  "reminderTitleRequired": "A title is required",
+  "dueTime": "Due time",
+  "repeat": "Repeat",
+  "repeatOnce": "Once",
+  "repeatDaily": "Every day",
+  "repeatWeekly": "Every week",
+  "repeatMonthly": "Every month",
+  "repeatYearly": "Every year",
+  "recurringNote": "A repeating reminder reschedules itself after firing instead of completing, so it always lands on the next upcoming date.",
+  "saveReminder": "Save reminder",
+  "reminderSaved": "Reminder saved",
+  "markDone": "Mark done",
+  "dismiss": "Dismiss",
+  "markedDone": "Marked done",
+  "checkDueReminders": "Check for due reminders",
+  "nothingDue": "Nothing is due right now",
+  "remindersFiredCount": "{count} reminder(s) fired",
+  "@remindersFiredCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "dueToday": "Today",
+  "dueTomorrow": "Tomorrow",
+  "dueYesterday": "Yesterday",
+  "reminderStatusPending": "Pending",
+  "reminderStatusDone": "Done",
+  "reminderStatusDismissed": "Dismissed",
+  "backupAndRestore": "Backup & restore",
+  "exportBackup": "Export backup",
+  "restoreFromLastExport": "Restore from last export",
+  "restoreFromPastedJson": "Restore from pasted JSON",
+  "backupExportBody": "Saves every product, party, sale, purchase, expense, income, payment, invoice and quotation in the active business. Soft-deleted records are kept, so history survives.",
+  "backupRestoreBody": "Restoring merges a backup into this business. Records that already exist are skipped — nothing is ever overwritten, because a rewritten sale or payment would leave the khata ledger disagreeing with itself.",
+  "backupNotIncludedTitle": "What is not included",
+  "backupNotIncludedBody": "The khata ledger entries and stock movements are derived from the documents above, so they are rebuilt by replaying those operations rather than copied. A restore therefore brings back your records, not the cached totals.",
+  "restoreConfirmTitle": "Restore this backup?",
+  "restoreConfirmBody": "Records that already exist in this business will be skipped. Nothing currently here is modified or deleted.",
+  "restoreComplete": "Restore complete",
+  "restoreAddedCount": "{count} record(s) added",
+  "@restoreAddedCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "restoreSkippedCount": "{count} already present, left alone",
+  "@restoreSkippedCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "recordsAdded": "{count} added",
+  "@recordsAdded": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "recordsAddedKept": "{count} added, {kept} kept",
+  "@recordsAddedKept": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      },
+      "kept": {
+        "type": "int"
+      }
+    }
+  },
+  "clipboardEmpty": "Clipboard is empty",
+  "notAKhataBackup": "This file is not a Khata backup.",
+  "save": "Save",
+  "change": "Change",
+  "all": "All",
+  "none": "None",
+  "code": "Code",
+  "role": "Role",
+  "filter": "Filter",
+  "sort": "Sort",
+  "optional": "optional",
+  "pendingChanges": "Pending changes",
+  "confirm": "Confirm",
+  "close": "Close",
+  "yes": "Yes",
+  "no": "No",
+  "signInToYourAccount": "Sign in to your account",
+  "createYourAccountTitle": "Create your Digital Khata account",
+  "getStarted": "Get started",
+  "fullNamePlaceholder": "Full name",
+  "phoneNumberPlaceholder": "Phone number",
+  "phoneOptional": "Phone Number (optional)",
+  "pan": "PAN",
+  "businessNameRequired": "Business name *",
+  "createNewBusiness": "Create new business",
+  "businesses": "Businesses",
+  "couldNotCreateBusiness": "Could not create business: {error}",
+  "@couldNotCreateBusiness": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "couldNotSwitchBusiness": "Could not switch business: {error}",
+  "@couldNotSwitchBusiness": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "couldNotUpdateProfile": "Could not update profile: {error}",
+  "@couldNotUpdateProfile": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "profileUpdated": "Profile updated",
+  "changeRoleFor": "Change role — {name}",
+  "@changeRoleFor": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "couldNotChangeRole": "Could not change role: {error}",
+  "@couldNotChangeRole": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "removeMember": "Remove {name}?",
+  "@removeMember": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "removeMemberWarning": "They will lose access to this business.",
+  "couldNotRemoveMember": "Could not remove member: {error}",
+  "@couldNotRemoveMember": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "inviteFailed": "Invite failed: {error}",
+  "@inviteFailed": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "noStaffMembersYet": "No staff members yet",
+  "productNameRequired": "Product name *",
+  "searchNameSkuBarcode": "Search name, SKU or barcode",
+  "noProductsFound": "No products found",
+  "costPriceRs": "Cost price (Rs.)",
+  "sellingPriceRsRequired": "Selling price (Rs.) *",
+  "wholesalePriceRs": "Wholesale price (Rs.)",
+  "taxRatePercent": "Tax rate (%)",
+  "openingStockQuantity": "Opening stock quantity",
+  "minimumQuantityHint": "minimum quantity (0 = no alert)",
+  "inactiveProductsNote": "Inactive products stay but are hidden from sales",
+  "deleteProductQuestion": "Delete product?",
+  "deleteProductWarning": "The product will be hidden from the catalog. Stock history is kept.",
+  "loadingProduct": "Loading product…",
+  "couldNotLoadProduct": "Could not load product: {error}",
+  "@couldNotLoadProduct": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "byCategory": "By category",
+  "expensesByCategory": "Expenses by category",
+  "categoriesNoCategories": "No categories yet",
+  "noCategory": "No category",
+  "deleteCategoryQuestion": "Delete category?",
+  "categoryDeleteNote": "Products in this category will keep working without a category.",
+  "categoryRequired": "Category *",
+  "noUnit": "No unit",
+  "unitNameHint": "Name * (e.g. Piece)",
+  "unitShortHint": "Short name * (e.g. pc)",
+  "unitsNoUnits": "No units yet",
+  "deleteUnitQuestion": "Delete unit?",
+  "unitDeleteNote": "Products using this unit will keep working without a unit.",
+  "movementHistory": "Movement history",
+  "noStockMovementsYet": "No stock movements yet",
+  "customQuantityHint": "Custom quantity (+ in / - out)",
+  "quantityExample": "e.g. 2.5 or -3",
+  "reasonExample": "e.g. stock count, damage",
+  "stockValuation": "Stock valuation",
+  "currentStockIs": "Current stock: {quantity}",
+  "@currentStockIs": {
+    "placeholders": {
+      "quantity": {
+        "type": "String"
+      }
+    }
+  },
+  "balanceIs": "Bal {quantity}",
+  "@balanceIs": {
+    "placeholders": {
+      "quantity": {
+        "type": "String"
+      }
+    }
+  },
+  "nameRequired": "Name *",
+  "partyNameExample": "Name * (e.g. Piece)",
+  "creditLimitRs": "Credit limit (Rs.)",
+  "openingBalanceRs": "Opening balance (Rs.)",
+  "walkInNone": "Walk-in / none",
+  "deletePartyQuestion": "Delete {kind}?",
+  "@deletePartyQuestion": {
+    "placeholders": {
+      "kind": {
+        "type": "String"
+      }
+    }
+  },
+  "partyDeleteNote": "The party will be hidden from lists. Khata history is kept.",
+  "khataHistoryKept": "Khata history is kept.",
+  "createSale": "Create sale",
+  "createPurchase": "Create purchase",
+  "createInvoice": "Create invoice",
+  "createQuotation": "Create quotation",
+  "noItemsYetAddProduct": "No items yet — add a product",
+  "addFreeText": "Add free text",
+  "items": "Items",
+  "itemsCount": "Items ({count})",
+  "@itemsCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "extraDiscountRs": "Extra discount (Rs.)",
+  "paidNowRs": "Paid now (Rs.)",
+  "paidAmountRs": "Paid amount (Rs.)",
+  "amountRsRequired": "Amount (Rs.) *",
+  "lineTotalIs": "Line total: {total}",
+  "@lineTotalIs": {
+    "placeholders": {
+      "total": {
+        "type": "String"
+      }
+    }
+  },
+  "invoiceNumberLabel": "Invoice {number}",
+  "@invoiceNumberLabel": {
+    "placeholders": {
+      "number": {
+        "type": "String"
+      }
+    }
+  },
+  "quotationNumberLabel": "Quotation {number}",
+  "@quotationNumberLabel": {
+    "placeholders": {
+      "number": {
+        "type": "String"
+      }
+    }
+  },
+  "issuedOn": "Issued {date}",
+  "@issuedOn": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "dueOn": "Due {date}",
+  "@dueOn": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "validUntilOn": "Valid until {date}",
+  "@validUntilOn": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "convertedToSale": "Converted to sale #{id}",
+  "@convertedToSale": {
+    "placeholders": {
+      "id": {
+        "type": "int"
+      }
+    }
+  },
+  "@fromSale": {
+    "placeholders": {
+      "number": {
+        "type": "String"
+      }
+    }
+  },
+  "lineItemsCopiedNote": "Line items will be copied from the selected sale and its prices kept.",
+  "noneBuildManually": "None (build manually)",
+  "notesOptional": "Notes (optional)",
+  "termsLabel": "Terms: {terms}",
+  "@termsLabel": {
+    "placeholders": {
+      "terms": {
+        "type": "String"
+      }
+    }
+  },
+  "notesLabel": "Notes: {notes}",
+  "@notesLabel": {
+    "placeholders": {
+      "notes": {
+        "type": "String"
+      }
+    }
+  },
+  "sharePdf": "Share PDF",
+  "exportCsv": "Export CSV",
+  "deleteSaleQuestion": "Delete sale?",
+  "deletePurchaseQuestion": "Delete purchase?",
+  "deleteInvoiceQuestion": "Delete invoice?",
+  "deleteQuotationQuestion": "Delete quotation?",
+  "deleteExpenseQuestion": "Delete expense?",
+  "deleteIncomeQuestion": "Delete income?",
+  "deleteMethodQuestion": "Delete method?",
+  "saleDeleteNote": "Stock will be restored and the customer khata reversed.",
+  "purchaseDeleteNote": "Stock will be reduced back and the supplier khata reversed.",
+  "expenseDeleteNote": "This expense will be permanently removed.",
+  "incomeDeleteNote": "This income record will be permanently removed.",
+  "invoiceDeleteNote": "This invoice will be permanently removed.",
+  "quotationDeleteNote": "This quotation will be permanently removed.",
+  "searchInvoiceOrCustomer": "Search invoice or customer",
+  "searchBillOrSupplier": "Search bill or supplier",
+  "searchQuotationOrCustomer": "Search quotation or customer",
+  "searchPartyOrReference": "Search party or reference",
+  "paymentMethod": "Payment method",
+  "addMethod": "Add method",
+  "noPaymentMethodsYet": "No payment methods yet",
+  "setAsDefault": "Set as default",
+  "methodChangeNote": "Payments already recorded with this method keep working.",
+  "advanceIs": "Advance {amount}",
+  "@advanceIs": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "dueToCustomerKhata": "Due {amount} → customer khata",
+  "@dueToCustomerKhata": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "dueToSupplierKhata": "Due {amount} → supplier khata",
+  "@dueToSupplierKhata": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "advancesAreMoney": "Advances are money you already hold, so they are applied first.",
+  "advancesLabel": "Advances: {list}",
+  "@advancesLabel": {
+    "placeholders": {
+      "list": {
+        "type": "String"
+      }
+    }
+  },
+  "addProductButton": "Add product",
+  "addReminderButton": "Add reminder",
+  "receivablesAndPayables": "Receivables & payables",
+  "receivablesCount": "Receivables · {count}",
+  "@receivablesCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "payablesCount": "Payables · {count}",
+  "@payablesCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "profitAndLoss": "Profit & loss",
+  "salesReportTitle": "Sales report",
+  "revenueExcludesVat": "Revenue excludes VAT.",
+  "salesTrendLast14": "Sales trend · last 14 days",
+  "salesTrendScope": "Sales trend · {scope}",
+  "@salesTrendScope": {
+    "placeholders": {
+      "scope": {
+        "type": "String"
+      }
+    }
+  },
+  "topProducts": "Top products",
+  "topCustomers": "Top customers",
+  "bySource": "By source",
+  "incomeTrend": "Income trend",
+  "lastCycle": "Last cycle",
+  "noDataYet": "No data yet",
+  "couldNotLoad": "Could not load: {error}",
+  "@couldNotLoad": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "couldNotLoadSummary": "Could not load summary",
+  "dashboardUnavailable": "Dashboard unavailable",
+  "productsCount": "{count} product(s)",
+  "@productsCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "unitsDocsCount": "{quantity} units · {count} docs",
+  "@unitsDocsCount": {
+    "placeholders": {
+      "quantity": {
+        "type": "String"
+      },
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "quantityTimesPrice": "{quantity} × {price}",
+  "@quantityTimesPrice": {
+    "placeholders": {
+      "quantity": {
+        "type": "String"
+      },
+      "price": {
+        "type": "String"
+      }
+    }
+  },
+  "lowStockNote": "{name} low on stock",
+  "@lowStockNote": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "syncTitle": "Sync",
+  "syncStatusTitle": "Sync status",
+  "lastSyncLabel": "Last sync",
+  "pendingChangesCount": "Pending changes",
+  "syncFailed": "Sync failed: {error}",
+  "@syncFailed": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "operationFailed": "{operation} failed",
+  "@operationFailed": {
+    "placeholders": {
+      "operation": {
+        "type": "String"
+      }
+    }
+  },
+  "conflicts": "conflicts",
+  "noConflicts": "No conflicts",
+  "entityRef": "{type} #{id}",
+  "@entityRef": {
+    "placeholders": {
+      "type": {
+        "type": "String"
+      },
+      "id": {
+        "type": "int"
+      }
+    }
+  },
+  "serverChanged": "server changed: ",
+  "serverVersion": "server version: {json}",
+  "@serverVersion": {
+    "placeholders": {
+      "json": {
+        "type": "String"
+      }
+    }
+  },
+  "operationDetail": "operation: {operation}",
+  "@operationDetail": {
+    "placeholders": {
+      "operation": {
+        "type": "String"
+      }
+    }
+  },
+  "pushed": "pushed",
+  "pulled": "pulled",
+  "rejectedWithError": "rejected: {error}",
+  "@rejectedWithError": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "backupSubject": "Khata backup",
+  "backupShareText": "Khata backup exported from this device.",
+  "recordsAddedCount": "{count} record(s) added",
+  "@recordsAddedCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "alreadyPresentCount": "{count} already present, left alone",
+  "@alreadyPresentCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "addedCount": "{count} added",
+  "@addedCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "addedKeptCount": "{count} added, {kept} kept",
+  "@addedKeptCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      },
+      "kept": {
+        "type": "int"
+      }
+    }
+  },
+  "reminderRepeatNote": "A repeating reminder reschedules itself after firing.",
+  "profileLabel": "Profile",
+  "languageEnglish": "English",
+  "languageNepali": "नेपाली",
+  "calendarLabel": "Calendar",
+  "generalSection": "General",
+  "dateLabel": "Date",
+  "descriptionLabel": "Description",
+  "fromLabel": "From",
+  "toLabel": "To",
+  "titleRequired": "Title *",
+  "sourceRequired": "Source *",
+  "taxExample": "e.g. 13",
+  "amountExample": "e.g. 20.00",
+  "quantityExample16": "e.g. 16.00",
+  "rateExample": "e.g. 25",
+  "plusOne": "+1",
+  "plusTen": "+10",
+  "minusOne": "-1",
+  "minusTen": "-10",
+  "phonePrefixHint": "+977 98XXXXXXXX",
+  "rankLabel": "#",
+  "editKind": "Edit {kind}",
+  "@editKind": {
+    "placeholders": {
+      "kind": {
+        "type": "String"
+      }
+    }
+  },
+  "newKind": "New {kind}",
+  "@newKind": {
+    "placeholders": {
+      "kind": {
+        "type": "String"
+      }
+    }
+  },
+  "delete": "Delete",
+  "edit": "Edit",
+  "convert": "Convert",
+  "exportTitle": "Export",
+  "restoreTitle": "Restore",
+  "expenseTrend": "Expense trend",
+  "opening": "Opening",
+  "filterByCategory": "Filter by category",
+  "phoneLabel": "Phone",
+  "emailMustHaveAccount": "Email (must have an account)",
+  "advancesExplainer": "Advances are money you already hold (customer) or have already paid (supplier), so they are applied before new payments.",
+  "backupExportExplainerFull": "Saves every product, party, sale, purchase, expense, income, payment, invoice and quotation in the active business. Soft-deleted records are kept, so history survives.",
+  "backupRestoreExplainerFull": "Restoring merges a backup into this business. Records that already exist are skipped — nothing is ever overwritten, because a rewritten sale or payment would leave the khata ledger disagreeing with itself.",
+  "backupNotIncludedExplainer": "The khata ledger entries and stock movements are derived from the documents above, so they are rebuilt by replaying those operations rather than copied. A restore therefore brings back your records, not the cached totals.",
+  "restoreConfirmBodyFull": "Records that already exist in this business will be skipped. Nothing currently here is modified or deleted.",
+  "methodChangeNoteFull": "Payments already recorded with this method keep working. Renaming the method does not rewrite history.",
+  "saleDeleteNoteFull": "Stock will be restored and the customer khata reversed.",
+  "purchaseDeleteNoteFull": "Stock will be reduced back and the supplier khata reversed.",
+  "lineItemsCopiedNoteFull": "Line items will be copied from the selected sale and its prices kept.",
+  "notificationsInAppNoteFull": "In-app notifications are always recorded. These switches control push delivery only.",
+  "unitNameShort": "{name} ({short})",
+  "@unitNameShort": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      },
+      "short": {
+        "type": "String"
+      }
+    }
+  },
+  "retailValue": "retail {amount}",
+  "@retailValue": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "advanceAmount": "Advance {amount}",
+  "@advanceAmount": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "quantityWithUnit": "{quantity}{unit}",
+  "@quantityWithUnit": {
+    "placeholders": {
+      "quantity": {
+        "type": "String"
+      },
+      "unit": {
+        "type": "String"
+      }
+    }
+  },
+  "productPricePair": "{price}  •  ",
+  "@productPricePair": {
+    "placeholders": {
+      "price": {
+        "type": "String"
+      }
+    }
+  },
+  "saleCustomerLine": "{number} — {customer}",
+  "@saleCustomerLine": {
+    "placeholders": {
+      "number": {
+        "type": "String"
+      },
+      "customer": {
+        "type": "String"
+      }
+    }
+  },
+  "lineTotalAmount": "Line total: {amount}",
+  "@lineTotalAmount": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "conflictsCount": "{count} conflicts",
+  "@conflictsCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "noDataInRange": "No data in this range",
+  "nothingToBreakDown": "Nothing to break down",
+  "noProductsMatchFilter": "No products match this filter",
+  "noProductsSoldInRange": "No products sold in this range",
+  "noSalesToCustomersInRange": "No sales to customers in this range",
+  "nobodyOwesYou": "Nobody owes you money",
+  "youOweNobody": "You owe nobody",
+  "addLabel": "Add {label}",
+  "@addLabel": {
+    "placeholders": {
+      "label": {
+        "type": "String"
+      }
+    }
+  },
+  "couldNotLoadX": "Could not load {subject}.\n{error}",
+  "@couldNotLoadX": {
+    "placeholders": {
+      "subject": {
+        "type": "String"
+      },
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "balances": "balances",
+  "expenseReport": "the expense report",
+  "incomeReport": "the income report",
+  "stockReportTitle": "the stock report",
+  "expenseReportTitle": "Expense report",
+  "incomeReportTitle": "Income report",
+  "profitAndLossTitle": "Profit & loss",
+  "stockMovements": "stock movements",
+  "devices": "devices",
+  "emailAndRole": "{email}\n{role}",
+  "@emailAndRole": {
+    "placeholders": {
+      "email": {
+        "type": "String"
+      },
+      "role": {
+        "type": "String"
+      }
+    }
+  },
+  "addKind": "Add {kind}",
+  "@addKind": {
+    "placeholders": {
+      "kind": {
+        "type": "String"
+      }
+    }
+  },
+  "lowAtOrBelow": "Low: at or below {quantity}{unit}",
+  "@lowAtOrBelow": {
+    "placeholders": {
+      "quantity": {
+        "type": "String"
+      },
+      "unit": {
+        "type": "String"
+      }
+    }
+  },
+  "minimumIs": "Minimum {quantity}{unit}",
+  "@minimumIs": {
+    "placeholders": {
+      "quantity": {
+        "type": "String"
+      },
+      "unit": {
+        "type": "String"
+      }
+    }
+  },
+  "savedTo": "Saved to {path}",
+  "@savedTo": {
+    "placeholders": {
+      "path": {
+        "type": "String"
+      }
+    }
+  },
+  "emailRequired": "Please enter your email",
+  "emailInvalid": "Please enter a valid email",
+  "passwordRequired": "Please enter your password",
+  "passwordRegisterRequired": "Please enter a password",
+  "passwordTooShort": "Password must be at least 8 characters",
+  "passwordNeedsDigit": "Password must contain at least one digit",
+  "confirmPasswordRequired": "Please confirm your password",
+  "passwordsDoNotMatch": "Passwords do not match",
+  "fullNameRequired": "Please enter your full name",
+  "fullNameIsRequired": "Full name is required",
+  "businessNameIsRequired": "Business name is required",
+  "amountRequired": "Amount is required",
+  "amountInvalid": "Enter a valid amount",
+  "amountInvalidFull": "Enter a valid amount.",
+  "amountMustBePositive": "Amount must be greater than zero.",
+  "quantityInvalid": "Enter a valid quantity",
+  "percentRange": "Enter 0–100",
+  "panMustBe9Digits": "PAN must be 9 digits.",
+  "panMustBe9DigitNumber": "PAN must be a 9-digit number",
+  "phoneInvalid": "Phone number format is invalid.",
+  "emailAddressRequired": "A valid email address is required.",
+  "invalidEmailOrPassword": "Invalid email or password.",
+  "checkYourInput": "Please check your input.",
+  "somethingWentWrong": "Something went wrong. Please try again.",
+  "returnIn": "Return in",
+  "returnOut": "Return out",
+  "week": "Week",
+  "month": "Month",
+  "day": "Day",
+  "todayAt": "Today {time}",
+  "@todayAt": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "tomorrowAt": "Tomorrow {time}",
+  "@tomorrowAt": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "yesterdayAt": "Yesterday {time}",
+  "@yesterdayAt": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "noKindMatchSearch": "No {kind} match your search",
+  "@noKindMatchSearch": {
+    "placeholders": {
+      "kind": {
+        "type": "String"
+      }
+    }
+  },
+  "noKindYet": "No {kind} yet",
+  "@noKindYet": {
+    "placeholders": {
+      "kind": {
+        "type": "String"
+      }
+    }
+  },
+  "categoryReminder": "Reminder",
+  "saved": "Saved",
+  "productSaved": "Product saved",
+  "walkInCustomer": "Walk-in customer",
+  "notSet": "Not set",
+  "unpaid": "Unpaid",
+  "noSupplier": "No supplier",
+  "paidInFull": "Paid (full)",
+  "exporting": "Exporting...",
+  "saving": "Saving...",
+  "noLowStockProducts": "No low-stock products — all good!",
+  "noProductsMatchSearch": "No products match your search",
+  "showingUnread": "Showing unread",
+  "customerKhata": "Customer khata",
+  "debit": "Debit",
+  "recordReceipt": "Record receipt",
+  "applyToInvoice": "Apply to invoice",
+  "receipt": "Receipt",
+  "roleViewer": "Viewer",
+  "never": "Never",
+  "syncing": "Syncing…",
+  "moneyInOut": "In {inAmount} · Out {outAmount}",
+  "@moneyInOut": {
+    "placeholders": {
+      "inAmount": {
+        "type": "String"
+      },
+      "outAmount": {
+        "type": "String"
+      }
+    }
+  },
+  "dueAmount": "Due {amount}",
+  "@dueAmount": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "created": "Created",
+  "productCreated": "Product created",
+  "toCollectAmount": "To collect {amount}",
+  "@toCollectAmount": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "toPayAmount": "To pay {amount}",
+  "@toPayAmount": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "createProduct": "Create product",
+  "create": "Create",
+  "noProductsYet": "No products yet",
+  "noProductsYetAddFirst": "No products yet — add your first product",
+  "subtotal": "Subtotal",
+  "total": "Total",
+  "discount": "Discount",
+  "rateRs": "Rate (Rs.)",
+  "discountRs": "Disc (Rs.)",
+  "addAtLeastOneItem": "Add at least one item",
+  "costValue": "Cost value",
+  "potentialMargin": "Potential margin",
+  "invoiceCreated": "Invoice created",
+  "invoiceDeleted": "Invoice deleted",
+  "quotationCreated": "Quotation created",
+  "quotationDeleted": "Quotation deleted",
+  "convertedToSaleToast": "Converted to sale",
+  "saleCreated": "Sale created",
+  "saleReversed": "Sale reversed",
+  "saleKeptAsReversed": "The sale is kept in history as reversed.",
+  "creditSaleNeedsCustomer": "A credit sale needs a customer",
+  "purchaseCreated": "Purchase created",
+  "purchaseReversed": "Purchase reversed",
+  "purchaseKeptAsReversed": "The purchase is kept in history as reversed.",
+  "creditPurchaseNeedsSupplier": "A credit purchase needs a supplier",
+  "paymentRecorded": "Payment recorded",
+  "methodSaved": "Method saved",
+  "methodDeleted": "Method deleted",
+  "categorySaved": "Category saved",
+  "categoryDeleted": "Category deleted",
+  "productDeleted": "Product deleted",
+  "unitSaved": "Unit saved",
+  "unitDeleted": "Unit deleted",
+  "settingsSaved": "Settings saved",
+  "atLeastOneMethodMustRemain": "At least one payment method must remain.",
+  "notAkhataBackup": "This is not a Khata backup.",
+  "enterNonZeroQuantity": "Enter a non-zero quantity",
+  "enterAmountGreaterThanZero": "Enter an amount greater than zero",
+  "balanceAfterIs": "Bal {quantity}",
+  "@balanceAfterIs": {
+    "placeholders": {
+      "quantity": {
+        "type": "String"
+      }
+    }
+  },
+  "rejectedAndFailed": "Rejected & failed",
+  "entries": "Entries",
+  "average": "Average",
+  "sources": "Sources",
+  "revenue": "Revenue",
+  "costOfGoodsSold": "Cost of goods sold",
+  "grossProfit": "Gross profit",
+  "otherIncome": "Other income",
+  "netProfit": "Net profit",
+  "taxCollectedInPeriod": "Tax collected in this period: ",
+  "customerAdvances": "Customer advances",
+  "supplierAdvances": "Supplier advances",
+  "advancesExplain": "Advances are money you already hold (customer) or have overpaid (supplier).",
+  "reportSalesBlurb": "Trends, totals, top products and customers",
+  "reportProfitLossBlurb": "Revenue, cost of goods and net profit",
+  "reportExpenseBlurb": "Where the money went, by category",
+  "reportIncomeBlurb": "Other income by source",
+  "reportStockBlurb": "Cost and retail value of stock on hand",
+  "reportReceivableBlurb": "Who owes you and who you owe",
+  "ledgerOwesYouHint": "Amount they owe you (customer) / you paid (supplier)",
+  "ledgerYouOweHint": "Amount paid to you (customer) / you owe (supplier)",
+  "roleOwner": "Owner",
+  "roleAdmin": "Admin",
+  "roleManager": "Manager",
+  "roleAccountant": "Accountant",
+  "noBusiness": "No business",
+  "couldNotLoadProducts": "Could not load products.\\n{error}",
+  "@couldNotLoadProducts": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "lineItemsCopiedFromSale": "Line items will be copied from the selected sale and its invoice number reused.",
+  "bsRange": "BS: {from}  →  {to}",
+  "@bsRange": {
+    "placeholders": {
+      "from": {
+        "type": "String"
+      },
+      "to": {
+        "type": "String"
+      }
+    }
+  },
+  "conflictsNamed": "Conflicts ({count})",
+  "@conflictsNamed": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "retailValueReport": "Retail value",
+  "selectPartyKind": "Select a {kind}",
+  "@selectPartyKind": {
+    "placeholders": {
+      "kind": {
+        "type": "String"
+      }
+    }
+  },
+  "tax": "Tax",
+  "qty": "Qty",
+  "adjustment": "Adjustment",
+  "showingAll": "Showing all",
+  "supplierKhata": "Supplier khata",
+  "applyToBill": "Apply to bill",
+  "newMethod": "New method",
+  "today": "Today",
+  "municipality": "Municipality",
+  "selectProvinceHint": "Select province",
+  "selectDistrictHint": "Select district",
+  "selectMunicipalityHint": "Select municipality",
+  "municipalityFreeTextHint": "Type the municipality — not every local unit is listed here.",
+  "phoneInvalidNepali": "Enter a valid Nepali phone number, e.g. 98XXXXXXXX",
+  "fromDate": "From",
+  "toDate": "To",
+  "back": "Back",
+  "next": "Next",
+  "endBeforeStart": "End date cannot be before the start date.",
+  "dateRange": "Date range",
+  "toolsTitle": "Tools",
+  "emiCalculator": "EMI Calculator",
+  "loanAmount": "Loan amount (Rs.)",
+  "annualInterestRate": "Annual interest rate (%)",
+  "loanTermMonths": "Loan term (months)",
+  "monthlyEmi": "Monthly EMI",
+  "totalPayment": "Total payment",
+  "totalInterest": "Total interest",
+  "interestCalculator": "Interest Calculator",
+  "simpleInterest": "Simple interest",
+  "compoundInterest": "Compound interest",
+  "principal": "Principal",
+  "years": "Years",
+  "compoundingPerYear": "Compounding per year",
+  "interestEarned": "Interest earned",
+  "profitCalculator": "Profit Calculator",
+  "profit": "Profit",
+  "profitMargin": "Profit margin",
+  "markup": "Markup",
+  "enterValidAmount": "Enter a valid amount",
+  "maturityAmount": "Maturity amount",
+  "calculate": "Calculate",
+  "lossWarning": "This is a loss, not a profit.",
+  "appLock": "App lock",
+  "appLockDescription": "Require a PIN to open the app",
+  "setPin": "Set PIN",
+  "changePin": "Change PIN",
+  "enterPin": "Enter your PIN",
+  "confirmPin": "Confirm PIN",
+  "currentPin": "Current PIN",
+  "newPin": "New PIN",
+  "pinMustBe4To6Digits": "PIN must be 4 to 6 digits",
+  "pinsDoNotMatch": "The PINs do not match",
+  "incorrectPin": "Incorrect PIN",
+  "unlock": "Unlock",
+  "turnOffAppLock": "Turn off app lock",
+  "appLockNowOn": "App lock is on",
+  "appLockNowOff": "App lock is off",
+  "attemptsLeft": "{count} attempts left",
+  "bankAccounts": "Bank accounts",
+  "bankName": "Bank name",
+  "accountName": "Account name",
+  "accountNumber": "Account number",
+  "branch": "Branch",
+  "defaultAccount": "Default account",
+  "noBankAccountsYet": "No bank accounts yet. Add one to record transfers.",
+  "addBankAccount": "Add bank account",
+  "paymentsThroughAccount": "{count} payments · {total}",
+  "deleted": "Deleted",
+  "@paymentsThroughAccount": {
+    "description": "Summary of payments recorded through one bank account.",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "3"
+      },
+      "total": {
+        "type": "String",
+        "example": "Rs 12,500.00"
+      }
+    }
+  },
+  "@attemptsLeft": {
+    "description": "Remaining unlock attempts after a wrong PIN.",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "3"
+      }
+    }
+  },
+  "importTile": "Import",
+  "importTitle": "Import from Excel",
+  "importExplainerTitle": "How it works",
+  "importExplainerBody": "Paste the rows from your spreadsheet here. Copy the template, fill it in Excel, save it as CSV and paste it back. Every row is checked before anything is written — if one row is wrong, nothing is imported.",
+  "importCopyTemplate": "Copy template",
+  "importTemplateCopied": "Template copied — paste it into Excel",
+  "importPasteFromClipboard": "Paste from clipboard",
+  "importCsvLabel": "CSV rows",
+  "importCheckFile": "Check file",
+  "importChecking": "Checking…",
+  "importRun": "Import",
+  "importImporting": "Importing…",
+  "importPreviewTitle": "Check result",
+  "importRowsTotal": "Rows",
+  "importRowsValid": "Ready",
+  "importRowsDuplicate": "Already exist",
+  "importRowsInvalid": "Need fixing",
+  "importBlockedHint": "Nothing will be imported until every row is fixed.",
+  "importIgnoredColumns": "Ignored columns: {columns}",
+  "@importIgnoredColumns": {
+    "placeholders": {
+      "columns": {
+        "type": "String"
+      }
+    }
+  },
+  "importIssuesTitle": "Rows to fix",
+  "importIssueLine": "Row {row}: {message}",
+  "@importIssueLine": {
+    "placeholders": {
+      "row": {
+        "type": "int"
+      },
+      "message": {
+        "type": "String"
+      }
+    }
+  },
+  "importIssueLineWithColumn": "Row {row} · {column}: {message}",
+  "@importIssueLineWithColumn": {
+    "placeholders": {
+      "row": {
+        "type": "int"
+      },
+      "column": {
+        "type": "String"
+      },
+      "message": {
+        "type": "String"
+      }
+    }
+  },
+  "importMoreIssues": "…and {count} more",
+  "@importMoreIssues": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "importConfirmTitle": "Import these rows?",
+  "importConfirmBody": "Rows that already exist are skipped; nothing is overwritten.",
+  "importCompleteTitle": "Import complete",
+  "importCreatedCount": "{count} record(s) created",
+  "@importCreatedCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "importSkippedCount": "{count} already existed and were skipped",
+  "@importSkippedCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "importRejected": "Nothing was imported — fix the rows below and try again.",
+  "importClear": "Clear",
+  "importExpectedColumns": "Expected columns",
+  "cachedDataNote": "Showing saved data. Reconnect to refresh.",
+  "cachedDataNoteAt": "Showing saved data from {time}. Reconnect to refresh.",
+  "@cachedDataNoteAt": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "offlineDataTitle": "Offline data",
+  "offlineDataExplainer": "Lists you open are saved on this device, so they still open when the internet is down.",
+  "offlineDataSavedLabel": "Saved lists",
+  "offlineDataSavedCount": "{lists} list(s) · {size}",
+  "@offlineDataSavedCount": {
+    "placeholders": {
+      "lists": {
+        "type": "int"
+      },
+      "size": {
+        "type": "String"
+      }
+    }
+  },
+  "offlineDataClear": "Clear saved data",
+  "offlineDataClearConfirm": "Delete the saved lists? They will be downloaded again the next time you open them.",
+  "offlineDataCleared": "Saved data cleared",
+  "loadMoreRemaining": "Load more ({count} remaining)",
+  "@loadMoreRemaining": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "pageNotFound": "Page not found",
+  "pageNotFoundBody": "This page is not available. It may have been moved, or the link may be wrong.",
+  "fileSaveNotSupported": "Saving and sharing files needs the app on a phone — the browser version cannot write files.",
+  "savedOffline": "Saved offline — it will sync when you reconnect.",
+  "offlineBannerNote": "Offline — changes will sync when you're back",
+  "languageHindi": "हिन्दी",
+  "calendarAd": "AD (English date)",
+  "calendarBs": "BS (Bikram Sambat)",
+  "calendarNote": "Dates are shown and picked in this calendar.",
+  "pendingWritesCount": "{count} waiting",
+  "@pendingWritesCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "navHome": "Home",
+  "navParties": "Parties",
+  "navItems": "Items",
+  "monthToDate": "This month {amount}",
+  "@monthToDate": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "lowStockCountLabel": "{count} low on stock",
+  "@lowStockCountLabel": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "recentActivity": "Recent activity",
+  "viewAll": "View all",
+  "getStartedTitle": "Get started",
+  "getStartedStepProduct": "Add your first product",
+  "getStartedStepCustomer": "Add a customer",
+  "getStartedStepSale": "Record your first sale",
+  "shareReminder": "Share reminder",
+  "reminderShareMessage": "Namaste {name}, your balance at {business} is {amount}. Please settle it when convenient. Thank you.",
+  "@reminderShareMessage": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      },
+      "business": {
+        "type": "String"
+      },
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "moreSalesDocs": "Sales & documents",
+  "moreItems": "Items & stock",
+  "moreInsights": "Insights",
+  "moreTools": "Tools & settings",
+  "moreAccount": "Account",
+  "balanceShort": "bal {amount}",
+  "@balanceShort": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "moreActions": "More actions",
+  "welcomeChooseLanguage": "Choose your language",
+  "welcomeSkip": "Skip",
+  "welcomeSlide1Title": "A khata that never forgets",
+  "welcomeSlide1Body": "Every credit sale, every payment and every balance — written once, always correct.",
+  "welcomeSlide2Title": "Stock that counts itself",
+  "welcomeSlide2Body": "Sales and purchases move stock automatically, and you are warned before an item runs out.",
+  "welcomeSlide3Title": "Numbers you can act on",
+  "welcomeSlide3Body": "Daily profit, what to collect and what to pay — in AD or BS dates, in your language.",
+  "tryDemo": "Try the demo"
+}

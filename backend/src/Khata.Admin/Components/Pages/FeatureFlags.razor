@@ -1,0 +1,111 @@
+@page "/feature-flags"
+@attribute [Authorize]
+@inject AdminApiClient Api
+
+<PageTitle>Feature flags — Khata admin</PageTitle>
+
+<h1>Feature flags</h1>
+
+<p class="muted">
+    Flags are platform-wide. The payment and messaging integrations stay off
+    until their provider credentials are configured, so flipping one on is the
+    last step of enabling that feature.
+</p>
+
+@if (_error is not null)
+{
+    <div class="alert alert-error" role="alert">@_error</div>
+}
+@if (_message is not null)
+{
+    <div class="alert alert-ok" role="status">@_message</div>
+}
+
+@if (_flags is null && _error is null)
+{
+    <p class="muted">Loading flags…</p>
+}
+else if (_flags is not null)
+{
+    <table class="data-table">
+        <thead>
+            <tr>
+                <th>Flag</th>
+                <th>Description</th>
+                <th>State</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var flag in _flags)
+            {
+                <tr>
+                    <td><code>@flag.Key</code></td>
+                    <td>@(flag.Description ?? "—")</td>
+                    <td>
+                        <span class="pill @(flag.IsEnabled ? "pill-ok" : "pill-off")">
+                            @(flag.IsEnabled ? "Enabled" : "Disabled")
+                        </span>
+                    </td>
+                    <td class="actions">
+                        <button class="btn btn-sm" disabled="@_busy"
+                                @onclick="() => ToggleAsync(flag)">
+                            @(flag.IsEnabled ? "Disable" : "Enable")
+                        </button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    private IReadOnlyList<FeatureFlagDto>? _flags;
+    private string? _error;
+    private string? _message;
+    private bool _busy;
+
+    protected override async Task OnInitializedAsync() => await LoadAsync();
+
+    private async Task LoadAsync()
+    {
+        _error = null;
+        try
+        {
+            _flags = await Api.GetFeatureFlagsAsync();
+        }
+        catch (AdminApiException ex)
+        {
+            _error = ex.Message;
+        }
+        catch (HttpRequestException)
+        {
+            _error = "Could not reach the API.";
+        }
+    }
+
+    private async Task ToggleAsync(FeatureFlagDto flag)
+    {
+        _busy = true;
+        _error = null;
+        _message = null;
+        try
+        {
+            var updated = await Api.SetFeatureFlagAsync(flag.Key, !flag.IsEnabled);
+            _message = $"{updated.Key} {(updated.IsEnabled ? "enabled" : "disabled")}.";
+            await LoadAsync();
+        }
+        catch (AdminApiException ex)
+        {
+            _error = ex.Message;
+        }
+        catch (HttpRequestException)
+        {
+            _error = "Could not reach the API.";
+        }
+        finally
+        {
+            _busy = false;
+        }
+    }
+}

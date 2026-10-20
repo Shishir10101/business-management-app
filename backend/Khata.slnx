@@ -1,0 +1,12 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/Khata.Admin/Khata.Admin.csproj" />
+    <Project Path="src/Khata.Api/Khata.Api.csproj" />
+    <Project Path="src/Khata.Application/Khata.Application.csproj" />
+    <Project Path="src/Khata.Domain/Khata.Domain.csproj" />
+    <Project Path="src/Khata.Infrastructure/Khata.Infrastructure.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/Khata.Tests/Khata.Tests.csproj" />
+  </Folder>
+</Solution>

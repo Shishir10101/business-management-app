@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <RootNamespace>Khata.Admin</RootNamespace>
+    <!-- Matches the Blazor Web App template: navigation from a component
+         (RedirectToLogin) must not surface as an unhandled exception. -->
+    <BlazorDisableThrowNavigationException>true</BlazorDisableThrowNavigationException>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- DTOs only: the admin app talks to the API over HTTP and must not
+         drag in EF Core / Identity by referencing Infrastructure. -->
+    <ProjectReference Include="..\Khata.Application\Khata.Application.csproj" />
+  </ItemGroup>
+
+</Project>

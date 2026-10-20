@@ -1,0 +1,1533 @@
+{
+  "@@locale": "ne",
+  "appName": "डिजिटल खाता",
+  "login": "साइन इन",
+  "register": "साइन अप",
+  "email": "इमेल",
+  "password": "पासवर्ड",
+  "fullName": "पुरा नाम",
+  "phoneNumber": "फोन नम्बर",
+  "confirmPassword": "पासवर्ड पुनः लेख्नुहोस्",
+  "createAccount": "खाता बनाउनुहोस्",
+  "alreadyHaveAccount": "पहिले नै खाता छ? साइन इन गर्नुहोस्",
+  "dontHaveAccount": "खाता छैन? साइन अप गर्नुहोस्",
+  "dashboard": "ड्यासबोर्ड",
+  "transactions": "कारोबार",
+  "khata": "खाता",
+  "reports": "रिपोर्ट",
+  "more": "थप",
+  "todaysSales": "आजको बिक्री",
+  "todaysPurchases": "आजको खरिद",
+  "todaysExpenses": "आजको खर्च",
+  "todaysProfit": "आजको नाफा",
+  "totalReceivable": "कुल प्राप्य",
+  "totalPayable": "कुल देय",
+  "stockValue": "स्टक मूल्य",
+  "lowStock": "कम स्टक",
+  "syncNow": "अहिले सिंक गर्नुहोस्",
+  "settings": "सेटिङ",
+  "logout": "लगआउट",
+  "createBusiness": "व्यवसाय बनाउनुहोस्",
+  "businessSetupTitle": "आफ्नो व्यवसाय सेट गर्नुहोस्",
+  "businessSetupSubtitle": "तपाईं मालिक हुनुहुनेछ, पूर्ण पहुँचसहित।",
+  "businessName": "व्यवसायको नाम",
+  "businessType": "व्यवसायको प्रकार (जस्तै सर्वसाधारण)",
+  "panNumber": "प्यान नम्बर",
+  "businessEmail": "व्यवसाय इमेल",
+  "address": "ठेगाना",
+  "city": "शहर",
+  "district": "जिल्ला",
+  "province": "प्रदेश",
+  "wardNumber": "वडा नम्बर",
+  "myBusinesses": "मेरा व्यवसायहरू",
+  "switchBusiness": "व्यवसाय बदल्नुहोस्",
+  "active": "सक्रिय",
+  "noBusinesses": "अहिलेसम्म कुनै व्यवसाय छैन",
+  "createFirstBusiness": "पहिलो व्यवसाय बनाउनुहोस्",
+  "staff": "कर्मचारी",
+  "invite": "निम्तो",
+  "inviteMember": "कर्मचारी निमन्त्रणा",
+  "changeRole": "भूमिका बदल्नुहोस्",
+  "remove": "हटाउनुहोस्",
+  "profile": "प्रोफाइल",
+  "editProfile": "प्रोफाइल सम्पादन",
+  "saveChanges": "परिवर्तन सुरक्षित गर्नुहोस्",
+  "cancel": "रद्द गर्नुहोस्",
+  "language": "भाषा",
+  "retry": "पुनः प्रयास",
+  "loading": "लोड हुँदै",
+  "products": "सामानहरू",
+  "product": "सामान",
+  "addProduct": "सामान थप्नुहोस्",
+  "editProduct": "सामान सम्पादन",
+  "newProduct": "नयाँ सामान",
+  "productName": "सामानको नाम",
+  "sku": "एसकेयु",
+  "barcode": "बारकोड",
+  "categories": "वर्गहरू",
+  "addCategory": "वर्ग थप्नुहोस्",
+  "newCategory": "नयाँ वर्ग",
+  "category": "वर्ग",
+  "units": "एकाइहरू",
+  "addUnit": "एकाइ थप्नुहोस्",
+  "newUnit": "नयाँ एकाइ",
+  "unit": "एकाइ",
+  "costPrice": "लागत मूल्य",
+  "sellingPrice": "बिक्री मूल्य",
+  "wholesalePrice": "थोक मूल्य",
+  "taxRate": "कर दर",
+  "openingStock": "सुरुको स्टक",
+  "minQuantity": "कम स्टक चेतावनी",
+  "inventory": "भण्डार",
+  "adjustStock": "स्टक मिलाउनुहोस्",
+  "stockHistory": "स्टक इतिहास",
+  "quickAdjust": "द्रुत मिलान",
+  "customQuantity": "अनुकूल परिमाण",
+  "notes": "टिप्पणी",
+  "applyAdjustment": "मिलान लागू गर्नुहोस्",
+  "lowStockOnly": "कम स्टक मात्र",
+  "sortByName": "नामअनुसार क्रम",
+  "sortByQuantity": "परिमाणअनुसार क्रम",
+  "searchProducts": "सामान खोज्नुहोस्",
+  "inStock": "स्टकमा",
+  "lowStockAlert": "कम स्टक",
+  "stockAdded": "स्टक थपियो",
+  "stockRemoved": "स्टक घट्यो",
+  "customers": "ग्राहकहरू",
+  "customer": "ग्राहक",
+  "addCustomer": "ग्राहक थप्नुहोस्",
+  "newCustomer": "नयाँ ग्राहक",
+  "editCustomer": "ग्राहक सम्पादन",
+  "searchCustomers": "ग्राहक खोज्नुहोस्",
+  "suppliers": "आपूर्तिकर्ताहरू",
+  "supplier": "आपूर्तिकर्ता",
+  "addSupplier": "आपूर्तिकर्ता थप्नुहोस्",
+  "newSupplier": "नयाँ आपूर्तिकर्ता",
+  "editSupplier": "आपूर्तिकर्ता सम्पादन",
+  "searchSuppliers": "आपूर्तिकर्ता खोज्नुहोस्",
+  "searchPartyHint": "नाम वा फोन खोज्नुहोस्",
+  "ledger": "खाता बही",
+  "openingBalance": "सुरुको मौज्दात",
+  "creditLimit": "उधारो सीमा",
+  "creditLimitOptional": "उधारो सीमा (वैकल्पिक)",
+  "closingBalance": "अन्तिम मौज्दात",
+  "totalDebit": "कुल डेबिट",
+  "totalCredit": "कुल क्रेडिट",
+  "toCollect": "उठाउनु पर्ने",
+  "toPay": "तिर्नु पर्ने",
+  "advance": "अग्रिम",
+  "settled": "मिलान भयो",
+  "noCustomers": "अहिलेसम्म कुनै ग्राहक छैन",
+  "noSuppliers": "अहिलेसम्म कुनै आपूर्तिकर्ता छैन",
+  "noTransactions": "अहिलेसम्म कुनै कारोबार छैन",
+  "partyDeleted": "मेटियो",
+  "deletePartyTitle": "पक्ष मेट्ने?",
+  "sales": "बिक्री",
+  "sale": "बिक्री",
+  "newSale": "नयाँ बिक्री",
+  "purchases": "खरिद",
+  "purchase": "खरिद",
+  "newPurchase": "नयाँ खरिद",
+  "expenses": "खर्च",
+  "expense": "खर्च",
+  "addExpense": "खर्च थप्नुहोस्",
+  "income": "आय",
+  "addIncome": "आय थप्नुहोस्",
+  "invoiceNumber": "बीजक नम्बर",
+  "billNumber": "बिल नम्बर",
+  "saleType": "बिक्री प्रकार",
+  "paymentStatus": "भुक्तानी स्थिति",
+  "paid": "भुक्तान",
+  "due": "बाँकी",
+  "addItem": "वस्तु थप्नुहोस्",
+  "searchSales": "बिक्री खोज्नुहोस्",
+  "searchPurchases": "खरिद खोज्नुहोस्",
+  "searchExpenses": "खर्च खोज्नुहोस्",
+  "searchIncome": "आय खोज्नुहोस्",
+  "walkIn": "सामान्य ग्राहक",
+  "cash": "नगद",
+  "credit": "उधारो",
+  "partial": "आंशिक",
+  "noSales": "अहिलेसम्म कुनै बिक्री छैन",
+  "noPurchases": "अहिलेसम्म कुनै खरिद छैन",
+  "noExpenses": "अहिलेसम्म कुनै खर्च छैन",
+  "noIncome": "अहिलेसम्म कुनै आय छैन",
+  "payments": "भुक्तानीहरू",
+  "payment": "भुक्तानी",
+  "recordPayment": "भुक्तानी रेकर्ड गर्नुहोस्",
+  "paymentMethods": "भुक्तानी माध्यमहरू",
+  "addPaymentMethod": "माध्यम थप्नुहोस्",
+  "receive": "प्राप्त",
+  "pay": "तिर्नुहोस्",
+  "method": "माध्यम",
+  "defaultLabel": "पूर्वनिर्धारित",
+  "reference": "सन्दर्भ",
+  "noPayments": "अहिलेसम्म कुनै भुक्तानी छैन",
+  "onAccount": "कुनै होइन (खातामा)",
+  "applyToDocument": "बीजक/बिलमा लागू गर्नुहोस्",
+  "advances": "अग्रिम",
+  "inactive": "निष्क्रिय",
+  "invoices": "बीजकहरू",
+  "invoice": "बीजक",
+  "newInvoice": "नयाँ बीजक",
+  "quotations": "कोटेशनहरू",
+  "quotation": "कोटेशन",
+  "newQuotation": "नयाँ कोटेशन",
+  "issueDate": "जारी मिति",
+  "dueDate": "भुक्तानी म्याद",
+  "validUntil": "मान्य मिति",
+  "terms": "सर्तहरू",
+  "share": "सेयर गर्नुहोस्",
+  "downloadPdf": "PDF डाउनलोड",
+  "convertToSale": "बिक्रीमा रूपान्तरण",
+  "status": "स्थिति",
+  "draft": "मस्यौदा",
+  "sent": "पठाइयो",
+  "accepted": "स्वीकृत",
+  "rejected": "अस्वीकृत",
+  "expired": "म्याद सकियो",
+  "overdue": "म्याद नाघेको",
+  "noInvoices": "अहिलेसम्म कुनै बीजक छैन",
+  "noQuotations": "अहिलेसम्म कुनै कोटेशन छैन",
+  "generateFromSale": "बिक्रीबाट बनाउनुहोस्",
+  "fromSale": "बिक्रीबाट",
+  "notifications": "सूचनाहरू",
+  "notificationSettings": "सूचना सेटिङहरू",
+  "noNotifications": "अझै कुनै सूचना छैन",
+  "nothingMatchesFilter": "यो फिल्टरसँग मेल खाने केही छैन",
+  "markAllRead": "सबै पढेको बनाउनुहोस्",
+  "markRead": "पढेको बनाउनुहोस्",
+  "markedReadCount": "{count} पढेको बनाइयो",
+  "@markedReadCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "nothingToMark": "चिन्ह लगाउने केही छैन",
+  "filterAllCategories": "सबै श्रेणीहरू",
+  "pushNotifications": "पुश सूचनाहरू",
+  "enablePush": "पुश सक्षम गर्नुहोस्",
+  "enablePushSubtitle": "यो यन्त्रको मुख्य स्विच",
+  "notificationsInAppNote": "एपभित्रका सूचनाहरू सधैं दर्ता हुन्छन्। यी स्विचहरूले पुश डेलिभरी मात्र नियन्त्रण गर्छन्।",
+  "registeredDevices": "दर्ता भएका यन्त्रहरू",
+  "noDevices": "अझै कुनै यन्त्र दर्ता भएको छैन",
+  "deviceActive": "सक्रिय",
+  "deviceInactive": "निष्क्रिय",
+  "categoryReminders": "सम्झनाहरू",
+  "categoryRemindersSubtitle": "सम्झना समयमा आउँदा",
+  "categoryLowStock": "कम स्टक",
+  "categoryLowStockSubtitle": "उत्पादन न्यूनतममा पुग्दा",
+  "categoryPaymentDue": "भुक्तानी बाँकी",
+  "categoryPaymentDueSubtitle": "बिलको म्याद नजिक वा नाघ्दा",
+  "categoryBackup": "ब्याकअप",
+  "categoryBackupSubtitle": "ब्याकअप सम्पन्न वा असफल हुँदा",
+  "categorySystem": "प्रणाली",
+  "categorySystemSubtitle": "खाता र एपका सूचनाहरू",
+  "reminders": "सम्झनाहरू",
+  "newReminder": "नयाँ सम्झना",
+  "editReminder": "सम्झना सम्पादन गर्नुहोस्",
+  "noReminders": "यहाँ केही छैन",
+  "needsAttention": "ध्यान चाहिन्छ",
+  "scheduled": "तय भएका",
+  "addReminder": "सम्झना थप्नुहोस्",
+  "reminderTitle": "शीर्षक",
+  "reminderTitleHint": "बाँकी बिलबारे रामलाई फोन गर्नुहोस्",
+  "reminderTitleRequired": "शीर्षक आवश्यक छ",
+  "dueTime": "म्याद समय",
+  "repeat": "दोहोरिने",
+  "repeatOnce": "एक पटक",
+  "repeatDaily": "हरेक दिन",
+  "repeatWeekly": "हरेक हप्ता",
+  "repeatMonthly": "हरेक महिना",
+  "repeatYearly": "हरेक वर्ष",
+  "recurringNote": "दोहोरिने सम्झना बजेपछि पूरा नभई आफैं पुनः तय हुन्छ, त्यसैले सधैं आउने मितिमा पर्छ।",
+  "saveReminder": "सम्झना सुरक्षित गर्नुहोस्",
+  "reminderSaved": "सम्झना सुरक्षित भयो",
+  "markDone": "सकियो भन्नुहोस्",
+  "dismiss": "हटाउनुहोस्",
+  "markedDone": "सकियो भनियो",
+  "checkDueReminders": "म्याद आएका सम्झना जाँच्नुहोस्",
+  "nothingDue": "अहिले केही म्याद आएको छैन",
+  "remindersFiredCount": "{count} सम्झना आए",
+  "@remindersFiredCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "dueToday": "आज",
+  "dueTomorrow": "भोलि",
+  "dueYesterday": "हिजो",
+  "reminderStatusPending": "बाँकी",
+  "reminderStatusDone": "सकियो",
+  "reminderStatusDismissed": "हटाइयो",
+  "backupAndRestore": "ब्याकअप र पुनःस्थापना",
+  "exportBackup": "ब्याकअप निर्यात गर्नुहोस्",
+  "restoreFromLastExport": "अन्तिम निर्यातबाट पुनःस्थापना",
+  "restoreFromPastedJson": "टाँसिएको JSON बाट पुनःस्थापना",
+  "backupExportBody": "सक्रिय व्यवसायका सबै उत्पादन, पक्ष, बिक्री, खरिद, खर्च, आय, भुक्तानी, इनभ्वाइस र कोटेसन सुरक्षित गर्छ। मेटिएका रेकर्डहरू पनि राखिन्छन्, त्यसैले इतिहास जोगिन्छ।",
+  "backupRestoreBody": "पुनःस्थापनाले ब्याकअपलाई यो व्यवसायमा गाभ्छ। पहिले नै भएका रेकर्डहरू छाडिन्छन् — कहिल्यै अधिलेखन गरिँदैन, किनकि बिक्री वा भुक्तानी पुनःलेख्दा खाता मिल्न छाड्छ।",
+  "backupNotIncludedTitle": "के समावेश छैन",
+  "backupNotIncludedBody": "खाताका लेजर प्रविष्टि र स्टक चलनहरू माथिका कागजातबाट निकालिन्छन्, त्यसैले ती कार्यहरू पुनः चलाएर बनाइन्छ, प्रतिलिपि गरिँदैन। त्यसैले पुनःस्थापनाले रेकर्डहरू फर्काउँछ, क्यास गरिएका जोड फर्काउँदैन।",
+  "restoreConfirmTitle": "यो ब्याकअप पुनःस्थापना गर्ने?",
+  "restoreConfirmBody": "यो व्यवसायमा पहिले नै भएका रेकर्डहरू छाडिनेछन्। अहिले यहाँ भएका कुनै पनि परिवर्तन वा मेटिने छैनन्।",
+  "restoreComplete": "पुनःस्थापना सम्पन्न",
+  "restoreAddedCount": "{count} रेकर्ड थपियो",
+  "@restoreAddedCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "restoreSkippedCount": "{count} पहिले नै थियो, छाडियो",
+  "@restoreSkippedCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "recordsAdded": "{count} थपियो",
+  "@recordsAdded": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "recordsAddedKept": "{count} थपियो, {kept} राखियो",
+  "@recordsAddedKept": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      },
+      "kept": {
+        "type": "int"
+      }
+    }
+  },
+  "clipboardEmpty": "क्लिपबोर्ड खाली छ",
+  "notAKhataBackup": "यो फाइल खाता ब्याकअप होइन।",
+  "save": "सुरक्षित गर्नुहोस्",
+  "change": "परिवर्तन",
+  "all": "सबै",
+  "none": "कुनै पनि होइन",
+  "code": "कोड",
+  "role": "भूमिका",
+  "filter": "फिल्टर",
+  "sort": "क्रमबद्ध",
+  "optional": "वैकल्पिक",
+  "pendingChanges": "पर्खाइमा रहेका परिवर्तन",
+  "confirm": "पुष्टि गर्नुहोस्",
+  "close": "बन्द गर्नुहोस्",
+  "yes": "हो",
+  "no": "होइन",
+  "signInToYourAccount": "आफ्नो खातामा साइन इन गर्नुहोस्",
+  "createYourAccountTitle": "आफ्नो डिजिटल खाता खाता बनाउनुहोस्",
+  "getStarted": "सुरु गर्नुहोस्",
+  "fullNamePlaceholder": "पूरा नाम",
+  "phoneNumberPlaceholder": "फोन नम्बर",
+  "phoneOptional": "फोन नम्बर (वैकल्पिक)",
+  "pan": "स्थायी लेखा नम्बर",
+  "businessNameRequired": "व्यवसायको नाम *",
+  "createNewBusiness": "नयाँ व्यवसाय बनाउनुहोस्",
+  "businesses": "व्यवसायहरू",
+  "couldNotCreateBusiness": "व्यवसाय बनाउन सकिएन: {error}",
+  "@couldNotCreateBusiness": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "couldNotSwitchBusiness": "व्यवसाय परिवर्तन गर्न सकिएन: {error}",
+  "@couldNotSwitchBusiness": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "couldNotUpdateProfile": "प्रोफाइल अद्यावधिक गर्न सकिएन: {error}",
+  "@couldNotUpdateProfile": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "profileUpdated": "प्रोफाइल अद्यावधिक भयो",
+  "changeRoleFor": "भूमिका परिवर्तन — {name}",
+  "@changeRoleFor": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "couldNotChangeRole": "भूमिका परिवर्तन गर्न सकिएन: {error}",
+  "@couldNotChangeRole": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "removeMember": "{name} हटाउने?",
+  "@removeMember": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "removeMemberWarning": "उनीहरूले यो व्यवसायमा पहुँच गुमाउनेछन्।",
+  "couldNotRemoveMember": "सदस्य हटाउन सकिएन: {error}",
+  "@couldNotRemoveMember": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "inviteFailed": "निमन्त्रणा असफल: {error}",
+  "@inviteFailed": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "noStaffMembersYet": "अहिलेसम्म कुनै कर्मचारी छैन",
+  "productNameRequired": "उत्पादनको नाम *",
+  "searchNameSkuBarcode": "नाम, SKU वा बारकोड खोज्नुहोस्",
+  "noProductsFound": "कुनै उत्पादन भेटिएन",
+  "costPriceRs": "लागत मूल्य (रु.)",
+  "sellingPriceRsRequired": "बिक्री मूल्य (रु.) *",
+  "wholesalePriceRs": "थोक मूल्य (रु.)",
+  "taxRatePercent": "कर दर (%)",
+  "openingStockQuantity": "सुरुको स्टक मात्रा",
+  "minimumQuantityHint": "न्यूनतम मात्रा (० = चेतावनी छैन)",
+  "inactiveProductsNote": "निष्क्रिय उत्पादनहरू रहन्छन् तर बिक्रीबाट लुकाइन्छ",
+  "deleteProductQuestion": "उत्पादन मेट्ने?",
+  "deleteProductWarning": "उत्पादन सूचीबाट लुकाइनेछ। स्टक इतिहास रहनेछ।",
+  "loadingProduct": "उत्पादन लोड हुँदैछ…",
+  "couldNotLoadProduct": "उत्पादन लोड गर्न सकिएन: {error}",
+  "@couldNotLoadProduct": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "byCategory": "श्रेणी अनुसार",
+  "expensesByCategory": "श्रेणी अनुसार खर्च",
+  "categoriesNoCategories": "अहिलेसम्म कुनै श्रेणी छैन",
+  "noCategory": "श्रेणी छैन",
+  "deleteCategoryQuestion": "श्रेणी मेट्ने?",
+  "categoryDeleteNote": "यो श्रेणीका उत्पादनहरू श्रेणी बिना पनि काम गर्नेछन्।",
+  "categoryRequired": "श्रेणी *",
+  "noUnit": "एकाइ छैन",
+  "unitNameHint": "नाम * (जस्तै पिस)",
+  "unitShortHint": "छोटो नाम * (जस्तै pc)",
+  "unitsNoUnits": "अहिलेसम्म कुनै एकाइ छैन",
+  "deleteUnitQuestion": "एकाइ मेट्ने?",
+  "unitDeleteNote": "यो एकाइ प्रयोग गर्ने उत्पादनहरू एकाइ बिना पनि काम गर्नेछन्।",
+  "movementHistory": "चलन इतिहास",
+  "noStockMovementsYet": "अहिलेसम्म कुनै स्टक चलन छैन",
+  "customQuantityHint": "अनुकूल मात्रा (+ भित्र / - बाहिर)",
+  "quantityExample": "जस्तै २.५ वा -३",
+  "reasonExample": "जस्तै स्टक गणना, क्षति",
+  "stockValuation": "स्टक मूल्यांकन",
+  "currentStockIs": "हालको स्टक: {quantity}",
+  "@currentStockIs": {
+    "placeholders": {
+      "quantity": {
+        "type": "String"
+      }
+    }
+  },
+  "balanceIs": "मौज्दात {quantity}",
+  "@balanceIs": {
+    "placeholders": {
+      "quantity": {
+        "type": "String"
+      }
+    }
+  },
+  "nameRequired": "नाम *",
+  "partyNameExample": "नाम * (जस्तै पिस)",
+  "creditLimitRs": "उधारो सीमा (रु.)",
+  "openingBalanceRs": "सुरुको मौज्दात (रु.)",
+  "walkInNone": "हिँड्ने ग्राहक / कोही नहीं",
+  "deletePartyQuestion": "{kind} मेट्ने?",
+  "@deletePartyQuestion": {
+    "placeholders": {
+      "kind": {
+        "type": "String"
+      }
+    }
+  },
+  "partyDeleteNote": "पक्ष सूचीबाट लुकाइनेछ। खाता इतिहास रहनेछ।",
+  "khataHistoryKept": "खाता इतिहास रहनेछ।",
+  "createSale": "बिक्री बनाउनुहोस्",
+  "createPurchase": "खरिद बनाउनुहोस्",
+  "createInvoice": "बिजक बनाउनुहोस्",
+  "createQuotation": "कोटेशन बनाउनुहोस्",
+  "noItemsYetAddProduct": "अहिलेसम्म कुनै वस्तु छैन — उत्पादन थप्नुहोस्",
+  "addFreeText": "स्वतन्त्र पाठ थप्नुहोस्",
+  "items": "वस्तुहरू",
+  "itemsCount": "वस्तुहरू ({count})",
+  "@itemsCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "extraDiscountRs": "अतिरिक्त छुट (रु.)",
+  "paidNowRs": "अहिले तिरिएको (रु.)",
+  "paidAmountRs": "तिरिएको रकम (रु.)",
+  "amountRsRequired": "रकम (रु.) *",
+  "lineTotalIs": "हरफ जम्मा: {total}",
+  "@lineTotalIs": {
+    "placeholders": {
+      "total": {
+        "type": "String"
+      }
+    }
+  },
+  "invoiceNumberLabel": "बिजक {number}",
+  "@invoiceNumberLabel": {
+    "placeholders": {
+      "number": {
+        "type": "String"
+      }
+    }
+  },
+  "quotationNumberLabel": "कोटेशन {number}",
+  "@quotationNumberLabel": {
+    "placeholders": {
+      "number": {
+        "type": "String"
+      }
+    }
+  },
+  "issuedOn": "जारी {date}",
+  "@issuedOn": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "dueOn": "म्याद {date}",
+  "@dueOn": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "validUntilOn": "मान्य मिति {date}",
+  "@validUntilOn": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "convertedToSale": "बिक्री #{id} मा रूपान्तरित",
+  "@convertedToSale": {
+    "placeholders": {
+      "id": {
+        "type": "int"
+      }
+    }
+  },
+  "@fromSale": {
+    "placeholders": {
+      "number": {
+        "type": "String"
+      }
+    }
+  },
+  "lineItemsCopiedNote": "चयन गरिएको बिक्रीबाट हरफहरू र तिनका मूल्यहरू प्रतिलिपि गरिनेछ।",
+  "noneBuildManually": "कुनै पनि होइन (म्यानुअल बनाउनुहोस्)",
+  "notesOptional": "टिप्पणी (वैकल्पिक)",
+  "termsLabel": "सर्तहरू: {terms}",
+  "@termsLabel": {
+    "placeholders": {
+      "terms": {
+        "type": "String"
+      }
+    }
+  },
+  "notesLabel": "टिप्पणी: {notes}",
+  "@notesLabel": {
+    "placeholders": {
+      "notes": {
+        "type": "String"
+      }
+    }
+  },
+  "sharePdf": "PDF साझा गर्नुहोस्",
+  "exportCsv": "CSV निर्यात गर्नुहोस्",
+  "deleteSaleQuestion": "बिक्री मेट्ने?",
+  "deletePurchaseQuestion": "खरिद मेट्ने?",
+  "deleteInvoiceQuestion": "बिजक मेट्ने?",
+  "deleteQuotationQuestion": "कोटेशन मेट्ने?",
+  "deleteExpenseQuestion": "खर्च मेट्ने?",
+  "deleteIncomeQuestion": "आय मेट्ने?",
+  "deleteMethodQuestion": "विधि मेट्ने?",
+  "saleDeleteNote": "स्टक पुनर्स्थापित हुनेछ र ग्राहक खाता उल्टाइनेछ।",
+  "purchaseDeleteNote": "स्टक घटाइनेछ र आपूर्तिकर्ता खाता उल्टाइनेछ।",
+  "expenseDeleteNote": "यो खर्च स्थायी रूपमा हटाइनेछ।",
+  "incomeDeleteNote": "यो आय रेकर्ड स्थायी रूपमा हटाइनेछ।",
+  "invoiceDeleteNote": "यो बिजक स्थायी रूपमा हटाइनेछ।",
+  "quotationDeleteNote": "यो कोटेशन स्थायी रूपमा हटाइनेछ।",
+  "searchInvoiceOrCustomer": "बिजक वा ग्राहक खोज्नुहोस्",
+  "searchBillOrSupplier": "बिल वा आपूर्तिकर्ता खोज्नुहोस्",
+  "searchQuotationOrCustomer": "कोटेशन वा ग्राहक खोज्नुहोस्",
+  "searchPartyOrReference": "पक्ष वा सन्दर्भ खोज्नुहोस्",
+  "paymentMethod": "भुक्तानी विधि",
+  "addMethod": "विधि थप्नुहोस्",
+  "noPaymentMethodsYet": "अहिलेसम्म कुनै भुक्तानी विधि छैन",
+  "setAsDefault": "पूर्वनिर्धारित बनाउनुहोस्",
+  "methodChangeNote": "यो विधिबाट पहिले नै रेकर्ड भएका भुक्तानीहरू काम गरिरहन्छन्।",
+  "advanceIs": "अग्रिम {amount}",
+  "@advanceIs": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "dueToCustomerKhata": "बाँकी {amount} → ग्राहक खाता",
+  "@dueToCustomerKhata": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "dueToSupplierKhata": "बाँकी {amount} → आपूर्तिकर्ता खाता",
+  "@dueToSupplierKhata": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "advancesAreMoney": "अग्रिम भनेको तपाईंसँग पहिले नै रहेको रकम हो, त्यसैले पहिले लागू गरिन्छ।",
+  "advancesLabel": "अग्रिमहरू: {list}",
+  "@advancesLabel": {
+    "placeholders": {
+      "list": {
+        "type": "String"
+      }
+    }
+  },
+  "addProductButton": "उत्पादन थप्नुहोस्",
+  "addReminderButton": "सम्झना थप्नुहोस्",
+  "receivablesAndPayables": "प्राप्य र भुक्तानीय",
+  "receivablesCount": "प्राप्य · {count}",
+  "@receivablesCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "payablesCount": "भुक्तानीय · {count}",
+  "@payablesCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "profitAndLoss": "नाफा र घाटा",
+  "salesReportTitle": "बिक्री प्रतिवेदन",
+  "revenueExcludesVat": "आम्दानीमा भ्याट समावेश छैन।",
+  "salesTrendLast14": "बिक्री प्रवृत्ति · अन्तिम १४ दिन",
+  "salesTrendScope": "बिक्री प्रवृत्ति · {scope}",
+  "@salesTrendScope": {
+    "placeholders": {
+      "scope": {
+        "type": "String"
+      }
+    }
+  },
+  "topProducts": "प्रमुख उत्पादनहरू",
+  "topCustomers": "प्रमुख ग्राहकहरू",
+  "bySource": "स्रोत अनुसार",
+  "incomeTrend": "आय प्रवृत्ति",
+  "lastCycle": "अघिल्लो चक्र",
+  "noDataYet": "अहिलेसम्म कुनै डाटा छैन",
+  "couldNotLoad": "लोड गर्न सकिएन: {error}",
+  "@couldNotLoad": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "couldNotLoadSummary": "सारांश लोड गर्न सकिएन",
+  "dashboardUnavailable": "ड्यासबोर्ड उपलब्ध छैन",
+  "productsCount": "{count} उत्पादन",
+  "@productsCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "unitsDocsCount": "{quantity} एकाइ · {count} बिजक",
+  "@unitsDocsCount": {
+    "placeholders": {
+      "quantity": {
+        "type": "String"
+      },
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "quantityTimesPrice": "{quantity} × {price}",
+  "@quantityTimesPrice": {
+    "placeholders": {
+      "quantity": {
+        "type": "String"
+      },
+      "price": {
+        "type": "String"
+      }
+    }
+  },
+  "lowStockNote": "{name} स्टक कम",
+  "@lowStockNote": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "syncTitle": "सिंक",
+  "syncStatusTitle": "सिंक स्थिति",
+  "lastSyncLabel": "अन्तिम सिंक",
+  "pendingChangesCount": "पर्खाइमा रहेका परिवर्तन",
+  "syncFailed": "सिंक असफल: {error}",
+  "@syncFailed": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "operationFailed": "{operation} असफल भयो",
+  "@operationFailed": {
+    "placeholders": {
+      "operation": {
+        "type": "String"
+      }
+    }
+  },
+  "conflicts": "द्वन्द्वहरू",
+  "noConflicts": "कुनै द्वन्द्व छैन",
+  "entityRef": "{type} #{id}",
+  "@entityRef": {
+    "placeholders": {
+      "type": {
+        "type": "String"
+      },
+      "id": {
+        "type": "int"
+      }
+    }
+  },
+  "serverChanged": "सर्भर परिवर्तन: ",
+  "serverVersion": "सर्भर संस्करण: {json}",
+  "@serverVersion": {
+    "placeholders": {
+      "json": {
+        "type": "String"
+      }
+    }
+  },
+  "operationDetail": "सञ्चालन: {operation}",
+  "@operationDetail": {
+    "placeholders": {
+      "operation": {
+        "type": "String"
+      }
+    }
+  },
+  "pushed": "पठाइयो",
+  "pulled": "तानियो",
+  "rejectedWithError": "अस्वीकृत: {error}",
+  "@rejectedWithError": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "backupSubject": "खाता ब्याकअप",
+  "backupShareText": "यो यन्त्रबाट खाता ब्याकअप निर्यात गरियो।",
+  "recordsAddedCount": "{count} रेकर्ड थपियो",
+  "@recordsAddedCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "alreadyPresentCount": "{count} पहिले नै थियो, छाडियो",
+  "@alreadyPresentCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "addedCount": "{count} थपियो",
+  "@addedCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "addedKeptCount": "{count} थपियो, {kept} राखियो",
+  "@addedKeptCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      },
+      "kept": {
+        "type": "int"
+      }
+    }
+  },
+  "reminderRepeatNote": "दोहोरिने सम्झना आफैं पुनः तालिका बनाउँछ।",
+  "profileLabel": "प्रोफाइल",
+  "languageEnglish": "अंग्रेजी",
+  "languageNepali": "नेपाली",
+  "calendarLabel": "पात्रो",
+  "generalSection": "सामान्य",
+  "dateLabel": "मिति",
+  "descriptionLabel": "विवरण",
+  "fromLabel": "देखि",
+  "toLabel": "सम्म",
+  "titleRequired": "शीर्षक *",
+  "sourceRequired": "स्रोत *",
+  "taxExample": "जस्तै १३",
+  "amountExample": "जस्तै २०.००",
+  "quantityExample16": "जस्तै १६.००",
+  "rateExample": "जस्तै २५",
+  "plusOne": "+१",
+  "plusTen": "+१०",
+  "minusOne": "-१",
+  "minusTen": "-१०",
+  "phonePrefixHint": "+९७७ ९८XXXXXXXX",
+  "rankLabel": "#",
+  "editKind": "{kind} सम्पादन गर्नुहोस्",
+  "@editKind": {
+    "placeholders": {
+      "kind": {
+        "type": "String"
+      }
+    }
+  },
+  "newKind": "नयाँ {kind}",
+  "@newKind": {
+    "placeholders": {
+      "kind": {
+        "type": "String"
+      }
+    }
+  },
+  "delete": "मेट्नुहोस्",
+  "edit": "सम्पादन गर्नुहोस्",
+  "convert": "रूपान्तरण गर्नुहोस्",
+  "exportTitle": "निर्यात",
+  "restoreTitle": "पुनर्स्थापना",
+  "expenseTrend": "खर्च प्रवृत्ति",
+  "opening": "सुरुको",
+  "filterByCategory": "श्रेणी अनुसार फिल्टर",
+  "phoneLabel": "फोन",
+  "emailMustHaveAccount": "इमेल (खाता हुनु आवश्यक छ)",
+  "advancesExplainer": "अग्रिम भनेको तपाईंसँग पहिले नै रहेको (ग्राहक) वा पहिले नै तिरेको (आपूर्तिकर्ता) रकम हो, त्यसैले नयाँ भुक्तानीअघि लागू गरिन्छ।",
+  "backupExportExplainerFull": "सक्रिय व्यवसायका सबै उत्पादन, पक्ष, बिक्री, खरिद, खर्च, आय, भुक्तानी, बिजक र कोटेशन सुरक्षित गर्छ। मेटिएका रेकर्डहरू पनि राखिन्छन्, त्यसैले इतिहास जोगिन्छ।",
+  "backupRestoreExplainerFull": "पुनर्स्थापनाले ब्याकअपलाई यो व्यवसायमा गाभ्छ। पहिले नै रहेका रेकर्डहरू छाडिन्छन् — कुनै पनि अधिलेखन गरिँदैन, किनकि पुनर्लेखन गरिएको बिक्री वा भुक्तानीले खाता बहीखातालाई आफैंसँग बाझ्ने बनाउँछ।",
+  "backupNotIncludedExplainer": "खाता बहीखाताका प्रविष्टि र स्टक चलनहरू माथिका कागजातबाट व्युत्पन्न हुन्छन्, त्यसैले तिनीहरू प्रतिलिपि नगरी ती सञ्चालनहरू पुनः खेलेर पुनर्निर्माण गरिन्छ। त्यसैले पुनर्स्थापनाले तपाईंका रेकर्डहरू फर्काउँछ, क्यास गरिएका जम्मा होइन।",
+  "restoreConfirmBodyFull": "यो व्यवसायमा पहिले नै रहेका रेकर्डहरू छाडिनेछन्। यहाँ हाल रहेका कुनै पनि परिमार्जन वा मेटिने छैनन्।",
+  "methodChangeNoteFull": "यो विधिबाट पहिले नै रेकर्ड भएका भुक्तानीहरू काम गरिरहन्छन्। विधिको नाम परिवर्तनले इतिहास पुनर्लेखन गर्दैन।",
+  "saleDeleteNoteFull": "स्टक पुनर्स्थापित हुनेछ र ग्राहक खाता उल्टाइनेछ।",
+  "purchaseDeleteNoteFull": "स्टक घटाइनेछ र आपूर्तिकर्ता खाता उल्टाइनेछ।",
+  "lineItemsCopiedNoteFull": "चयन गरिएको बिक्रीबाट हरफहरू र तिनका मूल्यहरू प्रतिलिपि गरिनेछ।",
+  "notificationsInAppNoteFull": "इन-एप सूचनाहरू सधैं रेकर्ड हुन्छन्। यी स्विचहरूले पुश डेलिभरी मात्र नियन्त्रण गर्छन्।",
+  "unitNameShort": "{name} ({short})",
+  "@unitNameShort": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      },
+      "short": {
+        "type": "String"
+      }
+    }
+  },
+  "retailValue": "खुद्रा {amount}",
+  "@retailValue": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "advanceAmount": "अग्रिम {amount}",
+  "@advanceAmount": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "quantityWithUnit": "{quantity}{unit}",
+  "@quantityWithUnit": {
+    "placeholders": {
+      "quantity": {
+        "type": "String"
+      },
+      "unit": {
+        "type": "String"
+      }
+    }
+  },
+  "productPricePair": "{price}  •  ",
+  "@productPricePair": {
+    "placeholders": {
+      "price": {
+        "type": "String"
+      }
+    }
+  },
+  "saleCustomerLine": "{number} — {customer}",
+  "@saleCustomerLine": {
+    "placeholders": {
+      "number": {
+        "type": "String"
+      },
+      "customer": {
+        "type": "String"
+      }
+    }
+  },
+  "lineTotalAmount": "हरफ जम्मा: {amount}",
+  "@lineTotalAmount": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "conflictsCount": "{count} द्वन्द्व",
+  "@conflictsCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "noDataInRange": "यो अवधिमा कुनै डेटा छैन",
+  "nothingToBreakDown": "तोड्ने कुनै कुरा छैन",
+  "noProductsMatchFilter": "यो फिल्टरसँग मिल्ने कुनै उत्पादन छैन",
+  "noProductsSoldInRange": "यो अवधिमा कुनै उत्पादन बिक्री भएन",
+  "noSalesToCustomersInRange": "यो अवधिमा ग्राहकलाई कुनै बिक्री भएन",
+  "nobodyOwesYou": "कसैले तपाईंलाई पैसा तिर्नु छैन",
+  "youOweNobody": "तपाईंले कसैलाई पैसा तिर्नु छैन",
+  "addLabel": "थप्नुहोस् {label}",
+  "@addLabel": {
+    "placeholders": {
+      "label": {
+        "type": "String"
+      }
+    }
+  },
+  "couldNotLoadX": "{subject} लोड गर्न सकिएन।\n{error}",
+  "@couldNotLoadX": {
+    "placeholders": {
+      "subject": {
+        "type": "String"
+      },
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "balances": "बाँकी रकम",
+  "expenseReport": "खर्च प्रतिवेदन",
+  "incomeReport": "आय प्रतिवेदन",
+  "stockReportTitle": "स्टक प्रतिवेदन",
+  "expenseReportTitle": "खर्च प्रतिवेदन",
+  "incomeReportTitle": "आय प्रतिवेदन",
+  "profitAndLossTitle": "नाफा–नोक्सान",
+  "stockMovements": "स्टक चलन",
+  "devices": "उपकरणहरू",
+  "emailAndRole": "{email}\n{role}",
+  "@emailAndRole": {
+    "placeholders": {
+      "email": {
+        "type": "String"
+      },
+      "role": {
+        "type": "String"
+      }
+    }
+  },
+  "addKind": "{kind} थप्नुहोस्",
+  "@addKind": {
+    "placeholders": {
+      "kind": {
+        "type": "String"
+      }
+    }
+  },
+  "lowAtOrBelow": "कम: {quantity}{unit} वा कम",
+  "@lowAtOrBelow": {
+    "placeholders": {
+      "quantity": {
+        "type": "String"
+      },
+      "unit": {
+        "type": "String"
+      }
+    }
+  },
+  "minimumIs": "न्यूनतम {quantity}{unit}",
+  "@minimumIs": {
+    "placeholders": {
+      "quantity": {
+        "type": "String"
+      },
+      "unit": {
+        "type": "String"
+      }
+    }
+  },
+  "savedTo": "यहाँ सुरक्षित गरियो: {path}",
+  "@savedTo": {
+    "placeholders": {
+      "path": {
+        "type": "String"
+      }
+    }
+  },
+  "emailRequired": "कृपया आफ्नो इमेल लेख्नुहोस्",
+  "emailInvalid": "कृपया मान्य इमेल लेख्नुहोस्",
+  "passwordRequired": "कृपया आफ्नो पासवर्ड लेख्नुहोस्",
+  "passwordRegisterRequired": "कृपया पासवर्ड लेख्नुहोस्",
+  "passwordTooShort": "पासवर्ड कम्तीमा ८ अक्षरको हुनुपर्छ",
+  "passwordNeedsDigit": "पासवर्डमा कम्तीमा एक अंक हुनुपर्छ",
+  "confirmPasswordRequired": "कृपया पासवर्ड पुष्टि गर्नुहोस्",
+  "passwordsDoNotMatch": "पासवर्डहरू मिलेनन्",
+  "fullNameRequired": "कृपया आफ्नो पूरा नाम लेख्नुहोस्",
+  "fullNameIsRequired": "पूरा नाम आवश्यक छ",
+  "businessNameIsRequired": "व्यवसायको नाम आवश्यक छ",
+  "amountRequired": "रकम आवश्यक छ",
+  "amountInvalid": "मान्य रकम लेख्नुहोस्",
+  "amountInvalidFull": "मान्य रकम लेख्नुहोस्।",
+  "amountMustBePositive": "रकम शून्यभन्दा बढी हुनुपर्छ।",
+  "quantityInvalid": "मान्य परिमाण लेख्नुहोस्",
+  "percentRange": "०–१०० लेख्नुहोस्",
+  "panMustBe9Digits": "प्यान ९ अंकको हुनुपर्छ।",
+  "panMustBe9DigitNumber": "प्यान ९ अंकको संख्या हुनुपर्छ",
+  "phoneInvalid": "फोन नम्बरको ढाँचा मिलेन।",
+  "emailAddressRequired": "मान्य इमेल ठेगाना आवश्यक छ।",
+  "invalidEmailOrPassword": "इमेल वा पासवर्ड मिलेन।",
+  "checkYourInput": "कृपया आफ्नो जानकारी जाँच्नुहोस्।",
+  "somethingWentWrong": "केही गडबड भयो। कृपया फेरि प्रयास गर्नुहोस्।",
+  "returnIn": "फिर्ता आएको",
+  "returnOut": "फिर्ता गएको",
+  "week": "हप्ता",
+  "month": "महिना",
+  "day": "दिन",
+  "todayAt": "आज {time}",
+  "@todayAt": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "tomorrowAt": "भोलि {time}",
+  "@tomorrowAt": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "yesterdayAt": "हिजो {time}",
+  "@yesterdayAt": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "noKindMatchSearch": "तपाईंको खोजसँग मिल्ने {kind} छैन",
+  "@noKindMatchSearch": {
+    "placeholders": {
+      "kind": {
+        "type": "String"
+      }
+    }
+  },
+  "noKindYet": "अहिलेसम्म {kind} छैन",
+  "@noKindYet": {
+    "placeholders": {
+      "kind": {
+        "type": "String"
+      }
+    }
+  },
+  "categoryReminder": "सम्झना",
+  "saved": "सुरक्षित भयो",
+  "productSaved": "उत्पादन सुरक्षित भयो",
+  "walkInCustomer": "हिँडेर आएको ग्राहक",
+  "notSet": "सेट गरिएको छैन",
+  "unpaid": "नतिरेको",
+  "noSupplier": "आपूर्तिकर्ता छैन",
+  "paidInFull": "पूरै तिरिएको",
+  "exporting": "निर्यात हुँदैछ...",
+  "saving": "सुरक्षित हुँदैछ...",
+  "noLowStockProducts": "कुनै उत्पादन स्टक सकिएको छैन — सबै ठीक छ!",
+  "noProductsMatchSearch": "तपाईंको खोजसँग मिल्ने कुनै उत्पादन छैन",
+  "showingUnread": "नपढेका मात्र देखाइँदै",
+  "customerKhata": "ग्राहक खाता",
+  "debit": "डेबिट",
+  "recordReceipt": "रसिद अभिलेख गर्नुहोस्",
+  "applyToInvoice": "बिजकमा लागू गर्नुहोस्",
+  "receipt": "रसिद",
+  "roleViewer": "दर्शक",
+  "never": "कहिल्यै छैन",
+  "syncing": "सिङ्क हुँदैछ…",
+  "moneyInOut": "आम्दानी {inAmount} · खर्च {outAmount}",
+  "@moneyInOut": {
+    "placeholders": {
+      "inAmount": {
+        "type": "String"
+      },
+      "outAmount": {
+        "type": "String"
+      }
+    }
+  },
+  "dueAmount": "बाँकी {amount}",
+  "@dueAmount": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "created": "बनाइयो",
+  "productCreated": "उत्पादन बनाइयो",
+  "toCollectAmount": "संकलन गर्नु {amount}",
+  "@toCollectAmount": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "toPayAmount": "तिर्नु {amount}",
+  "@toPayAmount": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "createProduct": "उत्पादन बनाउनुहोस्",
+  "create": "बनाउनुहोस्",
+  "noProductsYet": "अहिलेसम्म कुनै उत्पादन छैन",
+  "noProductsYetAddFirst": "अहिलेसम्म कुनै उत्पादन छैन — पहिलो उत्पादन थप्नुहोस्",
+  "subtotal": "उपजम्मा",
+  "total": "जम्मा",
+  "discount": "छुट",
+  "rateRs": "दर (रु.)",
+  "discountRs": "छुट (रु.)",
+  "addAtLeastOneItem": "कम्तीमा एक वस्तु थप्नुहोस्",
+  "costValue": "लागत मूल्य",
+  "potentialMargin": "सम्भावित मार्जिन",
+  "invoiceCreated": "बिजक बनाइयो",
+  "invoiceDeleted": "बिजक मेटियो",
+  "quotationCreated": "भनसुन बनाइयो",
+  "quotationDeleted": "भनसुन मेटियो",
+  "convertedToSaleToast": "बिक्रीमा परिणत गरियो",
+  "saleCreated": "बिक्री बनाइयो",
+  "saleReversed": "बिक्री उल्टाइयो",
+  "saleKeptAsReversed": "बिक्री इतिहासमा उल्टाइएको रूपमा रहन्छ।",
+  "creditSaleNeedsCustomer": "उधारो बिक्रीको लागि ग्राहक आवश्यक छ",
+  "purchaseCreated": "खरिद बनाइयो",
+  "purchaseReversed": "खरिद उल्टाइयो",
+  "purchaseKeptAsReversed": "खरिद इतिहासमा उल्टाइएको रूपमा रहन्छ।",
+  "creditPurchaseNeedsSupplier": "उधारो खरिदको लागि आपूर्तिकर्ता आवश्यक छ",
+  "paymentRecorded": "भुक्तानी अभिलेख भयो",
+  "methodSaved": "विधि सुरक्षित भयो",
+  "methodDeleted": "विधि मेटियो",
+  "categorySaved": "कोटी सुरक्षित भयो",
+  "categoryDeleted": "कोटी मेटियो",
+  "productDeleted": "उत्पादन मेटियो",
+  "unitSaved": "एकाइ सुरक्षित भयो",
+  "unitDeleted": "एकाइ मेटियो",
+  "settingsSaved": "सेटिङ सुरक्षित भयो",
+  "atLeastOneMethodMustRemain": "कम्तीमा एक भुक्तानी विधि रहनुपर्छ।",
+  "notAkhataBackup": "यो खाताको ब्याकअप होइन।",
+  "enterNonZeroQuantity": "शून्य नभएको परिमाण लेख्नुहोस्",
+  "enterAmountGreaterThanZero": "शून्यभन्दा बढी रकम लेख्नुहोस्",
+  "balanceAfterIs": "बाँकी {quantity}",
+  "@balanceAfterIs": {
+    "placeholders": {
+      "quantity": {
+        "type": "String"
+      }
+    }
+  },
+  "rejectedAndFailed": "अस्वीकृत र असफल",
+  "entries": "प्रविष्टिहरू",
+  "average": "औसत",
+  "sources": "स्रोतहरू",
+  "revenue": "आम्दानी",
+  "costOfGoodsSold": "बिक्री भएका वस्तुको लागत",
+  "grossProfit": "कुल नाफा",
+  "otherIncome": "अन्य आय",
+  "netProfit": "खुद नाफा",
+  "taxCollectedInPeriod": "यो अवधिमा संकलित कर: ",
+  "customerAdvances": "ग्राहक अग्रिम",
+  "supplierAdvances": "आपूर्तिकर्ता अग्रिम",
+  "advancesExplain": "अग्रिम भन्नाले तपाईंसँग भइसकेको (ग्राहक) वा बढी तिरिएको (आपूर्तिकर्ता) रकम।",
+  "reportSalesBlurb": "प्रवृत्ति, जम्मा, शीर्ष उत्पादन र ग्राहक",
+  "reportProfitLossBlurb": "आम्दानी, बिक्री लागत र खुद नाफा",
+  "reportExpenseBlurb": "पैसा कहाँ गयो, कोटी अनुसार",
+  "reportIncomeBlurb": "स्रोत अनुसार अन्य आय",
+  "reportStockBlurb": "भण्डारको लागत र खुद्रा मूल्य",
+  "reportReceivableBlurb": "कसले तिर्नु छ र तपाईंले कसलाई",
+  "ledgerOwesYouHint": "उनीहरूले तिर्नु पर्ने (ग्राहक) / तपाईंले तिरेको (आपूर्तिकर्ता)",
+  "ledgerYouOweHint": "तपाईंलाई तिरेको (ग्राहक) / तपाईंले तिर्नु पर्ने (आपूर्तिकर्ता)",
+  "roleOwner": "मालिक",
+  "roleAdmin": "प्रशासक",
+  "roleManager": "प्रबन्धक",
+  "roleAccountant": "लेखाकार",
+  "noBusiness": "व्यवसाय छैन",
+  "couldNotLoadProducts": "उत्पादनहरू लोड गर्न सकिएन।\\n{error}",
+  "@couldNotLoadProducts": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "lineItemsCopiedFromSale": "चयन गरिएको बिक्रीबाट वस्तुहरू प्रतिलिपि गरिनेछ र त्यसको बिजक नम्बर पुनः प्रयोग हुनेछ।",
+  "bsRange": "वि.सं.: {from}  →  {to}",
+  "@bsRange": {
+    "placeholders": {
+      "from": {
+        "type": "String"
+      },
+      "to": {
+        "type": "String"
+      }
+    }
+  },
+  "conflictsNamed": "द्वन्द्व ({count})",
+  "@conflictsNamed": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "retailValueReport": "खुद्रा मूल्य",
+  "selectPartyKind": "{kind} चयन गर्नुहोस्",
+  "@selectPartyKind": {
+    "placeholders": {
+      "kind": {
+        "type": "String"
+      }
+    }
+  },
+  "tax": "कर",
+  "qty": "परिमाण",
+  "adjustment": "समायोजन",
+  "showingAll": "सबै देखाइँदै",
+  "supplierKhata": "आपूर्तिकर्ता खाता",
+  "applyToBill": "खरिद बिलमा लागू गर्नुहोस्",
+  "newMethod": "नयाँ भुक्तानी विधि",
+  "today": "आज",
+  "municipality": "नगरपालिका",
+  "selectProvinceHint": "प्रदेश छान्नुहोस्",
+  "selectDistrictHint": "जिल्ला छान्नुहोस्",
+  "selectMunicipalityHint": "नगरपालिका छान्नुहोस्",
+  "municipalityFreeTextHint": "नगरपालिका टाइप गर्नुहोस् — सबै स्थानीय तह यहाँ सूचीबद्ध छैनन्।",
+  "phoneInvalidNepali": "मान्य नेपाली फोन नम्बर राख्नुहोस्, जस्तै 98XXXXXXXX",
+  "fromDate": "देखि",
+  "toDate": "सम्म",
+  "back": "पछाडि",
+  "next": "अर्को",
+  "endBeforeStart": "अन्त्य मिति सुरु मितिभन्दा पहिले हुन सक्दैन।",
+  "dateRange": "मिति दायरा",
+  "toolsTitle": "उपकरण",
+  "emiCalculator": "ईएमआई क्यालकुलेटर",
+  "loanAmount": "ऋण रकम (रु.)",
+  "annualInterestRate": "वार्षिक ब्याज दर (%)",
+  "loanTermMonths": "ऋण अवधि (महिना)",
+  "monthlyEmi": "मासिक किस्ता",
+  "totalPayment": "कुल भुक्तानी",
+  "totalInterest": "कुल ब्याज",
+  "interestCalculator": "ब्याज क्यालकुलेटर",
+  "simpleInterest": "सरल ब्याज",
+  "compoundInterest": "चक्रिय ब्याज",
+  "principal": "मूलधन",
+  "years": "वर्ष",
+  "compoundingPerYear": "प्रति वर्ष चक्रिय संख्या",
+  "interestEarned": "कमाइएको ब्याज",
+  "profitCalculator": "नाफा क्यालकुलेटर",
+  "profit": "नाफा",
+  "profitMargin": "नाफा अनुपात",
+  "markup": "मार्कअप",
+  "enterValidAmount": "मान्य रकम राख्नुहोस्",
+  "maturityAmount": "परिपक्वता रकम",
+  "calculate": "गणना गर्नुहोस्",
+  "lossWarning": "यो नाफा होइन, नोक्सानी हो।",
+  "appLock": "एप लक",
+  "appLockDescription": "एप खोल्न पिन आवश्यक पार्नुहोस्",
+  "setPin": "पिन सेट गर्नुहोस्",
+  "changePin": "पिन बदल्नुहोस्",
+  "enterPin": "आफ्नो पिन राख्नुहोस्",
+  "confirmPin": "पिन पुष्टि गर्नुहोस्",
+  "currentPin": "हालको पिन",
+  "newPin": "नयाँ पिन",
+  "pinMustBe4To6Digits": "पिन ४ देखि ६ अंकको हुनुपर्छ",
+  "pinsDoNotMatch": "पिन मिलेन",
+  "incorrectPin": "गलत पिन",
+  "unlock": "खोल्नुहोस्",
+  "turnOffAppLock": "एप लक बन्द गर्नुहोस्",
+  "appLockNowOn": "एप लक खुला छ",
+  "appLockNowOff": "एप लक बन्द छ",
+  "attemptsLeft": "{count} प्रयास बाँकी",
+  "bankAccounts": "बैंक खाताहरू",
+  "bankName": "बैंकको नाम",
+  "accountName": "खाताको नाम",
+  "accountNumber": "खाता नम्बर",
+  "branch": "शाखा",
+  "defaultAccount": "पूर्वनिर्धारित खाता",
+  "noBankAccountsYet": "बैंक खाता थपिएको छैन।",
+  "addBankAccount": "बैंक खाता थप्नुहोस्",
+  "paymentsThroughAccount": "{count} भुक्तानी · {total}",
+  "deleted": "मेटाइयो",
+  "importTile": "आयात",
+  "importTitle": "एक्सेलबाट आयात गर्नुहोस्",
+  "importExplainerTitle": "कसरी काम गर्छ",
+  "importExplainerBody": "तपाईंको स्प्रेडसिटको पङ्क्तिहरू यहाँ टाँस्नुहोस्। टेम्प्लेट प्रतिलिपि गरेर एक्सेलमा खोल्नुहोस्, पङ्क्तिहरू भर्नुहोस्, CSV का रूपमा सुरक्षित गरेर फेरि टाँस्नुहोस्। केही पनि सुरक्षित हुनु अघि हरेक पङ्क्ति जाँचिन्छ — एउटा पङ्क्ति गलत भए केही पनि आयात हुँदैन।",
+  "importCopyTemplate": "टेम्प्लेट प्रतिलिपि गर्नुहोस्",
+  "importTemplateCopied": "टेम्प्लेट प्रतिलिपि भयो — एक्सेलमा टाँस्नुहोस्",
+  "importPasteFromClipboard": "क्लिपबोर्डबाट टाँस्नुहोस्",
+  "importCsvLabel": "CSV पङ्क्तिहरू",
+  "importCheckFile": "फाइल जाँच्नुहोस्",
+  "importChecking": "जाँच हुँदै…",
+  "importRun": "आयात गर्नुहोस्",
+  "importImporting": "आयात हुँदै…",
+  "importPreviewTitle": "जाँचको नतिजा",
+  "importRowsTotal": "कुल पङ्क्ति",
+  "importRowsValid": "तयार",
+  "importRowsDuplicate": "पहिले नै छ",
+  "importRowsInvalid": "सुधार्नुपर्ने",
+  "importBlockedHint": "सबै पङ्क्ति सुधार नगरेसम्म केही पनि आयात हुँदैन।",
+  "importIgnoredColumns": "बेवास्ता गरिएका स्तम्भ: {columns}",
+  "@importIgnoredColumns": {
+    "placeholders": {
+      "columns": {
+        "type": "String"
+      }
+    }
+  },
+  "importIssuesTitle": "सुधार्नुपर्ने पङ्क्ति",
+  "importIssueLine": "पङ्क्ति {row}: {message}",
+  "@importIssueLine": {
+    "placeholders": {
+      "row": {
+        "type": "int"
+      },
+      "message": {
+        "type": "String"
+      }
+    }
+  },
+  "importIssueLineWithColumn": "पङ्क्ति {row} · {column}: {message}",
+  "@importIssueLineWithColumn": {
+    "placeholders": {
+      "row": {
+        "type": "int"
+      },
+      "column": {
+        "type": "String"
+      },
+      "message": {
+        "type": "String"
+      }
+    }
+  },
+  "importMoreIssues": "…अरू {count} थप",
+  "@importMoreIssues": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "importConfirmTitle": "यी पङ्क्ति आयात गर्ने?",
+  "importConfirmBody": "पहिले नै भएका पङ्क्ति छोडिन्छन्; कुनै पनि माथि नलेखिनेछ।",
+  "importCompleteTitle": "आयात सम्पन्न",
+  "importCreatedCount": "{count} रेकर्ड सिर्जना भयो",
+  "@importCreatedCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "importSkippedCount": "{count} पहिले नै थिए, छोडियो",
+  "@importSkippedCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "importRejected": "केही पनि आयात भएन — तलका पङ्क्ति सुधारेर फेरि प्रयास गर्नुहोस्।",
+  "importClear": "खाली गर्नुहोस्",
+  "importExpectedColumns": "अपेक्षित स्तम्भ",
+  "cachedDataNote": "सुरक्षित डाटा देखाइँदै। रिफ्रेस गर्न फेरि जडान गर्नुहोस्।",
+  "cachedDataNoteAt": "{time} मा सुरक्षित डाटा देखाइँदै। रिफ्रेस गर्न फेरि जडान गर्नुहोस्।",
+  "@cachedDataNoteAt": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "offlineDataTitle": "अफलाइन डाटा",
+  "offlineDataExplainer": "तपाईंले खोल्ने सूचीहरू यही उपकरणमा सुरक्षित हुन्छन्, त्यसैले इन्टरनेट नभए पनि खुल्छन्।",
+  "offlineDataSavedLabel": "सुरक्षित सूची",
+  "offlineDataSavedCount": "{lists} सूची · {size}",
+  "@offlineDataSavedCount": {
+    "placeholders": {
+      "lists": {
+        "type": "int"
+      },
+      "size": {
+        "type": "String"
+      }
+    }
+  },
+  "offlineDataClear": "सुरक्षित डाटा मेटाउनुहोस्",
+  "offlineDataClearConfirm": "सुरक्षित सूचीहरू मेटाउने? अर्को पटक खोल्दा फेरि डाउनलोड हुनेछन्।",
+  "offlineDataCleared": "सुरक्षित डाटा मेटियो",
+  "loadMoreRemaining": "थप हेर्नुहोस् ({count} बाँकी)",
+  "@loadMoreRemaining": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "pageNotFound": "पृष्ठ भेटिएन",
+  "pageNotFoundBody": "यो पृष्ठ उपलब्ध छैन। यो सारिएको हुन सक्छ, वा लिङ्क गलत हुन सक्छ।",
+  "fileSaveNotSupported": "फाइल बचत गरी साझेदारी गर्न फोनमा एप चाहिन्छ — ब्राउजर संस्करणले फाइल लेख्न सक्दैन।",
+  "savedOffline": "अफलाइन सुरक्षित — इन्टरनेट जोडिएपछि सिंक हुनेछ।",
+  "offlineBannerNote": "अफलाइन — जोडिएपछि परिवर्तन सिंक हुनेछ",
+  "languageHindi": "हिन्दी",
+  "calendarAd": "ईस्वी (AD)",
+  "calendarBs": "वि.सं. (बिक्रम सम्बत)",
+  "calendarNote": "मितिहरू यही पात्रोमा देखिने र छानिनेछन्।",
+  "pendingWritesCount": "{count} बाँकी",
+  "@pendingWritesCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "navHome": "गृहपृष्ठ",
+  "navParties": "खाता",
+  "navItems": "सामान",
+  "monthToDate": "यो महिना {amount}",
+  "@monthToDate": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "lowStockCountLabel": "{count} सामानको स्टक कम",
+  "@lowStockCountLabel": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "recentActivity": "हालैका गतिविधि",
+  "viewAll": "सबै हेर्नुहोस्",
+  "getStartedTitle": "सुरु गर्नुहोस्",
+  "getStartedStepProduct": "पहिलो सामान थप्नुहोस्",
+  "getStartedStepCustomer": "ग्राहक थप्नुहोस्",
+  "getStartedStepSale": "पहिलो बिक्री रेकर्ड गर्नुहोस्",
+  "shareReminder": "रिमाइन्डर पठाउनुहोस्",
+  "reminderShareMessage": "नमस्ते {name}, {business} मा तपाईंको बाँकी {amount} छ। सुविधा हुँदा भुक्तानी गरिदिनुहोस्। धन्यवाद।",
+  "@reminderShareMessage": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      },
+      "business": {
+        "type": "String"
+      },
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "moreSalesDocs": "बिक्री र कागजात",
+  "moreItems": "सामान र स्टक",
+  "moreInsights": "विश्लेषण",
+  "moreTools": "उपकरण र सेटिङ",
+  "moreAccount": "खाता विवरण",
+  "balanceShort": "बाँकी {amount}",
+  "@balanceShort": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "moreActions": "थप कार्यहरू",
+  "welcomeChooseLanguage": "तपाईंको भाषा छान्नुहोस्",
+  "welcomeSkip": "छोड्नुहोस्",
+  "welcomeSlide1Title": "कहिल्यै नबिर्सने खाता",
+  "welcomeSlide1Body": "हरेक उधारो बिक्री, हरेक भुक्तानी र हरेक बाँकी — एकैचोटि लेखिन्छ, सधैं सही रहन्छ।",
+  "welcomeSlide2Title": "आफैं गन्ने स्टक",
+  "welcomeSlide2Body": "बिक्री र खरिदले स्टक आफैं घटाउँछ, र सामान सकिनु अघि नै चेतावनी आउँछ।",
+  "welcomeSlide3Title": "काम लाग्ने हिसाब",
+  "welcomeSlide3Body": "दैनिक नाफा, उठाउनु पर्ने र तिर्नु पर्ने — ईस्वी वा वि.सं. मितिमा, तपाईंको भाषामा।",
+  "tryDemo": "डेमो हेर्नुहोस्"
+}

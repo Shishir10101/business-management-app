@@ -1,0 +1,18 @@
+@* Router for the admin console. The render mode is applied in App.razor
+   (InteractiveServer, prerender off). AuthorizeRouteView runs inside the
+   circuit, where the auth cookie's claims are already resolved. *@
+<Router AppAssembly="typeof(App).Assembly">
+    <Found Context="routeData">
+        <AuthorizeRouteView RouteData="routeData" DefaultLayout="typeof(MainLayout)">
+            <NotAuthorized>
+                <RedirectToLogin />
+            </NotAuthorized>
+        </AuthorizeRouteView>
+        <FocusOnNavigate RouteData="routeData" Selector="h1" />
+    </Found>
+    <NotFound>
+        <LayoutView Layout="typeof(MainLayout)">
+            <p role="alert">Not found.</p>
+        </LayoutView>
+    </NotFound>
+</Router>

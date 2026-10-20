@@ -1,0 +1,26 @@
+@inherits LayoutComponentBase
+
+@* Two-pane shell: nav on the left, page on the right. The signed-in operator
+   comes from the auth cookie via AuthorizeView, so there is no session state
+   to keep in sync here. *@
+<div class="admin-shell">
+    <NavMenu />
+    <main class="admin-main">
+        <header class="admin-topbar">
+            <span class="admin-topbar-title">Khata platform admin</span>
+            <AuthorizeView>
+                <Authorized>
+                    <span class="admin-user">
+                        @context.User.Identity?.Name
+                        <form method="post" action="/auth/signout" class="inline-form">
+                            <button type="submit" class="admin-link-button">Sign out</button>
+                        </form>
+                    </span>
+                </Authorized>
+            </AuthorizeView>
+        </header>
+        <div class="admin-content">
+            @Body
+        </div>
+    </main>
+</div>

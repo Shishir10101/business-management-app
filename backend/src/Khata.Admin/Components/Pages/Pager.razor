@@ -1,0 +1,27 @@
+@* Pagination control shared by the list pages. *@
+@if (Info.TotalPages > 1)
+{
+    <div class="pager">
+        <button class="btn btn-sm" disabled="@(!Info.HasPrev)" @onclick="() => Go(Info.Page - 1)">
+            Previous
+        </button>
+        <span class="pager-info">
+            Page @Info.Page of @Info.TotalPages
+            <span class="muted">(@Info.TotalItems.ToString("N0") total)</span>
+        </span>
+        <button class="btn btn-sm" disabled="@(!Info.HasNext)" @onclick="() => Go(Info.Page + 1)">
+            Next
+        </button>
+    </div>
+}
+else if (Info.TotalItems > 0)
+{
+    <p class="muted">@Info.TotalItems.ToString("N0") total</p>
+}
+
+@code {
+    [Parameter, EditorRequired] public PaginationInfo Info { get; set; } = new();
+    [Parameter, EditorRequired] public EventCallback<int> OnPage { get; set; }
+
+    private Task Go(int page) => OnPage.InvokeAsync(page);
+}

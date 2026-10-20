@@ -1,0 +1,54 @@
+@page "/login"
+@layout EmptyLayout
+
+<PageTitle>Sign in — Khata admin</PageTitle>
+
+<div class="login-page">
+    <div class="login-card">
+        <h1>Khata platform admin</h1>
+        <p class="login-subtitle">Sign in with a platform administrator account.</p>
+
+        @if (Error is not null)
+        {
+            <div class="alert alert-error" role="alert">@Error</div>
+        }
+
+        @* A plain form post, not an EditForm: the sign-in endpoint has to set an
+           auth cookie, which only a real HTTP response can do. *@
+        <form method="post" action="/auth/signin">
+            <input type="hidden" name="returnUrl" value="@ReturnUrl" />
+            <div class="field">
+                <label for="email">Email</label>
+                <input id="email" name="email" type="email" class="input"
+                       autocomplete="username" required />
+            </div>
+            <div class="field">
+                <label for="password">Password</label>
+                <input id="password" name="password" type="password" class="input"
+                       autocomplete="current-password" required />
+            </div>
+            <button type="submit" class="btn btn-primary">Sign in</button>
+        </form>
+
+        <p class="login-note">
+            Only accounts with the <code>admin.access</code> permission can use this
+            console — a business owner account will be refused.
+        </p>
+    </div>
+</div>
+
+@code {
+    [SupplyParameterFromQuery(Name = "returnUrl")]
+    private string? ReturnUrl { get; set; }
+
+    [SupplyParameterFromQuery(Name = "error")]
+    private string? ErrorCode { get; set; }
+
+    private string? Error => ErrorCode switch
+    {
+        "credentials" => "Email or password is incorrect, or the account is not a platform administrator.",
+        "missing" => "Enter both an email and a password.",
+        "unreachable" => "Could not reach the API. Is it running?",
+        _ => null,
+    };
+}

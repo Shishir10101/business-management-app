@@ -1,0 +1,195 @@
+@page "/businesses"
+@attribute [Authorize]
+@inject AdminApiClient Api
+
+<PageTitle>Businesses — Khata admin</PageTitle>
+
+<h1>Businesses</h1>
+
+<div class="toolbar">
+    <input class="input" placeholder="Search business name" @bind="_search"
+           @bind:event="oninput" @onkeydown="OnSearchKeyDown" />
+    <select class="input" @bind="_activeFilter">
+        <option value="all">All</option>
+        <option value="active">Active only</option>
+        <option value="inactive">Suspended only</option>
+    </select>
+    <button class="btn" @onclick="() => LoadAsync(1)" disabled="@_busy">Search</button>
+</div>
+
+@if (_error is not null)
+{
+    <div class="alert alert-error" role="alert">@_error</div>
+}
+@if (_message is not null)
+{
+    <div class="alert alert-ok" role="status">@_message</div>
+}
+
+@if (_page is null && _error is null)
+{
+    <p class="muted">Loading businesses…</p>
+}
+else if (_page is not null)
+{
+    <table class="data-table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Type</th>
+                <th class="num">Province</th>
+                <th class="num">Members</th>
+                <th class="num">Sales</th>
+                <th>Created</th>
+                <th>Status</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var business in _page.Data)
+            {
+                <tr class="@(business.IsActive ? null : "row-muted")">
+                    <td>@business.Name</td>
+                    <td>@(business.Type ?? "—")</td>
+                    <td class="num">@(business.Province?.ToString() ?? "—")</td>
+                    <td class="num">@business.MemberCount</td>
+                    <td class="num">@business.SaleCount</td>
+                    <td>@business.CreatedAt.ToString("yyyy-MM-dd")</td>
+                    <td>
+                        <span class="pill @(business.IsActive ? "pill-ok" : "pill-off")">
+                            @(business.IsActive ? "Active" : "Suspended")
+                        </span>
+                    </td>
+                    <td class="actions">
+                        @if (business.IsActive)
+                        {
+                            <button class="btn btn-danger btn-sm"
+                                    @onclick="() => PromptSuspendAsync(business)">
+                                Suspend
+                            </button>
+                        }
+                        else
+                        {
+                            <button class="btn btn-sm"
+                                    @onclick="() => SetActiveAsync(business, true)">
+                                Reactivate
+                            </button>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <Pager Info="_page.Pagination" OnPage="LoadAsync" />
+
+    @if (_pendingSuspend is not null)
+    {
+        <div class="modal-backdrop">
+            <div class="modal">
+                <h2>Suspend @_pendingSuspend.Name?</h2>
+                <p class="muted">
+                    The business keeps its data but stops serving requests.
+                    Recorded in the audit log.
+                </p>
+                <div class="field">
+                    <label for="reason">Reason (optional)</label>
+                    <input id="reason" class="input" @bind="_reason" />
+                </div>
+                <div class="modal-actions">
+                    <button class="btn" @onclick="() => _pendingSuspend = null">Cancel</button>
+                    <button class="btn btn-danger" @onclick="ConfirmSuspendAsync">
+                        Suspend
+                    </button>
+                </div>
+            </div>
+        </div>
+    }
+}
+
+@code {
+    private PagedResult<AdminBusinessDto>? _page;
+    private string _search = string.Empty;
+    private string _activeFilter = "all";
+    private string? _error;
+    private string? _message;
+    private bool _busy;
+
+    private AdminBusinessDto? _pendingSuspend;
+    private string? _reason;
+
+    protected override Task OnInitializedAsync() => LoadAsync(1);
+
+    private bool? ActiveFilter => _activeFilter switch
+    {
+        "active" => true,
+        "inactive" => false,
+        _ => null,
+    };
+
+    private async Task LoadAsync(int page)
+    {
+        _busy = true;
+        _error = null;
+        try
+        {
+            _page = await Api.GetBusinessesAsync(_search, ActiveFilter, page, 20);
+        }
+        catch (AdminApiException ex)
+        {
+            _error = ex.Message;
+        }
+        catch (HttpRequestException)
+        {
+            _error = "Could not reach the API.";
+        }
+        finally
+        {
+            _busy = false;
+        }
+    }
+
+    private async Task OnSearchKeyDown(KeyboardEventArgs args)
+    {
+        if (args.Key == "Enter")
+            await LoadAsync(1);
+    }
+
+    private void PromptSuspendAsync(AdminBusinessDto business)
+    {
+        _pendingSuspend = business;
+        _reason = null;
+    }
+
+    private async Task ConfirmSuspendAsync()
+    {
+        if (_pendingSuspend is null) return;
+        await SetActiveAsync(_pendingSuspend, false, _reason);
+        _pendingSuspend = null;
+    }
+
+    private async Task SetActiveAsync(
+        AdminBusinessDto business, bool isActive, string? reason = null)
+    {
+        _error = null;
+        _message = null;
+        try
+        {
+            var updated = isActive
+                ? await Api.ActivateBusinessAsync(business.Id, reason)
+                : await Api.SuspendBusinessAsync(business.Id, reason);
+            _message = updated.IsActive
+                ? $"{updated.Name} reactivated."
+                : $"{updated.Name} suspended.";
+            await LoadAsync(_page?.Pagination.Page ?? 1);
+        }
+        catch (AdminApiException ex)
+        {
+            _error = ex.Message;
+        }
+        catch (HttpRequestException)
+        {
+            _error = "Could not reach the API.";
+        }
+    }
+}

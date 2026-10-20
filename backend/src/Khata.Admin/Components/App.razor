@@ -1,0 +1,30 @@
+@* Root document.
+
+   The whole console runs in one interactive server circuit, and prerendering
+   is OFF: the session lives in circuit-scoped services and the token is
+   rehydrated from protected session storage, neither of which exists during a
+   static prerender pass. Without this, an authorized route would evaluate
+   against an empty session during the HTTP request and bounce to /login
+   before the circuit ever starts. *@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <base href="/" />
+    <title>Khata Admin</title>
+    <link rel="stylesheet" href="app.css" />
+    @* Inline empty icon: stops the browser's automatic /favicon.ico request
+       from 404-ing in the console. *@
+    <link rel="icon" href="data:," />
+    <HeadOutlet @rendermode="RenderMode" />
+</head>
+<body>
+    <Routes @rendermode="RenderMode" />
+    <script src="_framework/blazor.web.js"></script>
+</body>
+</html>
+
+@code {
+    private static readonly InteractiveServerRenderMode RenderMode = new(prerender: false);
+}

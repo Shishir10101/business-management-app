@@ -1,0 +1,248 @@
+@page "/tickets"
+@attribute [Authorize]
+@inject AdminApiClient Api
+
+<PageTitle>Support tickets — Khata admin</PageTitle>
+
+<h1>Support tickets</h1>
+
+<div class="toolbar">
+    <select class="input" @bind="_statusFilter">
+        <option value="">All statuses</option>
+        <option value="Open">Open</option>
+        <option value="InProgress">In progress</option>
+        <option value="Resolved">Resolved</option>
+        <option value="Closed">Closed</option>
+    </select>
+    <button class="btn" @onclick="() => LoadAsync(1)" disabled="@_busy">Filter</button>
+    <button class="btn btn-primary" @onclick="() => _showNew = true">New ticket</button>
+</div>
+
+@if (_error is not null)
+{
+    <div class="alert alert-error" role="alert">@_error</div>
+}
+@if (_message is not null)
+{
+    <div class="alert alert-ok" role="status">@_message</div>
+}
+
+@if (_page is null && _error is null)
+{
+    <p class="muted">Loading tickets…</p>
+}
+else if (_page is not null)
+{
+    @if (_page.Data.Count == 0)
+    {
+        <p class="muted">No tickets match this filter.</p>
+    }
+    else
+    {
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>Opened</th>
+                    <th>Subject</th>
+                    <th>Priority</th>
+                    <th>Status</th>
+                    <th>Business</th>
+                    <th>Resolution</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var ticket in _page.Data)
+                {
+                    <tr>
+                        <td class="nowrap">@ticket.CreatedAt.ToString("yyyy-MM-dd HH:mm")</td>
+                        <td>
+                            <strong>@ticket.Subject</strong>
+                            <div class="muted">@ticket.Body</div>
+                        </td>
+                        <td>
+                            <span class="pill @PriorityClass(ticket.Priority)">
+                                @ticket.Priority
+                            </span>
+                        </td>
+                        <td>
+                            <span class="pill @StatusClass(ticket.Status)">
+                                @ticket.Status
+                            </span>
+                        </td>
+                        <td class="num">@(ticket.BusinessId?.ToString() ?? "—")</td>
+                        <td>@(ticket.Resolution ?? "—")</td>
+                        <td class="actions">
+                            @if (ticket.Status != SupportTicketStatus.Resolved
+                                 && ticket.Status != SupportTicketStatus.Closed)
+                            {
+                                <button class="btn btn-sm" @onclick="() => AdvanceAsync(ticket)">
+                                    @(ticket.Status == SupportTicketStatus.Open
+                                        ? "Start" : "Resolve")
+                                </button>
+                            }
+                            @if (ticket.Status == SupportTicketStatus.Resolved)
+                            {
+                                <button class="btn btn-sm" @onclick="() => CloseAsync(ticket)">
+                                    Close
+                                </button>
+                            }
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+        <Pager Info="_page.Pagination" OnPage="LoadAsync" />
+    }
+}
+
+@if (_showNew)
+{
+    <div class="modal-backdrop">
+        <div class="modal">
+            <h2>New support ticket</h2>
+            <div class="field">
+                <label for="subject">Subject</label>
+                <input id="subject" class="input" @bind="_newSubject" />
+            </div>
+            <div class="field">
+                <label for="body">Details</label>
+                <textarea id="body" class="input" rows="4" @bind="_newBody"></textarea>
+            </div>
+            <div class="field">
+                <label for="priority">Priority</label>
+                <select id="priority" class="input" @bind="_newPriority">
+                    @foreach (var priority in Enum.GetValues<SupportTicketPriority>())
+                    {
+                        <option value="@priority">@priority</option>
+                    }
+                </select>
+            </div>
+            <div class="modal-actions">
+                <button class="btn" @onclick="() => _showNew = false">Cancel</button>
+                <button class="btn btn-primary" @onclick="CreateAsync"
+                        disabled="@(string.IsNullOrWhiteSpace(_newSubject))">
+                    Create
+                </button>
+            </div>
+        </div>
+    </div>
+}
+
+@code {
+    private PagedResult<SupportTicketDto>? _page;
+    private string _statusFilter = string.Empty;
+    private string? _error;
+    private string? _message;
+    private bool _busy;
+
+    private bool _showNew;
+    private string _newSubject = string.Empty;
+    private string _newBody = string.Empty;
+    private SupportTicketPriority _newPriority = SupportTicketPriority.Normal;
+
+    protected override Task OnInitializedAsync() => LoadAsync(1);
+
+    private SupportTicketStatus? StatusFilter => _statusFilter switch
+    {
+        "Open" => SupportTicketStatus.Open,
+        "InProgress" => SupportTicketStatus.InProgress,
+        "Resolved" => SupportTicketStatus.Resolved,
+        "Closed" => SupportTicketStatus.Closed,
+        _ => null,
+    };
+
+    private async Task LoadAsync(int page)
+    {
+        _busy = true;
+        _error = null;
+        try
+        {
+            _page = await Api.GetTicketsAsync(StatusFilter, page, 20);
+        }
+        catch (AdminApiException ex)
+        {
+            _error = ex.Message;
+        }
+        catch (HttpRequestException)
+        {
+            _error = "Could not reach the API.";
+        }
+        finally
+        {
+            _busy = false;
+        }
+    }
+
+    private async Task AdvanceAsync(SupportTicketDto ticket)
+    {
+        var next = ticket.Status == SupportTicketStatus.Open
+            ? SupportTicketStatus.InProgress
+            : SupportTicketStatus.Resolved;
+        await UpdateAsync(ticket, next);
+    }
+
+    private Task CloseAsync(SupportTicketDto ticket)
+        => UpdateAsync(ticket, SupportTicketStatus.Closed);
+
+    private async Task UpdateAsync(SupportTicketDto ticket, SupportTicketStatus status)
+    {
+        _error = null;
+        _message = null;
+        try
+        {
+            var updated = await Api.UpdateTicketStatusAsync(ticket.Id, status, ticket.Resolution);
+            _message = $"Ticket #{updated.Id} is now {updated.Status}.";
+            await LoadAsync(_page?.Pagination.Page ?? 1);
+        }
+        catch (AdminApiException ex)
+        {
+            _error = ex.Message;
+        }
+        catch (HttpRequestException)
+        {
+            _error = "Could not reach the API.";
+        }
+    }
+
+    private async Task CreateAsync()
+    {
+        _error = null;
+        _message = null;
+        try
+        {
+            var created = await Api.CreateTicketAsync(
+                _newSubject, _newBody, businessId: null, _newPriority);
+            _message = $"Ticket #{created.Id} created.";
+            _showNew = false;
+            _newSubject = string.Empty;
+            _newBody = string.Empty;
+            _newPriority = SupportTicketPriority.Normal;
+            await LoadAsync(1);
+        }
+        catch (AdminApiException ex)
+        {
+            _error = ex.Message;
+        }
+        catch (HttpRequestException)
+        {
+            _error = "Could not reach the API.";
+        }
+    }
+
+    private static string PriorityClass(SupportTicketPriority priority) => priority switch
+    {
+        SupportTicketPriority.Urgent => "pill-danger",
+        SupportTicketPriority.High => "pill-warn",
+        _ => "pill-off",
+    };
+
+    private static string StatusClass(SupportTicketStatus status) => status switch
+    {
+        SupportTicketStatus.Open => "pill-warn",
+        SupportTicketStatus.InProgress => "pill-info",
+        SupportTicketStatus.Resolved => "pill-ok",
+        _ => "pill-off",
+    };
+}

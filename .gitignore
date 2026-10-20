@@ -1,0 +1,108 @@
+# =========================
+# Nepal Digital Khata - Root .gitignore
+# =========================
+
+# --- Flutter / Dart ---
+**/build/
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.packages
+.pub-cache/
+.pub/
+pubspec.lock
+*.lock
+!infrastructure/**/*.lock
+coverage/
+*.dart.js
+*.js_
+*.js.deps
+*.js.map
+.flutter/
+app.*.symbols
+app.*.map.json
+android/.gradle/
+android/captures/
+android/gradlew
+android/gradlew.bat
+android/local.properties
+android/**/google-services.json
+ios/Pods/
+ios/.symlinks/
+ios/Flutter/Debug.xcconfig
+ios/Flutter/Release.xcconfig
+ios/Flutter/flutter_export_environment.sh
+*.xcworkspace
+*.xcconfig
+
+# --- .NET / C# ---
+bin/
+obj/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+*.userprefs
+[Bb]in/
+[Oo]bj/
+*.nupkg
+*.snupkg
+**/appsettings.Development.json
+**/appsettings.Local.json
+**/secrets.json
+*.pfx
+*.p12
+
+# --- IDE / Editor ---
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.project
+.classpath
+.settings/
+*.tmproj
+*.esproj
+
+# --- OS ---
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# --- Demo / local SQLite database ---
+# Recreated from the model on startup (EnsureCreated), disposable by design.
+khata_demo.db
+khata_demo.db-shm
+khata_demo.db-wal
+*.db
+*.db-shm
+*.db-wal
+
+# --- Environment / Secrets ---
+.env
+.env.*
+*.pem
+*.key
+!infrastructure/**/*.env.example
+
+# --- Docker ---
+.docker/
+
+# --- Logs ---
+*.log
+logs/
+
+# --- Build outputs ---
+dist/
+out/
+artifacts/
+
+# --- Test results ---
+TestResults/
+test-results/
+coverage-results/
+
+# --- WorkBuddy ---
+.workbuddy-ai/

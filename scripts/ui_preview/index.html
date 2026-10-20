@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Digital Khata — App Screens Preview</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    background: #f0f2f5;
+    color: #1a2733;
+    padding: 32px 24px 48px;
+  }
+  header { max-width: 1200px; margin: 0 auto 28px; }
+  header h1 { font-size: 26px; font-weight: 700; color: #1A5276; }
+  header p { margin-top: 6px; font-size: 14px; color: #4a5b6b; max-width: 860px; line-height: 1.5; }
+  .badge {
+    display: inline-block; margin-top: 10px; padding: 4px 12px; border-radius: 999px;
+    background: #e8f4ea; color: #1e7e34; font-size: 12px; font-weight: 600;
+  }
+  .row {
+    display: flex; flex-wrap: wrap; gap: 28px; justify-content: center;
+    max-width: 1200px; margin: 0 auto;
+  }
+  .screen { width: 320px; }
+  .screen .caption {
+    text-align: center; font-size: 12.5px; font-weight: 600; color: #37485a;
+    margin-bottom: 10px; letter-spacing: .2px;
+  }
+  .phone {
+    background: #ffffff; border: 1px solid #d9e0e7; border-radius: 28px;
+    overflow: hidden; box-shadow: 0 6px 24px rgba(20,40,60,.10);
+    height: 600px; display: flex; flex-direction: column; position: relative;
+  }
+  .statusbar {
+    height: 26px; background: #15436a; display: flex; align-items: center;
+    justify-content: flex-end; padding: 0 14px; gap: 5px; flex: none;
+  }
+  .statusbar span { width: 5px; height: 5px; border-radius: 50%; background: #ffffff; opacity: .85; }
+  .appbar {
+    background: #1A5276; color: #fff; padding: 12px 16px; flex: none;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .appbar .t { font-size: 16px; font-weight: 600; }
+  .appbar .t small { display: block; font-size: 10px; font-weight: 400; opacity: .8; }
+  .appbar .icons { display: flex; gap: 14px; font-size: 18px; opacity: .95; }
+  .fab {
+    position: absolute; right: 16px; bottom: 18px; background: #E67E22; color: #fff;
+    border-radius: 12px; padding: 12px 16px; font-size: 13px; font-weight: 600;
+    display: flex; align-items: center; gap: 7px; box-shadow: 0 4px 14px rgba(230,126,34,.4);
+  }
+  .body { flex: 1; overflow: hidden; padding: 18px 16px; background: #FAFAFA; }
+  .body.scroll { overflow-y: auto; }
+  .body::-webkit-scrollbar { width: 0; }
+  h2.title { font-size: 21px; font-weight: 700; margin-bottom: 4px; }
+  p.sub { font-size: 13px; color: #5b6b7b; margin-bottom: 18px; line-height: 1.45; }
+  .center-icon { text-align: center; color: #1A5276; font-size: 52px; margin: 10px 0 12px; }
+  .field {
+    background: #fff; border: 1px solid #ccd6df; border-radius: 10px;
+    padding: 11px 12px; margin-bottom: 12px; font-size: 13.5px; color: #22303e;
+    display: flex; align-items: center; gap: 9px;
+  }
+  .field .ic { color: #6b7b8b; font-size: 16px; }
+  .field .lbl { color: #6b7b8b; }
+  .field .lbl b { color: #22303e; font-weight: 500; }
+  .btn {
+    background: #1A5276; color: #fff; border: none; border-radius: 10px;
+    padding: 13px; font-size: 14.5px; font-weight: 600; width: 100%; text-align: center;
+  }
+  .btn.orange { background: #E67E22; }
+  .btn.outline { background: #fff; color: #1A5276; border: 1.5px solid #1A5276; }
+  .link { text-align: center; font-size: 13px; color: #1A5276; font-weight: 600; margin-top: 14px; }
+  .card {
+    background: #fff; border: 1px solid #e3e9ee; border-radius: 12px;
+    padding: 13px; margin-bottom: 10px; display: flex; align-items: center; gap: 12px;
+    box-shadow: 0 1px 3px rgba(20,40,60,.05);
+  }
+  .avatar {
+    width: 40px; height: 40px; border-radius: 50%; background: #1A5276; color: #fff;
+    display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 16px;
+    flex: none;
+  }
+  .card .meta { flex: 1; min-width: 0; }
+  .card .meta .n { font-size: 14px; font-weight: 600; }
+  .card .meta .r { font-size: 12px; color: #5b6b7b; }
+  .chip {
+    background: #e8f4ea; color: #1e7e34; border-radius: 999px; padding: 4px 11px;
+    font-size: 11.5px; font-weight: 700;
+  }
+  .chip.gray { background: #eef1f4; color: #5b6b7b; }
+  .list-tile {
+    display: flex; align-items: center; gap: 12px; background: #fff;
+    border: 1px solid #e3e9ee; border-radius: 12px; padding: 12px; margin-bottom: 10px;
+  }
+  .list-tile .meta { flex: 1; }
+  .list-tile .meta .n { font-size: 14px; font-weight: 600; }
+  .list-tile .meta .s { font-size: 11.5px; color: #5b6b7b; line-height: 1.4; }
+  .divider { height: 1px; background: #e3e9ee; margin: 14px 0; }
+  .profile-head { text-align: center; margin-bottom: 18px; }
+  .profile-head .avatar { width: 72px; height: 72px; font-size: 30px; margin: 0 auto 10px; }
+  .profile-head .e { font-size: 14px; color: #37485a; }
+  .logout { color: #c0392b; font-weight: 600; font-size: 14px; display: flex; align-items: center; gap: 10px; padding: 6px 0; }
+  .note {
+    max-width: 1200px; margin: 30px auto 0; padding: 14px 18px; background: #fff8ec;
+    border: 1px solid #f3e2b8; border-radius: 12px; font-size: 13px; color: #7a5b16; line-height: 1.55;
+  }
+  .note code { background: #fdf0d5; padding: 1px 6px; border-radius: 5px; font-size: 12px; }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Digital Khata — what the app looks like</h1>
+  <p>Static preview of the Flutter screens built so far (Phase 1 auth + Phase 2 business setup),
+     rendered from the actual widget code: same screens, same fields, same theme colors
+     (primary #1A5276, accent #E67E22, Material 3).</p>
+  <span class="badge">✓ Backend API is LIVE at http://localhost:5182 — try it in your browser: /openapi/v1.json</span>
+</header>
+
+<div class="row">
+
+  <!-- LOGIN -->
+  <div class="screen">
+    <div class="caption">Login (lib/features/auth/…/login_page.dart)</div>
+    <div class="phone">
+      <div class="statusbar"><span></span><span></span><span></span></div>
+      <div class="body scroll">
+        <div style="height:22px"></div>
+        <div class="center-icon">👛</div>
+        <h2 class="title" style="text-align:center">Digital Khata</h2>
+        <p class="sub" style="text-align:center">Sign in to your account</p>
+        <div class="field"><span class="ic">✉️</span><span class="lbl">Email</span></div>
+        <div class="field"><span class="ic">🔒</span><span class="lbl">Password</span><span style="margin-left:auto">👁️</span></div>
+        <div style="height:8px"></div>
+        <div class="btn">Sign In</div>
+        <div class="link">Don't have an account? Sign up</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- BUSINESS SETUP -->
+  <div class="screen">
+    <div class="caption">Business setup (business_setup_page.dart)</div>
+    <div class="phone">
+      <div class="appbar"><span class="t">Create Business</span></div>
+      <div class="body scroll">
+        <h2 class="title">Set up your business</h2>
+        <p class="sub">You will be the Owner with full access.</p>
+        <div class="field"><span class="ic">🏪</span><span class="lbl">Business name <b>*</b></span></div>
+        <div class="field"><span class="ic">🏷️</span><span class="lbl">Business type (e.g. Retail)</span></div>
+        <div class="field"><span class="ic">🪪</span><span class="lbl">PAN number</span></div>
+        <div class="field"><span class="ic">📞</span><span class="lbl">Phone number</span></div>
+        <div class="field"><span class="ic">✉️</span><span class="lbl">Business email</span></div>
+        <div class="field"><span class="ic">📍</span><span class="lbl">Address</span></div>
+        <div class="field"><span class="ic">🏙️</span><span class="lbl">City</span></div>
+        <div class="field"><span class="ic">🗺️</span><span class="lbl">District</span></div>
+        <div class="field"><span class="ic">🌐</span><span class="lbl">Province</span></div>
+        <div class="field"><span class="ic">#</span><span class="lbl">Ward number</span></div>
+        <div class="btn">Create Business</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- HOME -->
+  <div class="screen">
+    <div class="caption">Home shell (home_page.dart)</div>
+    <div class="phone">
+      <div class="statusbar"><span></span><span></span><span></span></div>
+      <div class="appbar">
+        <span class="t">Sharma Kirana Pasal<small>Digital Khata</small></span>
+        <span class="icons">🔄 👤</span>
+      </div>
+      <div class="body" style="display:flex;align-items:center;justify-content:center">
+        <p style="text-align:center;color:#5b6b7b;font-size:14px">Dashboard — coming in Phase 8</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- SWITCHER -->
+  <div class="screen">
+    <div class="caption">Business switcher (business_list_page.dart)</div>
+    <div class="phone">
+      <div class="appbar"><span class="t">My Businesses</span><span class="icons">👤</span></div>
+      <div class="body scroll">
+        <div class="card">
+          <div class="avatar">S</div>
+          <div class="meta"><div class="n">Sharma Kirana Pasal</div><div class="r">Owner</div></div>
+          <span class="chip">Active</span>
+        </div>
+        <div class="card" style="justify-content:center">
+          <div class="btn outline" style="padding:11px">＋ Create new business</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STAFF -->
+  <div class="screen">
+    <div class="caption">Staff management (business_members_page.dart)</div>
+    <div class="phone">
+      <div class="appbar"><span class="t">Staff</span></div>
+      <div class="body scroll">
+        <div class="list-tile">
+          <div class="avatar">R</div>
+          <div class="meta"><div class="n">Ram Sharma</div><div class="s">ram@sharmakhata.com<br>Owner</div></div>
+          <span style="color:#8a97a3">⋮</span>
+        </div>
+        <div class="list-tile">
+          <div class="avatar">S</div>
+          <div class="meta"><div class="n">Sita Rai</div><div class="s">sita@raistore.com<br>Manager</div></div>
+          <span style="color:#8a97a3">⋮</span>
+        </div>
+      </div>
+      <div class="fab">👤＋ Invite</div>
+    </div>
+  </div>
+
+  <!-- PROFILE -->
+  <div class="screen">
+    <div class="caption">Profile (profile_page.dart)</div>
+    <div class="phone">
+      <div class="appbar"><span class="t">Profile</span></div>
+      <div class="body scroll">
+        <div class="profile-head">
+          <div class="avatar">R</div>
+          <div class="e">ram@sharmakhata.com</div>
+        </div>
+        <div class="field"><span class="ic">👤</span><span class="lbl">Full name — <b>Ram Sharma</b></span></div>
+        <div class="field"><span class="ic">📞</span><span class="lbl">Phone number</span></div>
+        <div class="field"><span class="ic">🌐</span><span class="lbl">Language — <b>नेपाली</b></span></div>
+        <div class="btn">Edit Profile</div>
+        <div class="divider"></div>
+        <div class="list-tile"><span style="font-size:17px">🔄</span><div class="meta"><div class="n">Switch business</div></div><span style="color:#8a97a3">›</span></div>
+        <div class="list-tile"><span style="font-size:17px;color:#c0392b">⎋</span><div class="meta"><div class="n logout">Logout</div></div></div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="note">
+  <b>About this preview:</b> the Flutter mobile app itself can't be built inside this sandbox
+  (the Dart runtime here cannot spawn any subprocess — <code>flutter</code>, <code>flutter build web</code>
+  and <code>dart analyze</code> all fail for that reason). The backend API, however, is running for real:
+  the demo flow above hit the live server — user registration, business creation, business switching
+  (JWT with <code>bid</code> claim and real permissions), staff invite, 403 tenant isolation,
+  422 last-Owner protection and 400 validation all responded correctly.
+  To run the actual app on this machine: <code>cd apps/mobile &amp;&amp; flutter pub get &amp;&amp; flutter run</code>
+  (backend already running at :5182).
+</div>
+
+</body>
+</html>
