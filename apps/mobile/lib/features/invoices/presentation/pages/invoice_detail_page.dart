@@ -12,6 +12,7 @@ import '../../domain/entities/invoice_entity.dart';
 import '../providers/invoice_providers.dart';
 import 'invoice_list_page.dart' show invoiceStatusColor;
 import '../../../../l10n/app_localizations.dart';
+import '../../../../core/utils/status_label.dart';
 
 /// One invoice: header, totals, line items, notes/terms, a share action that
 /// downloads the PDF, and a delete action.
@@ -88,7 +89,7 @@ class InvoiceDetailPage extends ConsumerWidget {
                           ),
                         ),
                         Chip(
-                          label: Text(invoice.status),
+                          label: Text(statusLabel(invoice.status, l10n)),
                           visualDensity: VisualDensity.compact,
                           side: BorderSide(
                               color:

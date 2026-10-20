@@ -10,6 +10,7 @@ import '../providers/sale_providers.dart';
 import 'sale_list_page.dart' show saleStatusColor;
 import '../../data/repositories/sale_repository_impl.dart';
 import '../../../../l10n/app_localizations.dart';
+import '../../../../core/utils/status_label.dart';
 
 /// One sale: header, totals, line items, and a delete (reversal) action.
 class SaleDetailPage extends ConsumerWidget {
@@ -75,7 +76,7 @@ class SaleDetailPage extends ConsumerWidget {
                                   ?.copyWith(fontWeight: FontWeight.bold)),
                         ),
                         Chip(
-                          label: Text(sale.paymentStatus),
+                          label: Text(statusLabel(sale.paymentStatus, l10n)),
                           visualDensity: VisualDensity.compact,
                           side: BorderSide(
                               color:
@@ -92,16 +93,16 @@ class SaleDetailPage extends ConsumerWidget {
                     Text(_date(sale.saleDate),
                         style: theme.textTheme.bodySmall),
                     const Divider(height: 24),
-                    _SummaryRow('Subtotal', formatPaisa(sale.subtotal)),
+                    _SummaryRow(l10n.subtotal, formatPaisa(sale.subtotal)),
                     if (sale.discountAmount > 0)
                       _SummaryRow(
                           l10n.discount, '-${formatPaisa(sale.discountAmount)}'),
                     if (sale.taxAmount > 0)
-                      _SummaryRow('Tax', formatPaisa(sale.taxAmount)),
-                    _SummaryRow('Total', formatPaisa(sale.totalAmount),
+                      _SummaryRow(l10n.tax, formatPaisa(sale.taxAmount)),
+                    _SummaryRow(l10n.total, formatPaisa(sale.totalAmount),
                         bold: true),
-                    _SummaryRow('Paid', formatPaisa(sale.paidAmount)),
-                    _SummaryRow('Due', formatPaisa(sale.dueAmount),
+                    _SummaryRow(l10n.paid, formatPaisa(sale.paidAmount)),
+                    _SummaryRow(l10n.due, formatPaisa(sale.dueAmount),
                         color: sale.dueAmount > 0
                             ? theme.colorScheme.error
                             : null),

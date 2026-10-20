@@ -91,6 +91,9 @@ khata_demo.db-wal
 # Written by scripts/e2e/seed_demo_account.py; holds a live account password.
 scripts/e2e/demo_account.json
 scripts/e2e/walk.log
+# Audit run output: regenerable, and dozens of PNGs.
+scripts/e2e/audit_shots/
+scripts/e2e/audit_report.json
 
 # --- Docker ---
 .docker/

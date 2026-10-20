@@ -244,12 +244,16 @@ app.MapGet("/health", async (KhataDbContext db, KhataMongoContext mongo, Cancell
     var atlasConfigured = mongo.IsEnabled;
     var atlasOk = atlasConfigured && await mongo.PingAsync(ct);
 
-    var healthy = ledgerOk && (atlasOk || !atlasConfigured);
-
+    // Only the ledger can make this service unhealthy. Atlas carries the audit
+    // trail, sync journal, notifications and backups — all optional, all
+    // guarded by IsEnabled — so a Mongo outage is a degradation, not an outage.
+    // Reporting 503 would let a PaaS health check pull a working API out of
+    // rotation, which is exactly what happened during a live UI test: Atlas
+    // timed out while /api/auth/login was answering 200.
     return Results.Json(
         new
         {
-            status = !ledgerOk ? "unhealthy" : healthy ? "ok" : "degraded",
+            status = !ledgerOk ? "unhealthy" : atlasConfigured && !atlasOk ? "degraded" : "ok",
             checks = new
             {
                 ledger = new
@@ -267,20 +271,35 @@ app.MapGet("/health", async (KhataDbContext db, KhataMongoContext mongo, Cancell
             },
             at = DateTime.UtcNow
         },
-        statusCode: healthy ? StatusCodes.Status200OK : StatusCodes.Status503ServiceUnavailable);
+        statusCode: ledgerOk ? StatusCodes.Status200OK : StatusCodes.Status503ServiceUnavailable);
 });
 
 // --- Seed Database ---
+// Seeding is idempotent (every step checks whether its row exists), so a
+// transient failure can simply be retried. It matters that this is not a WRN
+// we shrug at: seeding writes the roles the whole authorization stack reads. A
+// single network blip to Supabase used to leave the API running with no roles,
+// which makes every login fail with 401 while looking perfectly healthy.
 if (!app.Environment.IsEnvironment("Testing"))
 {
-    try
+    const int attempts = 3;
+    for (var attempt = 1; attempt <= attempts; attempt++)
     {
-        await app.Services.SeedAsync();
-        Log.Information("Database seeded successfully");
-    }
-    catch (Exception ex)
-    {
-        Log.Warning(ex, "Database seeding failed (may need to run migrations first)");
+        try
+        {
+            await app.Services.SeedAsync();
+            Log.Information("Database seeded successfully (attempt {Attempt})", attempt);
+            break;
+        }
+        catch (Exception ex) when (attempt < attempts)
+        {
+            Log.Warning(ex, "Seeding attempt {Attempt} failed, retrying", attempt);
+            await Task.Delay(TimeSpan.FromSeconds(2 * attempt));
+        }
+        catch (Exception ex)
+        {
+            Log.Error(ex, "Database seeding failed after {Attempts} attempts", attempts);
+        }
     }
 }
 

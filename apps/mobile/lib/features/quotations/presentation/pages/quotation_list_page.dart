@@ -7,6 +7,7 @@ import '../../../../core/utils/nepali_date_utils.dart';
 import '../../domain/entities/quotation_entity.dart';
 import '../providers/quotation_providers.dart';
 import '../../../../l10n/app_localizations.dart';
+import '../../../../core/utils/status_label.dart';
 import '../../../../core/router/nav.dart';
 
 /// Quotations list: search, status filter, and a link to each quotation.
@@ -155,6 +156,7 @@ class _QuotationTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final l10n = AppLocalizations.of(context);
     final color = quotationStatusColor(context, quotation.status);
     return Card(
       margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 6),
@@ -181,7 +183,7 @@ class _QuotationTile extends StatelessWidget {
             ),
             const SizedBox(height: 4),
             Chip(
-              label: Text(quotation.status),
+              label: Text(statusLabel(quotation.status, l10n)),
               visualDensity: VisualDensity.compact,
               side: BorderSide(color: color),
               labelStyle: TextStyle(color: color, fontSize: 12),

@@ -130,13 +130,13 @@ class _QuotationFormPageState extends ConsumerState<QuotationFormPage> {
               padding: const EdgeInsets.all(16),
               child: Column(
                 children: [
-                  _totalRow('Subtotal', formatPaisa(_subtotal)),
+                  _totalRow(l10n.subtotal, formatPaisa(_subtotal)),
                   if (_lineDiscount + _headerDiscount > 0)
-                    _totalRow('Discount',
+                    _totalRow(l10n.discount,
                         '-${formatPaisa(_lineDiscount + _headerDiscount)}'),
-                  if (_tax > 0) _totalRow('Tax', formatPaisa(_tax)),
+                  if (_tax > 0) _totalRow(l10n.tax, formatPaisa(_tax)),
                   const Divider(),
-                  _totalRow('Total', formatPaisa(_total), bold: true),
+                  _totalRow(l10n.total, formatPaisa(_total), bold: true),
                 ],
               ),
             ),

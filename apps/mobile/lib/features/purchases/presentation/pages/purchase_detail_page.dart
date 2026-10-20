@@ -10,6 +10,7 @@ import '../providers/purchase_providers.dart';
 import 'purchase_list_page.dart' show purchaseStatusColor;
 import '../../data/repositories/purchase_repository_impl.dart';
 import '../../../../l10n/app_localizations.dart';
+import '../../../../core/utils/status_label.dart';
 
 /// One purchase: header, totals, line items, and a delete (reversal) action.
 class PurchaseDetailPage extends ConsumerWidget {
@@ -76,7 +77,7 @@ class PurchaseDetailPage extends ConsumerWidget {
                                   ?.copyWith(fontWeight: FontWeight.bold)),
                         ),
                         Chip(
-                          label: Text(purchase.paymentStatus),
+                          label: Text(statusLabel(purchase.paymentStatus, l10n)),
                           visualDensity: VisualDensity.compact,
                           side: BorderSide(
                               color: purchaseStatusColor(
@@ -93,16 +94,16 @@ class PurchaseDetailPage extends ConsumerWidget {
                     Text(_date(purchase.purchaseDate),
                         style: theme.textTheme.bodySmall),
                     const Divider(height: 24),
-                    _SummaryRow('Subtotal', formatPaisa(purchase.subtotal)),
+                    _SummaryRow(l10n.subtotal, formatPaisa(purchase.subtotal)),
                     if (purchase.discountAmount > 0)
-                      _SummaryRow('Discount',
+                      _SummaryRow(l10n.discount,
                           '-${formatPaisa(purchase.discountAmount)}'),
                     if (purchase.taxAmount > 0)
-                      _SummaryRow('Tax', formatPaisa(purchase.taxAmount)),
-                    _SummaryRow('Total', formatPaisa(purchase.totalAmount),
+                      _SummaryRow(l10n.tax, formatPaisa(purchase.taxAmount)),
+                    _SummaryRow(l10n.total, formatPaisa(purchase.totalAmount),
                         bold: true),
-                    _SummaryRow('Paid', formatPaisa(purchase.paidAmount)),
-                    _SummaryRow('Due', formatPaisa(purchase.dueAmount),
+                    _SummaryRow(l10n.paid, formatPaisa(purchase.paidAmount)),
+                    _SummaryRow(l10n.due, formatPaisa(purchase.dueAmount),
                         color: purchase.dueAmount > 0
                             ? theme.colorScheme.error
                             : null),

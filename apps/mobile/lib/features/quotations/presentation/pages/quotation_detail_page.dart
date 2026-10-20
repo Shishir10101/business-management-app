@@ -12,6 +12,7 @@ import '../../domain/entities/quotation_entity.dart';
 import '../providers/quotation_providers.dart';
 import 'quotation_list_page.dart' show quotationStatusColor;
 import '../../../../l10n/app_localizations.dart';
+import '../../../../core/utils/status_label.dart';
 
 /// One quotation: header, totals, line items, notes/terms, a share action that
 /// downloads the PDF, a convert-to-sale action, and a delete action.
@@ -89,7 +90,7 @@ class QuotationDetailPage extends ConsumerWidget {
                           ),
                         ),
                         Chip(
-                          label: Text(quotation.status),
+                          label: Text(statusLabel(quotation.status, l10n)),
                           visualDensity: VisualDensity.compact,
                           side: BorderSide(
                               color: quotationStatusColor(
@@ -112,13 +113,13 @@ class QuotationDetailPage extends ConsumerWidget {
                       Text(l10n.convertedToSale(quotation.convertedSaleId!),
                           style: theme.textTheme.bodySmall),
                     const Divider(height: 24),
-                    _SummaryRow('Subtotal', formatPaisa(quotation.subtotal)),
+                    _SummaryRow(l10n.subtotal, formatPaisa(quotation.subtotal)),
                     if (quotation.discountAmount > 0)
-                      _SummaryRow('Discount',
+                      _SummaryRow(l10n.discount,
                           '-${formatPaisa(quotation.discountAmount)}'),
                     if (quotation.taxAmount > 0)
-                      _SummaryRow('Tax', formatPaisa(quotation.taxAmount)),
-                    _SummaryRow('Total', formatPaisa(quotation.totalAmount),
+                      _SummaryRow(l10n.tax, formatPaisa(quotation.taxAmount)),
+                    _SummaryRow(l10n.total, formatPaisa(quotation.totalAmount),
                         bold: true),
                   ],
                 ),
