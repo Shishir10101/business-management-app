@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Launcher icon foreground: an open khata (ledger) with a coin on the left page
+  and three ruled lines on the right.
+
+  Vector rather than a PNG set so the mark stays sharp on every density and
+  never needs a 1024px master re-exported by hand. Drawn on a 108x108 viewport
+  with all content inside the 72x72 safe zone (18..90) that adaptive icons
+  guarantee: the outer ring may be masked to a circle, squircle or rounded
+  square, and anything outside the safe zone can be clipped.
+
+  Colours come from AppTheme: emerald #0B6E4F, paper #F7F5F1, amber #E8A33D.
+-->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+
+    <!-- Left page -->
+    <path
+        android:fillColor="#F7F5F1"
+        android:pathData="M26,36 L52,31 L52,71 L26,76 Z" />
+
+    <!-- Right page -->
+    <path
+        android:fillColor="#F7F5F1"
+        android:pathData="M56,31 L82,36 L82,76 L56,71 Z" />
+
+    <!-- Coin on the left page -->
+    <path
+        android:fillColor="#E8A33D"
+        android:pathData="M39,45.5 a9.5,9.5 0 1,0 0,19 a9.5,9.5 0 1,0 0,-19 Z" />
+
+    <!-- Three ruled lines on the right page -->
+    <path
+        android:fillColor="#E8A33D"
+        android:pathData="M62,42 h16 a2.25,2.25 0 0,1 0,4.5 h-16 a2.25,2.25 0 0,1 0,-4.5 Z" />
+    <path
+        android:fillColor="#E8A33D"
+        android:pathData="M62,51 h16 a2.25,2.25 0 0,1 0,4.5 h-16 a2.25,2.25 0 0,1 0,-4.5 Z" />
+    <path
+        android:fillColor="#E8A33D"
+        android:pathData="M62,60 h16 a2.25,2.25 0 0,1 0,4.5 h-16 a2.25,2.25 0 0,1 0,-4.5 Z" />
+</vector>

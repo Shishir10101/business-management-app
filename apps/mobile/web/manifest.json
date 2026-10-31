@@ -1,11 +1,11 @@
 {
-    "name": "khata",
-    "short_name": "khata",
+    "name": "Khata — Business Management",
+    "short_name": "Khata",
     "start_url": ".",
     "display": "standalone",
-    "background_color": "#0175C2",
-    "theme_color": "#0175C2",
-    "description": "A new Flutter project.",
+    "background_color": "#F7F5F1",
+    "theme_color": "#0B6E4F",
+    "description": "Digital khata, sales, inventory and reports for Nepali small businesses.",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [

@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 108 108" role="img" aria-label="Khata">
+  <!-- Master artwork for the Khata mark. Geometry matches
+       android/app/src/main/res/drawable/ic_launcher_foreground.xml exactly, so
+       the two can never drift. Export PNGs from this file if a store listing
+       needs them; Android itself uses the vector drawable. -->
+  <rect width="108" height="108" fill="#0B6E4F"/>
+  <path d="M26,36 L52,31 L52,71 L26,76 Z" fill="#F7F5F1"/>
+  <path d="M56,31 L82,36 L82,76 L56,71 Z" fill="#F7F5F1"/>
+  <circle cx="39" cy="55" r="9.5" fill="#E8A33D"/>
+  <rect x="62" y="42" width="16" height="4.5" rx="2.25" fill="#E8A33D"/>
+  <rect x="62" y="51" width="16" height="4.5" rx="2.25" fill="#E8A33D"/>
+  <rect x="62" y="60" width="16" height="4.5" rx="2.25" fill="#E8A33D"/>
+</svg>
