@@ -1,3 +1,9 @@
+// `java.util.Properties` cannot be written inline here: inside a Gradle Kotlin
+// script `java` resolves to the project's Java plugin extension, not the
+// package, so `java.util.Properties()` fails with "Unresolved reference: util"
+// and takes the whole release build down.
+import java.util.Properties
+
 plugins {
     id("com.android.application")
     id("kotlin-android")
@@ -43,7 +49,7 @@ android {
     // clone, CI, or `flutter run --release` on a dev machine) the build falls
     // back to the debug key so the project still builds — but
     // `flutter build appbundle`/`apk --release` for distribution must have it.
-    val keystoreProperties = java.util.Properties()
+    val keystoreProperties = Properties()
     val keystorePropertiesFile = rootProject.file("key.properties")
     if (keystorePropertiesFile.exists()) {
         keystorePropertiesFile.inputStream().use { keystoreProperties.load(it) }

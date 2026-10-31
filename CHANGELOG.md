@@ -19,6 +19,18 @@ at `c8e3e1c`, and seven commits plus the release-readiness work have landed sinc
 Kept as a comment so it never becomes the opening line of a GitHub release body.
 -->
 
+### Upgrading from 1.0.0
+
+**Uninstall the old app first.** `1.0.0` was signed with the public Android
+debug key; this release is signed with the project's own upload key. Android
+refuses to install an update whose signing certificate differs, so updating in
+place fails with "App not installed" — this is not a bug and cannot be fixed
+from our side.
+
+Your ledger is on the server, so signing in again restores it. What does *not*
+survive is anything still sitting in the offline queue — record pending entries
+before uninstalling, or let them sync first.
+
 ### Added
 
 - **VAT registers** for sales and purchases (`/api/reports/vat-register/*`),
