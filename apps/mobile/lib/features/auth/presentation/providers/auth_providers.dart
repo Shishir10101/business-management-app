@@ -1,6 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../l10n/app_localizations.dart';
+import '../../../sync/data/repositories/sync_repository_impl.dart';
 import '../../data/repositories/auth_repository_impl.dart';
 import '../../domain/repositories/auth_repository.dart';
 import '../../domain/entities/user_entity.dart';
@@ -36,7 +37,16 @@ class AuthError extends AuthState {
 class AuthNotifier extends StateNotifier<AuthState> {
   final AuthRepository _repository;
 
-  AuthNotifier(this._repository) : super(const AuthInitial()) {
+  /// Runs after credentials are cleared on an explicit sign-out.
+  ///
+  /// Injected rather than imported so the auth feature keeps no compile-time
+  /// dependency on the sync feature; [authStateProvider] wires it to the
+  /// offline cache, which holds a plaintext copy of a whole ledger.
+  final Future<void> Function()? _onSignedOut;
+
+  AuthNotifier(this._repository, {Future<void> Function()? onSignedOut})
+      : _onSignedOut = onSignedOut,
+        super(const AuthInitial()) {
     _checkExistingSession();
   }
 
@@ -95,6 +105,14 @@ class AuthNotifier extends StateNotifier<AuthState> {
     } catch (_) {
       // Even if logout fails on server, clear local tokens
     } finally {
+      // The tokens are gone either way, so the cached ledger must go with them:
+      // it is not scoped per user, and the next account on this device would
+      // otherwise read the previous tenant's data until a sync overwrote it.
+      try {
+        await _onSignedOut?.call();
+      } catch (_) {
+        // A cache that cannot be wiped must not trap the user in the app.
+      }
       state = const AuthUnauthenticated();
     }
   }
@@ -123,5 +141,8 @@ String authErrorMessage(String code, AppLocalizations l10n) => switch (code) {
 
 /// Auth state provider.
 final authStateProvider = StateNotifierProvider<AuthNotifier, AuthState>((ref) {
-  return AuthNotifier(ref.read(authRepositoryProvider));
+  return AuthNotifier(
+    ref.read(authRepositoryProvider),
+    onSignedOut: () => ref.read(syncRepositoryProvider).clearCache(),
+  );
 });

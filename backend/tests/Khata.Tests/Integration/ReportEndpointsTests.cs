@@ -389,23 +389,32 @@ public class ReportEndpointsTests
         var product = await CreateProductAsync(client, 1000, 2000, 0, 100);
         var customer = await CreateCustomerAsync(client, "Aging Customer");
 
-        // Three credit sales on different dates, all unpaid.
-        await CreateSaleAsync(client, customer.Id, product.Id, 1, 2000, saleDate: "2026-10-01"); // 19 days ago → Current (0-30)
-        await CreateSaleAsync(client, customer.Id, product.Id, 1, 2000, saleDate: "2026-09-01"); // ~50 days ago → Days1To30 (31-60)
-        await CreateSaleAsync(client, customer.Id, product.Id, 1, 2000, saleDate: "2026-08-01"); // ~80 days ago → Days31To60 (61-90)
+        // Ages are measured against an explicit `asOf` rather than the wall
+        // clock. Hard-coded sale dates plus a relative expectation silently
+        // expire: they were 19/50/80 days old when written and became 30/60/91
+        // a few weeks later, which pushed one sale into the next bucket and
+        // broke a test that had nothing wrong with the code under test.
+        var asOf = new DateOnly(2026, 1, 31);
+
+        // 10 / 45 / 75 days old — each sits mid-bucket, never on a boundary, so
+        // an off-by-one in the bucketing still fails loudly.
+        await CreateSaleAsync(client, customer.Id, product.Id, 1, 2000, saleDate: "2026-01-21"); // 10 → Current
+        await CreateSaleAsync(client, customer.Id, product.Id, 1, 2000, saleDate: "2025-12-17"); // 45 → Days1To30
+        await CreateSaleAsync(client, customer.Id, product.Id, 1, 2000, saleDate: "2025-11-17"); // 75 → Days31To60
 
         var aging = await client.GetFromJsonAsync<ReceivablesAgingDto>(
-            "/api/reports/receivables-aging", JsonOptions);
+            $"/api/reports/receivables-aging?asOf={asOf:yyyy-MM-dd}", JsonOptions);
 
         Assert.NotNull(aging);
+        Assert.Equal(asOf, aging.AsOf);
         Assert.Equal(1, aging.CustomerCount);
         Assert.Equal(6000, aging.Total);
 
         var row = Assert.Single(aging.Rows);
         Assert.Equal("Aging Customer", row.CustomerName);
-        Assert.Equal(2000, row.Current);       // Oct 1  (0-30 days)
-        Assert.Equal(2000, row.Days1To30);     // Sep 1  (31-60 days)
-        Assert.Equal(2000, row.Days31To60);    // Aug 1  (61-90 days)
+        Assert.Equal(2000, row.Current);       // 10 days
+        Assert.Equal(2000, row.Days1To30);     // 45 days
+        Assert.Equal(2000, row.Days31To60);    // 75 days
         Assert.Equal(0, row.Days61To90);
         Assert.Equal(0, row.Over90);
     }

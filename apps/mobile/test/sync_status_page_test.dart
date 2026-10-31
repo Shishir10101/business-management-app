@@ -40,6 +40,9 @@ class FakeSyncRepository implements SyncRepository {
 
   @override
   Future<DateTime?> lastSyncAt() async => null;
+
+  @override
+  Future<void> clearCache() async {}
 }
 
 void main() {

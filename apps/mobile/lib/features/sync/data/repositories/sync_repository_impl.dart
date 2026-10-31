@@ -328,6 +328,15 @@ class SyncRepositoryImpl implements SyncRepository {
     final store = await _cache;
     return store.lastSyncAt;
   }
+
+  @override
+  Future<void> clearCache() async {
+    final store = await _cache;
+    await store.clear();
+    // Drop the memoized instance too: a later sign-in must not keep writing
+    // through a store whose in-memory maps outlived the session.
+    _storeFuture = null;
+  }
 }
 
 /// Internal result of pushing the queue in one cycle.

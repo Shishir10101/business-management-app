@@ -24,4 +24,15 @@ abstract class SyncRepository {
 
   /// Last successful sync time, if any.
   Future<DateTime?> lastSyncAt();
+
+  /// Deletes the cached records, the pending queue and the sync cursor.
+  ///
+  /// Called on sign-out. The cache is a plaintext JSON snapshot of a whole
+  /// ledger and it is not keyed by user or business, so leaving it behind would
+  /// hand the next account on a shared shop phone the previous tenant's data.
+  ///
+  /// Anything still queued is dropped with it: a queued write carries the id of
+  /// the tenant that created it, so replaying it under another session would
+  /// push one business's data into another's.
+  Future<void> clearCache();
 }
