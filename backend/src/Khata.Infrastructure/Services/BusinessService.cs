@@ -47,6 +47,7 @@ public class BusinessService : IBusinessService
             join b in _db.Businesses on bm.BusinessId equals b.Id
             join r in _db.Roles on bm.RoleId equals r.Id
             where bm.UserId == userId && bm.DeletedAt == null && b.DeletedAt == null
+                && b.IsActive
             orderby bm.Id
             select new { b, RoleName = r.Name }
         ).ToListAsync(cancellationToken);
@@ -192,7 +193,11 @@ public class BusinessService : IBusinessService
         business.WardNumber = request.WardNumber;
         business.LogoUrl = request.LogoUrl;
         business.Currency = NormalizeCurrency(request.Currency);
-        business.IsActive = request.IsActive;
+        // IsActive is NOT taken from the request. It is the platform's
+        // suspension switch (AdminService.SetBusinessActiveAsync), and letting a
+        // tenant Admin write it here let a suspended shop un-suspend itself with
+        // one PUT. A tenant can edit its profile; it cannot overrule the
+        // platform.
 
         await _db.SaveChangesAsync(cancellationToken);
 
@@ -245,6 +250,12 @@ public class BusinessService : IBusinessService
         var role = await _roleManager.FindByNameAsync(request.Role)
             ?? throw new NotFoundException("Role", request.Role);
 
+        // An Admin runs the shop day to day; an Owner owns it. Letting an Admin
+        // mint an Owner (including themselves, by inviting a second address they
+        // control) collapses that distinction and hands them the delete button.
+        if (role.Name == SystemRoles.Owner && roleName != SystemRoles.Owner)
+            throw new ForbiddenException("Only an Owner can add another Owner.");
+
         var invitee = await _userManager.FindByEmailAsync(request.Email)
             ?? throw new NotFoundException("User", request.Email);
 
@@ -286,6 +297,15 @@ public class BusinessService : IBusinessService
 
         var member = await LoadMemberAsync(businessId, memberId, cancellationToken);
 
+        // Changing who owns the business is an Owner's decision, in both
+        // directions: an Admin must not be able to promote themselves (or an
+        // accomplice) to Owner, and must not be able to demote the Owner.
+        var ownerRole = await _roleManager.FindByNameAsync(SystemRoles.Owner);
+        var touchesOwner = role.Name == SystemRoles.Owner
+            || (ownerRole is not null && member.RoleId == ownerRole.Id);
+        if (touchesOwner && callerRole != SystemRoles.Owner)
+            throw new ForbiddenException("Only an Owner can grant or revoke the Owner role.");
+
         // Guard: never demote the last Owner.
         if (member.RoleId != role.Id && await IsLastOwnerAsync(businessId, member.RoleId, cancellationToken))
             throw new BusinessRuleException("last_owner",
@@ -305,6 +325,13 @@ public class BusinessService : IBusinessService
         EnsureManagerRole(callerRole);
 
         var member = await LoadMemberAsync(businessId, memberId, cancellationToken);
+
+        // Removing an Owner is an Owner's decision, not an Admin's — otherwise
+        // an Admin can clear the way to run the business alone.
+        var ownerRole = await _roleManager.FindByNameAsync(SystemRoles.Owner);
+        if (ownerRole is not null && member.RoleId == ownerRole.Id
+            && callerRole != SystemRoles.Owner)
+            throw new ForbiddenException("Only an Owner can remove another Owner.");
 
         // Guard: never remove the last Owner.
         if (await IsLastOwnerAsync(businessId, member.RoleId, cancellationToken))

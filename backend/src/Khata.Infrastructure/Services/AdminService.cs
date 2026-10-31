@@ -26,17 +26,23 @@ public class AdminService : IAdminService
     private readonly ICurrentUserService _currentUser;
     private readonly IHttpContextAccessor _httpContext;
     private readonly IDateTimeProvider _clock;
+    private readonly ITokenService _tokens;
+    private readonly Microsoft.Extensions.Caching.Memory.IMemoryCache _cache;
 
     public AdminService(
         KhataDbContext db,
         ICurrentUserService currentUser,
         IHttpContextAccessor httpContext,
-        IDateTimeProvider clock)
+        IDateTimeProvider clock,
+        ITokenService tokens,
+        Microsoft.Extensions.Caching.Memory.IMemoryCache cache)
     {
         _db = db;
         _currentUser = currentUser;
         _httpContext = httpContext;
         _clock = clock;
+        _tokens = tokens;
+        _cache = cache;
     }
 
     private long ActorUserId =>
@@ -137,6 +143,14 @@ public class AdminService : IAdminService
         user.UpdatedAt = _clock.UtcNow;
         await _db.SaveChangesAsync(cancellationToken);
 
+        // Suspension must actually end the session. Flipping IsActive only stops
+        // the next sign-in; the live refresh token would otherwise keep minting
+        // access tokens for 30 days. Revoke every one of them, and drop the
+        // pipeline's cached "active" answer so the very next request is refused.
+        if (!isActive)
+            await _tokens.RevokeAllForUserAsync(userId, cancellationToken);
+        _cache.Remove(CacheKeys.UserActive(userId));
+
         await WriteAuditAsync(
             isActive ? "user.activate" : "user.suspend",
             "User", userId,
@@ -211,6 +225,11 @@ public class AdminService : IAdminService
         business.IsActive = isActive;
         business.UpdatedAt = _clock.UtcNow;
         await _db.SaveChangesAsync(cancellationToken);
+
+        // The request pipeline caches "is this business active" for a few
+        // seconds; a suspension that takes effect 30 seconds later is still a
+        // window an abusive shop can use.
+        _cache.Remove(CacheKeys.BusinessActive(businessId));
 
         await WriteAuditAsync(
             isActive ? "business.activate" : "business.suspend",

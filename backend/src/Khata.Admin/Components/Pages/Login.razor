@@ -16,6 +16,10 @@
         @* A plain form post, not an EditForm: the sign-in endpoint has to set an
            auth cookie, which only a real HTTP response can do. *@
         <form method="post" action="/auth/signin">
+            @* Required: the sign-in endpoint validates it. Without the token a
+               third-party page could silently sign a visitor into an account it
+               controls (login CSRF). *@
+            <AntiforgeryToken />
             <input type="hidden" name="returnUrl" value="@ReturnUrl" />
             <div class="field">
                 <label for="email">Email</label>
@@ -47,6 +51,7 @@
     private string? Error => ErrorCode switch
     {
         "credentials" => "Email or password is incorrect, or the account is not a platform administrator.",
+        "forbidden" => "That account does not have platform administrator access.",
         "missing" => "Enter both an email and a password.",
         "unreachable" => "Could not reach the API. Is it running?",
         _ => null,

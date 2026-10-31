@@ -127,13 +127,17 @@ public class NotificationService : INotificationService
         RegisterDeviceRequest request, CancellationToken cancellationToken = default)
     {
         var now = _clock.UtcNow;
+        var token = request.Token.Trim();
 
         // The token is globally unique: one physical device maps to one row.
         // Re-registering refreshes the row (the user may have logged out and
-        // back in, or switched business) instead of creating a duplicate.
+        // back in, or switched business) instead of creating a duplicate. Look
+        // up the normalised value — the old code compared the untrimmed request
+        // against trimmed rows, so a token with a stray newline from a copy-paste
+        // created a second row and then hit the unique index.
         var existing = await _db.DeviceRegistrations
             .IgnoreQueryFilters()
-            .FirstOrDefaultAsync(d => d.Token == request.Token, cancellationToken);
+            .FirstOrDefaultAsync(d => d.Token == token, cancellationToken);
 
         if (existing is not null)
         {
@@ -150,7 +154,7 @@ public class NotificationService : INotificationService
         {
             BusinessId = BusinessId,
             UserId = UserId,
-            Token = request.Token.Trim(),
+            Token = token,
             Platform = request.Platform,
             LastSeenAt = now,
             IsActive = true,

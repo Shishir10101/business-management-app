@@ -99,6 +99,16 @@ public class JwtTokenService : ITokenService
         var user = await _db.Users.FirstOrDefaultAsync(u => u.Id == stored.UserId, cancellationToken)
             ?? throw new SecurityTokenException("User not found.");
 
+        // A suspended account must not be able to mint a fresh 15-minute access
+        // token every time its refresh token is presented — that would make the
+        // admin console's suspension button meaningless for as long as the
+        // refresh token lives (30 days by default).
+        if (!user.IsActive)
+        {
+            await RevokeAllForUserAsync(user.Id, cancellationToken);
+            throw new SecurityTokenException("This account is not active.");
+        }
+
         var businessId = await GetActiveBusinessIdAsync(user.Id, cancellationToken);
         var roles = await GetUserRolesAsync(user.Id, businessId, cancellationToken);
         var perms = await GetUserPermissionsAsync(user.Id, businessId, cancellationToken);
@@ -155,11 +165,12 @@ public class JwtTokenService : ITokenService
     /// Revokes every live refresh token for a user.
     /// </summary>
     /// <remarks>
-    /// Used when a rotated token is replayed. Revoking only the replayed row
-    /// would leave the thief's freshly-issued sibling valid, which is the
-    /// opposite of what reuse detection is for.
+    /// Used when a rotated token is replayed, when a password changes, and when
+    /// an administrator suspends an account. Revoking only one row would leave
+    /// the attacker's (or the stolen device's) sibling token valid, which is the
+    /// opposite of what revocation is for.
     /// </remarks>
-    private async Task RevokeAllForUserAsync(long userId, CancellationToken ct)
+    public async Task RevokeAllForUserAsync(long userId, CancellationToken ct = default)
     {
         var live = await _db.Set<RefreshToken>()
             .Where(rt => rt.UserId == userId && rt.RevokedAt == null)
@@ -232,21 +243,32 @@ public class JwtTokenService : ITokenService
         var user = await _db.Users.FirstOrDefaultAsync(u => u.Id == userId, ct);
         if (user?.ActiveBusinessId is { } active)
         {
-            // Guard against a stale pointer (business deleted / membership revoked).
-            var stillMember = await _db.BusinessMembers.IgnoreQueryFilters()
-                .AnyAsync(bm => bm.UserId == userId && bm.BusinessId == active
-                    && bm.DeletedAt == null && bm.IsActive, ct);
-            if (stillMember) return active;
+            // Guard against a stale pointer (business deleted / membership
+            // revoked) and against a suspended business: a token minted for a
+            // suspended shop must not keep working.
+            var stillUsable = await IsUsableMembershipAsync(userId, active, ct);
+            if (stillUsable) return active;
         }
 
-        var firstBusiness = await _db.BusinessMembers.IgnoreQueryFilters()
-            .Where(bm => bm.UserId == userId && bm.DeletedAt == null && bm.IsActive)
-            .OrderBy(bm => bm.Id)
-            .Select(bm => (long?)bm.BusinessId)
-            .FirstOrDefaultAsync(ct);
+        var firstBusiness = await (
+            from bm in _db.BusinessMembers.IgnoreQueryFilters()
+            join b in _db.Businesses.IgnoreQueryFilters() on bm.BusinessId equals b.Id
+            where bm.UserId == userId && bm.DeletedAt == null && bm.IsActive
+                && b.IsActive && b.DeletedAt == null
+            orderby bm.Id
+            select (long?)bm.BusinessId
+        ).FirstOrDefaultAsync(ct);
 
         return firstBusiness;
     }
+
+    private Task<bool> IsUsableMembershipAsync(long userId, long businessId, CancellationToken ct) =>
+        (from bm in _db.BusinessMembers.IgnoreQueryFilters()
+         join b in _db.Businesses.IgnoreQueryFilters() on bm.BusinessId equals b.Id
+         where bm.UserId == userId && bm.BusinessId == businessId
+             && bm.DeletedAt == null && bm.IsActive
+             && b.IsActive && b.DeletedAt == null
+         select bm.Id).AnyAsync(ct);
 
     private static string GenerateRefreshToken()
     {

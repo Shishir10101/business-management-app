@@ -71,6 +71,21 @@ public class AdminApiClient
         return auth;
     }
 
+    /// <summary>
+    /// True when the supplied token is accepted by an admin-only endpoint.
+    /// Used by the sign-in flow, which has the token but no cookie yet: the
+    /// login response says who you are, not what you may do.
+    /// </summary>
+    public async Task<bool> HasAdminAccessAsync(
+        string accessToken, CancellationToken cancellationToken = default)
+    {
+        using var request = new HttpRequestMessage(HttpMethod.Get, "api/admin/statistics");
+        request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
+
+        using var response = await _http.SendAsync(request, cancellationToken);
+        return response.IsSuccessStatusCode;
+    }
+
     // ---------------------------------------------------------------
     // Statistics
     // ---------------------------------------------------------------

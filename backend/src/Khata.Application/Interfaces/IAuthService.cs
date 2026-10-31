@@ -36,6 +36,13 @@ public interface ITokenService
         long userId, CancellationToken cancellationToken = default);
 
     Task RevokeRefreshTokenAsync(string refreshToken, CancellationToken cancellationToken = default);
+
+    /// <summary>
+    /// Revokes every live refresh token for a user. Called when a password
+    /// changes and when an account is suspended: a credential that survives
+    /// either event is a credential an attacker keeps.
+    /// </summary>
+    Task RevokeAllForUserAsync(long userId, CancellationToken cancellationToken = default);
 }
 
 /// <summary>

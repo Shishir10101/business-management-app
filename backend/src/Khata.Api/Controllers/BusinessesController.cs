@@ -114,6 +114,14 @@ public class BusinessesController : ControllerBase
         var roles = active.roleName is null ? [] : new List<string> { active.roleName };
         var permissions = (await _authRepo.GetBusinessPermissionsAsync(userId, id)).ToList();
 
+        // Platform roles (SuperAdmin → admin.access) must survive a switch, the
+        // same way they do at login. Without this, an administrator who switched
+        // into a shop lost the admin console until they signed in again.
+        foreach (var perm in await _tokenService.GetPlatformPermissionsAsync(userId, default))
+        {
+            if (!permissions.Contains(perm)) permissions.Add(perm);
+        }
+
         var (accessToken, refreshToken, expiresAt) = await _tokenService.GenerateAccessTokenAsync(
             userId, _currentUser.Email ?? "", _currentUser.FullName ?? "",
             id, roles, permissions, default);

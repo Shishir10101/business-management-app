@@ -31,12 +31,28 @@ public class StatementsController : ControllerBase
         long customerId,
         [FromQuery] int ttlDays = 7)
     {
-        var token = await _statements.MintTokenAsync(customerId, TimeSpan.FromDays(ttlDays));
-        var baseUrl = _config["StatementLink:BaseUrl"]?.TrimEnd('/')
-            ?? $"{Request.Scheme}://{Request.Host}";
+        // Bounded, not trusted. A caller-supplied int went straight into
+        // TimeSpan.FromDays, so ttlDays=999999999 overflowed and produced a 500,
+        // and a large-but-valid value minted a link that never expires — a
+        // customer's whole ledger, public, forever. 90 days is the ceiling.
+        // Negative values are allowed on purpose: they mint an already-expired
+        // link, which is how a previously shared URL is retired.
+        var days = Math.Clamp(ttlDays, -365, 90);
+
+        var token = await _statements.MintTokenAsync(customerId, TimeSpan.FromDays(days));
+
+        // A configured base wins, because behind a proxy the request's own host
+        // is whatever the client sent. Blank-but-present counts as unset: an
+        // empty value would otherwise mint a relative "/s/…" link that is
+        // useless in the WhatsApp message it was made for.
+        var configured = _config["StatementLink:BaseUrl"];
+        var baseUrl = string.IsNullOrWhiteSpace(configured)
+            ? $"{Request.Scheme}://{Request.Host}"
+            : configured.TrimEnd('/');
+
         return Ok(new StatementLinkResponse(
             $"{baseUrl}/s/{token}",
-            DateTimeOffset.UtcNow.AddDays(ttlDays)));
+            DateTimeOffset.UtcNow.AddDays(days)));
     }
 
     /// <summary>
@@ -51,6 +67,25 @@ public class StatementsController : ControllerBase
         [FromQuery] int page = 1,
         [FromQuery] int pageSize = 50)
     {
+        // This URL is a bearer token for a customer's whole ledger, and the
+        // response is HTML — the one content type an intermediary is allowed to
+        // cache by default. Without an explicit no-store, a shared proxy, a CDN
+        // or the browser's back-forward cache can serve the page to the next
+        // person on that device long after the link expired. The token is
+        // unguessable but long-lived, so keep it out of indexes and archives as
+        // well: a leaked URL must not become a search result.
+        Response.Headers["Cache-Control"] = "no-store, no-cache, must-revalidate, max-age=0";
+        Response.Headers["Pragma"] = "no-cache";
+        Response.Headers["X-Robots-Tag"] = "noindex, nofollow, noarchive, nosnippet";
+
+        // Nothing on this page loads anything: the stylesheet is inline and
+        // there is no script or image. Pinning it to exactly that removes the
+        // whole class of injected-resource problems if the renderer ever gains
+        // a field whose content reaches the markup.
+        Response.Headers["Content-Security-Policy"] =
+            "default-src 'none'; style-src 'unsafe-inline'; img-src data:; " +
+            "base-uri 'none'; form-action 'none'; frame-ancestors 'none'";
+
         var stmt = await _statements.GetStatementAsync(token, page, pageSize);
         var html = RenderHtml(stmt);
         return Content(html, "text/html; charset=utf-8");

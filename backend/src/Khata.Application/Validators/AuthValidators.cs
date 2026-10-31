@@ -18,7 +18,11 @@ public class RegisterRequestValidator : AbstractValidator<RegisterRequest>
 
         RuleFor(x => x.Password)
             .NotEmpty().WithMessage("Password is required.")
-            .MinimumLength(8).WithMessage("Password must be at least 8 characters.")
+            // Mirrors Identity's policy (RequiredLength = 10). A lower bound here
+            // let 8- and 9-character passwords through validation and then fail
+            // in Identity, so the user saw the generic policy error instead of
+            // the form-level one.
+            .MinimumLength(10).WithMessage("Password must be at least 10 characters.")
             .MaximumLength(128);
 
         RuleFor(x => x.PhoneNumber)
@@ -28,8 +32,8 @@ public class RegisterRequestValidator : AbstractValidator<RegisterRequest>
             .WithMessage("Phone number format is invalid.");
 
         RuleFor(x => x.Locale)
-            .Must(l => l is "ne" or "en")
-            .WithMessage("Locale must be 'ne' or 'en'.");
+            .Must(l => l is "ne" or "en" or "hi")
+            .WithMessage("Locale must be 'ne', 'en' or 'hi'.");
     }
 }
 
@@ -55,7 +59,8 @@ public class ChangePasswordRequestValidator : AbstractValidator<ChangePasswordRe
 
         RuleFor(x => x.NewPassword)
             .NotEmpty().WithMessage("New password is required.")
-            .MinimumLength(8).WithMessage("Password must be at least 8 characters.")
+            // Same lower bound as registration and Identity's policy.
+            .MinimumLength(10).WithMessage("Password must be at least 10 characters.")
             .MaximumLength(128)
             .NotEqual(x => x.CurrentPassword)
             .WithMessage("New password must differ from the current password.");
@@ -77,7 +82,7 @@ public class UpdateProfileRequestValidator : AbstractValidator<UpdateProfileRequ
             .WithMessage("Phone number format is invalid.");
 
         RuleFor(x => x.Locale)
-            .Must(l => l is "ne" or "en")
-            .WithMessage("Locale must be 'ne' or 'en'.");
+            .Must(l => l is "ne" or "en" or "hi")
+            .WithMessage("Locale must be 'ne', 'en' or 'hi'.");
     }
 }

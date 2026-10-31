@@ -28,11 +28,17 @@ public class AuthController : ControllerBase
     public async Task<ActionResult<AuthResponse>> Register([FromBody] RegisterRequest request)
     {
         if (await _authRepo.EmailExistsAsync(request.Email))
+            // Deliberately does not echo the address back. "The email 'x' is
+            // already registered" turns the register form into an account
+            // oracle: an attacker can test a leaked address list for free, and
+            // the login endpoint was already hardened against exactly this.
+            // The client still gets a 400 it can act on ("sign in instead").
             return BadRequest(new ProblemDetails
             {
-                Title = "Email already exists",
+                Title = "Registration failed",
                 Status = 400,
-                Detail = $"The email '{request.Email}' is already registered."
+                Detail = "An account with these details could not be created. If you already " +
+                         "have an account, sign in instead."
             });
 
         // Password strength is enforced by Identity's policy (see
@@ -87,14 +93,18 @@ public class AuthController : ControllerBase
         // Get user's businesses
         var businesses = await _authRepo.GetUserBusinessesAsync(userData.Value.userId);
 
-        // Active business: the user's selected business, else their first membership
-        var activeBusiness = businesses.Count > 0
-            ? businesses[0]
+        // Active business: the user's selected business, else their first
+        // membership. The selection has to be consulted FIRST — the previous
+        // version always took businesses[0] whenever the user had any
+        // membership, which made the switch-business endpoint look like it
+        // worked (it minted a correct token) and then silently put the user
+        // back into their first shop on the next sign-in.
+        var activeBusiness = userData.Value.activeBusinessId is { } activeId
+            ? businesses.FirstOrDefault(b => b.businessId == activeId)
             : ((long businessId, string businessName, string roleName)?)null;
-        if (activeBusiness is null && userData.Value.activeBusinessId is { } activeId)
-        {
-            activeBusiness = businesses.FirstOrDefault(b => b.businessId == activeId);
-        }
+
+        if (activeBusiness is null && businesses.Count > 0)
+            activeBusiness = businesses[0];
 
         var activeBusinessId = activeBusiness?.businessId;
 
@@ -250,6 +260,13 @@ public class AuthController : ControllerBase
                 Status = 400,
                 Detail = "Current password is incorrect."
             });
+
+        // A password change is the response to "my account may be compromised".
+        // Leaving the old refresh tokens alive would let whoever stole the
+        // session keep minting access tokens for another 30 days — the exact
+        // opposite of what the user just asked for. The device that made this
+        // call re-authenticates with the new password.
+        await _tokenService.RevokeAllForUserAsync(currentUser.UserId.Value);
 
         return NoContent();
     }

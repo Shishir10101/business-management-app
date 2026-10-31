@@ -68,6 +68,40 @@ public class StatementEndpointsTests
         Assert.Contains("40.00", html); // 2 × 2000 paisa = Rs 40.00
     }
 
+    /// <summary>
+    /// The public statement is a bearer URL for a customer's entire ledger, and
+    /// it is HTML — the one content type an intermediary may cache by default.
+    /// Without an explicit no-store, a shared phone, a proxy or the browser's
+    /// back-forward cache can serve the page long after the link expired.
+    /// </summary>
+    [Fact]
+    public async Task PublicStatement_IsNotCacheableAndCarriesACsp()
+    {
+        var client = await CreateOwnerClientAsync();
+        var customer = await CreateCustomerAsync(client, "Cache Customer");
+
+        var mint = await client.PostAsJsonAsync(
+            $"/api/customers/{customer.Id}/statement-link", new { });
+        var link = (await mint.Content.ReadFromJsonAsync<StatementLinkResponse>(JsonOptions))!;
+
+        var anon = _factory.CreateClient();
+        var response = await anon.GetAsync(link.Url);
+
+        Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+
+        Assert.NotNull(response.Headers.CacheControl);
+        Assert.True(response.Headers.CacheControl!.NoStore,
+            "a customer's ledger must never be cacheable");
+
+        Assert.Contains("noindex", response.Headers.GetValues("X-Robots-Tag").Single());
+
+        // Nothing on the page loads a resource, so the policy can deny
+        // everything and allow only the inline stylesheet.
+        var csp = response.Headers.GetValues("Content-Security-Policy").Single();
+        Assert.Contains("default-src 'none'", csp);
+        Assert.Contains("frame-ancestors 'none'", csp);
+    }
+
     [Fact]
     public async Task PublicStatement_ExpiredToken_Returns401()
     {

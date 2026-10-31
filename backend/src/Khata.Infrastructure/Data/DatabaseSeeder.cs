@@ -4,6 +4,7 @@ using Khata.Infrastructure.Identity;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using Khata.Application.Common;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
@@ -117,8 +118,17 @@ public static class DatabaseSeeder
 
         if (string.IsNullOrWhiteSpace(email) || string.IsNullOrWhiteSpace(password))
         {
-            // Demo/local only: a real deployment must opt in explicitly.
-            if (!db.Database.IsSqlite()) return;
+            // Demo/local only. "SQLite" alone is not a strong enough signal:
+            // SQLite is a perfectly valid production choice for a single shop,
+            // and the default below is published in the source, so a production
+            // deployment on SQLite would have shipped a known SuperAdmin
+            // password. Require the environment to say it is a demo.
+            var environment = scope.ServiceProvider.GetService<IHostEnvironment>();
+            var isDemo = db.Database.IsSqlite()
+                && (environment?.IsDevelopment() == true
+                    || environment?.IsEnvironment("Testing") == true);
+
+            if (!isDemo) return;
 
             email = "admin@khata.local";
             password = "Admin@12345";

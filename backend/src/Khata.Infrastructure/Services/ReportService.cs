@@ -847,8 +847,23 @@ public class ReportService : IReportService
     private static string Escape(string? value)
     {
         var text = value ?? string.Empty;
+
+        // CSV formula injection. Excel and Google Sheets execute a cell whose
+        // first character is = + - @ (or a tab/CR), so a customer saved as
+        // "=HYPERLINK(""http://evil"",""open"")" would run in the accountant's
+        // spreadsheet when the export is opened. Prefixing a single quote keeps
+        // the cell text. A plain negative amount is left alone so totals still
+        // parse as numbers.
+        if (text.Length > 0 && IsFormulaLead(text[0]) && !IsPlainNumber(text))
+            text = "'" + text;
+
         return text.Contains(',') || text.Contains('"') || text.Contains('\n') || text.Contains('\r')
             ? '"' + text.Replace("\"", "\"\"") + '"'
             : text;
     }
+
+    private static bool IsFormulaLead(char c) => c is '=' or '+' or '-' or '@' or '\t' or '\r';
+
+    private static bool IsPlainNumber(string text) =>
+        decimal.TryParse(text, NumberStyles.Any, CultureInfo.InvariantCulture, out _);
 }

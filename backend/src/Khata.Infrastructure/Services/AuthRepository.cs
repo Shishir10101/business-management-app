@@ -127,6 +127,7 @@ public class AuthRepository : IAuthRepository
             join b in _db.Businesses on bm.BusinessId equals b.Id
             join r in _db.Roles on bm.RoleId equals r.Id
             where bm.UserId == userId && bm.DeletedAt == null && b.DeletedAt == null
+                && b.IsActive
             select new { b.Id, b.Name, RoleName = r.Name }
         ).ToListAsync(cancellationToken);
 

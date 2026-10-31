@@ -372,6 +372,20 @@ public class SyncService : ISyncService
             var entityType = (op.EntityType ?? string.Empty).Trim().ToLowerInvariant();
             var operation = (op.Operation ?? string.Empty).Trim().ToLowerInvariant();
 
+            // The controller only checks "may this user sync". The entity-level
+            // permission still has to be checked here, because push is a
+            // multiplexer: one endpoint that can create customers, products,
+            // expenses, income and sales. Without this, a SalesStaff (who holds
+            // sync.use but not products.edit) could delete the catalog, and an
+            // InventoryStaff could record sales — a role boundary bypassed by
+            // choosing a different URL.
+            var required = RequiredPermission(entityType, operation);
+            if (required is not null &&
+                !_currentUser.Permissions.Contains(required, StringComparer.Ordinal))
+            {
+                return Rejected(op, "You do not have permission for this operation.");
+            }
+
             var result = (entityType, operation) switch
             {
                 // --- customers ---
@@ -477,6 +491,28 @@ public class SyncService : ISyncService
     }
 
     // --- push helpers ---
+
+    /// <summary>
+    /// The permission an offline write needs, mirroring the policy on the
+    /// equivalent REST endpoint. Null means "the operation switch will reject
+    /// it anyway".
+    /// </summary>
+    private static string? RequiredPermission(string entityType, string operation) =>
+        (entityType, operation) switch
+        {
+            ("customer", "create") => Permissions.CustomersCreate,
+            ("customer", "update") or ("customer", "delete") => Permissions.CustomersEdit,
+            ("supplier", "create") => Permissions.SuppliersCreate,
+            ("supplier", "update") or ("supplier", "delete") => Permissions.SuppliersEdit,
+            ("product", "create") => Permissions.ProductsCreate,
+            ("product", "update") or ("product", "delete") => Permissions.ProductsEdit,
+            ("expense", "create") => Permissions.ExpensesCreate,
+            ("expense", "update") or ("expense", "delete") => Permissions.ExpensesEdit,
+            ("income", "create") => Permissions.IncomeCreate,
+            ("income", "update") or ("income", "delete") => Permissions.IncomeEdit,
+            ("sale", "create") => Permissions.SalesCreate,
+            _ => null,
+        };
 
     private static SyncOperationResultDto Applied(SyncOperationDto op, long? entityId)
         => new(op.OperationId, "applied", entityId, null, null);

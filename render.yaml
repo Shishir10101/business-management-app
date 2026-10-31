@@ -35,6 +35,13 @@ services:
       - key: Mongo__ConnectionString
         sync: false
 
+      # Render terminates TLS at its edge and connects over a private network.
+      # Without this the API sees plain HTTP from the proxy: rate limiting keys
+      # on the proxy's address and audit rows record it instead of the client.
+      # Safe here because the service is only reachable through Render's edge.
+      - key: ForwardedHeaders__TrustAll
+        value: "true"
+
       # Without these the seeder creates no super admin against a real database
       # (deliberate: no default password is ever written to production).
       - key: Admin__Bootstrap__Email

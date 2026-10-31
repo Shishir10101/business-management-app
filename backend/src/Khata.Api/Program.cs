@@ -1,3 +1,4 @@
+using System.Net;
 using System.Text.Json.Serialization;
 using System.Threading.RateLimiting;
 using FluentValidation;
@@ -11,6 +12,13 @@ using Microsoft.AspNetCore.RateLimiting;
 using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
+
+// Kestrel advertises its name and version on every response. That is a free
+// fingerprint for an attacker picking an exploit, and no client needs it.
+builder.WebHost.ConfigureKestrel(options => options.AddServerHeader = false);
+
+// Cached, per-business suspension lookups (see BusinessStatusMiddleware).
+builder.Services.AddMemoryCache();
 
 // --- Serilog ---
 builder.Host.UseSerilog((context, config) =>
@@ -49,6 +57,12 @@ builder.Services.AddAuthentication(options =>
         ValidateAudience = true,
         ValidateLifetime = true,
         ValidateIssuerSigningKey = true,
+        // Pin the algorithm instead of accepting whatever the token's own header
+        // names. "alg" is attacker-supplied, and the classic confusion attack is
+        // to present an HS256 token signed with an RSA public key once an
+        // asymmetric key exists anywhere in the key set. Naming the one
+        // algorithm this API issues removes that whole class.
+        ValidAlgorithms = [Microsoft.IdentityModel.Tokens.SecurityAlgorithms.HmacSha256],
         ValidIssuer = builder.Configuration["Jwt:Issuer"],
         ValidAudience = builder.Configuration["Jwt:Audience"],
         IssuerSigningKey = new Microsoft.IdentityModel.Tokens.SymmetricSecurityKey(
@@ -96,16 +110,48 @@ builder.Services.AddCors(options =>
 // Every PaaS terminates TLS at its edge and forwards plain HTTP, so without
 // this the app cannot tell a request is already secure: UseHttpsRedirection
 // would redirect endlessly and audit rows would record the proxy's IP instead
-// of the client's. Safe locally, where there is no proxy to spoof.
+// of the client's.
+//
+// WHO IS ALLOWED TO SET X-Forwarded-For MATTERS. Trusting the header from any
+// caller lets an attacker choose their own client IP, which defeats the
+// per-IP rate limiter (rotate the header, get a fresh budget) and poisons the
+// audit trail. The default is the framework's: loopback only, i.e. a proxy on
+// the same machine. A cloud platform whose edge connects over a private network
+// must opt in explicitly, because the app cannot tell that network apart from
+// a coffee-shop LAN:
+//
+//   ForwardedHeaders:TrustAll=true          (only when a host cannot be
+//                                            reached except through its proxy)
+//   ForwardedHeaders:KnownProxies=1.2.3.4   (comma-separated)
+//   ForwardedHeaders:KnownNetworks=10.0.0.0/8,172.16.0.0/12
 builder.Services.Configure<ForwardedHeadersOptions>(options =>
 {
     options.ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto;
-    // The proxy's address is assigned by the platform and not known in advance.
-    // The platform network is the trust boundary here; do not run this on a host
-    // that the public internet can reach directly.
-    options.KnownIPNetworks.Clear();
-    options.KnownProxies.Clear();
+
+    if (builder.Configuration.GetValue("ForwardedHeaders:TrustAll", false))
+    {
+        // The platform network is the trust boundary. Never use this on a host
+        // the public internet can reach directly.
+        options.KnownIPNetworks.Clear();
+        options.KnownProxies.Clear();
+        return;
+    }
+
+    foreach (var proxy in SplitList(builder.Configuration["ForwardedHeaders:KnownProxies"]))
+    {
+        if (IPAddress.TryParse(proxy, out var address))
+            options.KnownProxies.Add(address);
+    }
+
+    foreach (var network in SplitList(builder.Configuration["ForwardedHeaders:KnownNetworks"]))
+    {
+        if (System.Net.IPNetwork.TryParse(network, out var parsed))
+            options.KnownIPNetworks.Add(parsed);
+    }
 });
+
+static string[] SplitList(string? value) =>
+    (value ?? string.Empty).Split(',', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
 
 // --- Fail fast on a weak signing key ---
 // HMAC-SHA256 needs 256 bits of key material. A short key does not fail at
@@ -140,6 +186,14 @@ if (jwtSecret == PlaceholderJwtSecret &&
 // closes both. RemoteIpAddress is only the real client because
 // UseForwardedHeaders runs first.
 var isTesting = builder.Environment.IsEnvironment("Testing");
+
+// Limits are configurable so an operator can tune them per deployment (and the
+// probe suite can raise them) without a rebuild. Defaults are the safe values.
+var authPermitLimit = builder.Configuration.GetValue("RateLimiting:AuthPermitLimit", 10);
+var authWindowSeconds = builder.Configuration.GetValue("RateLimiting:AuthWindowSeconds", 60);
+var globalPermitLimit = builder.Configuration.GetValue("RateLimiting:GlobalPermitLimit", 600);
+var globalWindowSeconds = builder.Configuration.GetValue("RateLimiting:GlobalWindowSeconds", 60);
+
 builder.Services.AddRateLimiter(options =>
 {
     options.RejectionStatusCode = StatusCodes.Status429TooManyRequests;
@@ -150,8 +204,8 @@ builder.Services.AddRateLimiter(options =>
             {
                 // The test suite shares one process and one client address, so a
                 // real window would throttle the tests themselves.
-                PermitLimit = isTesting ? int.MaxValue : 10,
-                Window = TimeSpan.FromMinutes(1),
+                PermitLimit = isTesting ? int.MaxValue : authPermitLimit,
+                Window = TimeSpan.FromSeconds(authWindowSeconds),
                 QueueLimit = 0,
             }));
 
@@ -169,8 +223,8 @@ builder.Services.AddRateLimiter(options =>
             context.Connection.RemoteIpAddress?.ToString() ?? "unknown",
             _ => new FixedWindowRateLimiterOptions
             {
-                PermitLimit = isTesting ? int.MaxValue : 600,
-                Window = TimeSpan.FromMinutes(1),
+                PermitLimit = isTesting ? int.MaxValue : globalPermitLimit,
+                Window = TimeSpan.FromSeconds(globalWindowSeconds),
                 QueueLimit = 0,
             });
     });
@@ -220,6 +274,11 @@ if (app.Environment.IsDevelopment())
 app.UseCors("Default");
 app.UseHttpsRedirection();
 app.UseAuthentication();
+// Refuses a token whose business has since been suspended. Without this the
+// admin console's "suspend business" control is cosmetic: the tenant keeps
+// full access until its access token expires, and its refresh token keeps
+// minting new ones.
+app.UseMiddleware<Khata.Api.Middleware.BusinessStatusMiddleware>();
 app.UseAuthorization();
 app.MapControllers();
 
@@ -227,17 +286,20 @@ app.MapControllers();
 // Reports both stores separately, because they fail for different reasons: the
 // ledger is a connection string problem, Atlas is usually an IP allowlist or a
 // paused free-tier cluster. Anonymous on purpose — a load balancer has no token.
+//
+// Deliberately coarse: provider names, database names and exception type names
+// are reconnaissance for an attacker and useless to a health check, which only
+// needs "can this instance serve traffic". Details go to the log instead.
 app.MapGet("/health", async (KhataDbContext db, KhataMongoContext mongo, CancellationToken ct) =>
 {
     var ledgerOk = false;
-    string? ledgerError = null;
     try
     {
         ledgerOk = await db.Database.CanConnectAsync(ct);
     }
     catch (Exception ex)
     {
-        ledgerError = ex.GetType().Name;
+        Log.Warning(ex, "Health check: ledger unreachable");
     }
 
     // Atlas being unconfigured is a valid deployment, not a failure.
@@ -256,18 +318,8 @@ app.MapGet("/health", async (KhataDbContext db, KhataMongoContext mongo, Cancell
             status = !ledgerOk ? "unhealthy" : atlasConfigured && !atlasOk ? "degraded" : "ok",
             checks = new
             {
-                ledger = new
-                {
-                    ok = ledgerOk,
-                    provider = db.Database.ProviderName,
-                    error = ledgerError
-                },
-                atlas = new
-                {
-                    configured = atlasConfigured,
-                    ok = atlasOk,
-                    database = mongo.Database?.DatabaseNamespace.DatabaseName
-                }
+                ledger = new { ok = ledgerOk },
+                atlas = new { ok = atlasOk },
             },
             at = DateTime.UtcNow
         },
