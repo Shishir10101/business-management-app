@@ -76,8 +76,10 @@ Kept as a comment so it never becomes the opening line of a GitHub release body.
 - **Signing out left the ledger on the device.** `LocalCacheStore.clear()` was
   written and documented for exactly this, but nothing called it: the cache is a
   plaintext JSON file and it is not keyed by user or business, so the next
-  account on a shared shop phone could read the previous tenant's data. Sign-out
-  now wipes the records, the pending queue and the sync cursor.
+  account on a shared shop phone could read the previous tenant's data. The
+  offline read snapshot (`SnapshotCache`) had the same problem — its `clear()`
+  was only reachable from a button on the sync-status page. Sign-out now wipes
+  both: the records, the pending queue, the sync cursor and the snapshots.
 - **`demo_session.dart` imported `app_config.dart` one directory too high.** It
   only resolved because a `package:` URI that climbs above the package root
   clamps there, so the analyzer accepted a path the import checker rejected.
@@ -88,11 +90,12 @@ Kept as a comment so it never becomes the opening line of a GitHub release body.
 
 ### Security
 
-Three hardening rounds, all verified against a live instance; details and
-reproduction steps are in [`docs/SECURITY-AUDIT.md`](docs/SECURITY-AUDIT.md).
-Residual risks are documented there rather than silently accepted: statement
-tokens appear in the request log, the mobile snapshot cache is plaintext, the
-admin console has no CSP, and there is no MFA.
+Eighteen findings across four hardening rounds, all fixed and verified against a
+live instance; details and reproduction steps are in
+[`docs/SECURITY-AUDIT.md`](docs/SECURITY-AUDIT.md). Residual risks are documented
+there rather than silently accepted: statement tokens appear in the request log,
+the mobile snapshot cache is plaintext, the admin console has no CSP, and there
+is no MFA.
 
 ## [1.0.0] - 2026-10-20
 

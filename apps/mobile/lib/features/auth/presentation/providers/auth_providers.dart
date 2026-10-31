@@ -1,5 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../../core/offline/offline_providers.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../sync/data/repositories/sync_repository_impl.dart';
 import '../../data/repositories/auth_repository_impl.dart';
@@ -143,6 +144,12 @@ String authErrorMessage(String code, AppLocalizations l10n) => switch (code) {
 final authStateProvider = StateNotifierProvider<AuthNotifier, AuthState>((ref) {
   return AuthNotifier(
     ref.read(authRepositoryProvider),
-    onSignedOut: () => ref.read(syncRepositoryProvider).clearCache(),
+    onSignedOut: () async {
+      // Two independent plaintext caches hold ledger data, and neither is keyed
+      // by user or business: the sync store (records + queue) and the offline
+      // read snapshot (customer names, phones, balances). Both must go.
+      await ref.read(syncRepositoryProvider).clearCache();
+      await ref.read(snapshotCacheProvider).clear();
+    },
   );
 });
