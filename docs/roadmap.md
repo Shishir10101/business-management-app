@@ -556,6 +556,27 @@ of which need provider credentials or a billing model.
 
 ---
 
+## Compliance & Distribution
+
+Shipping through Google Play (rather than sideloading an APK from Releases)
+raises requirements that are not features. The state of each:
+
+- [x] **Privacy policy** — [`docs/privacy.md`](privacy.md), written to match
+      what the code actually does (including what it does *not* collect).
+- [x] **Proprietary licence** — [`LICENSE`](../LICENSE).
+- [ ] **Self-service account deletion.** Play requires an in-app and a web path
+      to delete an account. Today deletion is an operator action, which the
+      privacy policy states plainly instead of implying a button exists. This is
+      the blocking gap.
+- [ ] **Data export in a portable format.** Per-report CSV export exists; a
+      single "download everything" archive does not.
+- [ ] **Store listing assets** — screenshots, feature graphic, short and full
+      description. The launcher and web icons are already real, not placeholders.
+- [ ] **Signed release key in CI** — the keystore is created by hand and
+      gitignored; a CI build needs it as a secret.
+
+---
+
 ## MVP Definition
 
 **MVP = Phases 1-8** (foundation through dashboard/reports).
