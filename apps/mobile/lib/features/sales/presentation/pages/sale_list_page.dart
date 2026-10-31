@@ -7,6 +7,7 @@ import '../../../../core/utils/nepali_date_utils.dart';
 import '../../domain/entities/sale_entity.dart';
 import '../providers/sale_providers.dart';
 import '../../../../l10n/app_localizations.dart';
+import '../../../../core/utils/status_label.dart';
 import '../../../../core/router/nav.dart';
 
 /// Sales list: search, payment-status filter, and a link to each sale.
@@ -161,7 +162,7 @@ class _SaleTile extends StatelessWidget {
             maxLines: 1,
             overflow: TextOverflow.ellipsis),
         subtitle: Text(
-          '${_date(sale.saleDate)}  •  ${sale.saleType}',
+          '${_date(sale.saleDate)}  •  ${saleTypeLabel(sale.saleType, l10n)}',
           style: theme.textTheme.bodySmall,
         ),
         trailing: Column(

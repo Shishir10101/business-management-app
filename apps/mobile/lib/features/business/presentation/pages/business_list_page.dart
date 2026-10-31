@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 import '../providers/business_providers.dart';
 import '../../data/repositories/business_repository_impl.dart';
 import '../../../../l10n/app_localizations.dart';
+import '../../../../core/utils/status_label.dart';
 
 /// Business switcher: lists all businesses the user belongs to.
 /// Tapping a business switches the active business token context and
@@ -115,7 +116,7 @@ class BusinessListPage extends ConsumerWidget {
                     child: Text(business.name.substring(0, 1).toUpperCase()),
                   ),
                   title: Text(business.name),
-                  subtitle: Text(business.role),
+                  subtitle: Text(roleLabel(business.role, l10n)),
                   trailing: isActive
                       ? Chip(label: Text(l10n.active))
                       : const Icon(Icons.chevron_right),

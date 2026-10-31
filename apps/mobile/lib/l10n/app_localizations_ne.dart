@@ -1304,6 +1304,11 @@ class AppLocalizationsNe extends AppLocalizations {
   }
 
   @override
+  String openDocumentsCount(int count) {
+    return 'कागजात: $count';
+  }
+
+  @override
   String get profitAndLoss => 'नाफा र घाटा';
 
   @override
@@ -2121,6 +2126,12 @@ class AppLocalizationsNe extends AppLocalizations {
 
   @override
   String get roleAccountant => 'लेखाकार';
+
+  @override
+  String get roleSalesStaff => 'बिक्री कर्मचारी';
+
+  @override
+  String get roleInventoryStaff => 'भण्डार कर्मचारी';
 
   @override
   String get noBusiness => 'व्यवसाय छैन';

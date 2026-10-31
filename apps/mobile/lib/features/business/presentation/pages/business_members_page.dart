@@ -5,6 +5,7 @@ import '../../domain/entities/business_entity.dart';
 import '../providers/business_providers.dart';
 import '../../data/repositories/business_repository_impl.dart';
 import '../../../../l10n/app_localizations.dart';
+import '../../../../core/utils/status_label.dart';
 
 /// Staff management: list members, invite by email, change roles, remove.
 /// Only Owners and Admins can manage (the API enforces this too).
@@ -39,7 +40,7 @@ class BusinessMembersPage extends ConsumerWidget {
                 value: role,
                 decoration: InputDecoration(labelText: l10n.role),
                 items: kAssignableRoles
-                    .map((r) => DropdownMenuItem(value: r, child: Text(r)))
+                    .map((r) => DropdownMenuItem(value: r, child: Text(roleLabel(r, l10n))))
                     .toList(),
                 onChanged: (value) => setState(() => role = value ?? 'Viewer'),
               ),
@@ -223,7 +224,7 @@ class BusinessMembersPage extends ConsumerWidget {
                     child: Text(member.fullName.substring(0, 1).toUpperCase()),
                   ),
                   title: Text(member.fullName),
-                  subtitle: Text(l10n.emailAndRole('${member.email}', '${member.role}')),
+                  subtitle: Text(l10n.emailAndRole(member.email, roleLabel(member.role, l10n))),
                   isThreeLine: true,
                   trailing: canManage
                       ? PopupMenuButton<String>(

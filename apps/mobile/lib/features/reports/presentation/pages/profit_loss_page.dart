@@ -53,7 +53,7 @@ class ProfitLossPage extends ConsumerWidget {
                     const Divider(),
                     _StatementLine(l10n.grossProfit, pl.grossProfit, bold: true),
                     _StatementLine(l10n.otherIncome, pl.otherIncome),
-                    _StatementLine('Expenses', -pl.expenses),
+                    _StatementLine(l10n.expenses, -pl.expenses),
                     const Divider(),
                     _StatementLine(l10n.netProfit, pl.netProfit, bold: true),
                     const SizedBox(height: 8),

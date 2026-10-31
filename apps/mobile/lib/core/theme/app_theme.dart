@@ -202,6 +202,17 @@ class AppTheme {
           fontWeight: FontWeight.w600,
         ),
       ),
+      // Every TabBar in the app sits in an AppBar, whose background is the
+      // primary colour. Material 3 defaults the selected tab label to
+      // colorScheme.primary, i.e. the same green: the calculators page showed
+      // dark-green text on a green bar. Use the app bar's own foreground.
+      tabBarTheme: TabBarThemeData(
+        labelColor: appBarForeground,
+        unselectedLabelColor: appBarForeground.withOpacity(0.72),
+        indicatorColor: appBarForeground,
+        indicatorSize: TabBarIndicatorSize.tab,
+        dividerColor: Colors.transparent,
+      ),
       cardTheme: CardThemeData(
         // A 1px lift is not visible as a shadow but stops a white card from
         // dissolving into the paper background on a dim screen — the reason

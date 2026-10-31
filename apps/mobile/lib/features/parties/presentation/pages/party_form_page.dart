@@ -91,8 +91,8 @@ class _PartyFormPageState extends ConsumerState<PartyFormPage> {
     return Scaffold(
       appBar: AppBar(
         title: Text(_isEdit
-            ? l10n.editKind(_isCustomer ? 'customer' : 'supplier')
-            : l10n.newKind(_isCustomer ? 'customer' : 'supplier')),
+            ? l10n.editKind(_isCustomer ? l10n.customer : l10n.supplier)
+            : l10n.newKind(_isCustomer ? l10n.customer : l10n.supplier)),
         actions: [
           if (_isEdit)
             IconButton(

@@ -58,7 +58,7 @@ class InvoiceListPage extends ConsumerWidget {
                   Padding(
                     padding: const EdgeInsets.only(right: 8),
                     child: ChoiceChip(
-                      label: Text(option ?? 'All'),
+                      label: Text(option == null ? l10n.all : statusLabel(option, l10n)),
                       selected: status == option,
                       onSelected: (_) => ref
                           .read(invoiceStatusFilterProvider.notifier)

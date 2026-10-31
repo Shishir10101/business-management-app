@@ -651,6 +651,14 @@
       }
     }
   },
+  "openDocumentsCount": "कागजात: {count}",
+  "@openDocumentsCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "profitAndLoss": "नाफा र घाटा",
   "salesReportTitle": "बिक्री प्रतिवेदन",
   "revenueExcludesVat": "आम्दानीमा भ्याट समावेश छैन।",
@@ -1227,6 +1235,8 @@
   "roleAdmin": "प्रशासक",
   "roleManager": "प्रबन्धक",
   "roleAccountant": "लेखाकार",
+  "roleSalesStaff": "बिक्री कर्मचारी",
+  "roleInventoryStaff": "भण्डार कर्मचारी",
   "noBusiness": "व्यवसाय छैन",
   "couldNotLoadProducts": "उत्पादनहरू लोड गर्न सकिएन।\\n{error}",
   "@couldNotLoadProducts": {

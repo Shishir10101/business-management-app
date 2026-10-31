@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../core/widgets/khata_snackbars.dart';
+import '../../../../core/utils/nepali_date_utils.dart';
 import '../../data/repositories/reminder_repository_impl.dart';
 import '../../domain/entities/reminder_entity.dart';
 import '../providers/reminder_providers.dart';
@@ -104,7 +105,7 @@ class _ReminderListPageState extends ConsumerState<ReminderListPage> {
                 ],
                 if (ahead.isNotEmpty) ...[
                   _SectionHeader(
-                    now.isEmpty ? 'Reminders' : 'Scheduled',
+                    now.isEmpty ? l10n.reminders : l10n.scheduled,
                   ),
                   ...ahead.map((r) => _ReminderTile(reminder: r)),
                 ],
@@ -129,7 +130,7 @@ class _ReminderListPageState extends ConsumerState<ReminderListPage> {
       if (mounted) {
         showInfoSnackBar(
           context,
-          fired == 0 ? l10n.nothingDue : '$fired reminder(s) fired',
+          fired == 0 ? l10n.nothingDue : l10n.remindersFiredCount(fired),
         );
       }
     } catch (e) {
@@ -255,8 +256,9 @@ String _formatDue(DateTime value, AppLocalizations l10n) {
   if (delta == 0) return l10n.todayAt(clock);
   if (delta == 1) return l10n.tomorrowAt(clock);
   if (delta == -1) return l10n.yesterdayAt(clock);
-  final date = '${value.year}-${_two(value.month)}-${_two(value.day)}';
-  return delta < 0 ? '$date $clock' : '$date $clock';
+  // Honour the AD/BS preference: this used to print an AD date even when the
+  // rest of the app was set to Bikram Sambat.
+  return '${formatDisplayDate(value)} $clock';
 }
 
 String _clock(DateTime value) {

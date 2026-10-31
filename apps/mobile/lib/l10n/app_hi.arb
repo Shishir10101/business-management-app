@@ -651,6 +651,14 @@
       }
     }
   },
+  "openDocumentsCount": "दस्तावेज़: {count}",
+  "@openDocumentsCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "profitAndLoss": "लाभ और हानि",
   "salesReportTitle": "बिक्री रिपोर्ट",
   "revenueExcludesVat": "राजस्व में VAT शामिल नहीं है।",
@@ -1227,6 +1235,8 @@
   "roleAdmin": "एडमिन",
   "roleManager": "मैनेजर",
   "roleAccountant": "लेखाकार",
+  "roleSalesStaff": "बिक्री कर्मचारी",
+  "roleInventoryStaff": "भंडार कर्मचारी",
   "noBusiness": "कोई व्यवसाय नहीं",
   "couldNotLoadProducts": "उत्पाद लोड नहीं हो सके।\n{error}",
   "@couldNotLoadProducts": {

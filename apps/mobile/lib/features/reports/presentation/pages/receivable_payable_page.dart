@@ -77,6 +77,7 @@ class _PartyTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final l10n = AppLocalizations.of(context);
     final color =
         isReceivable ? theme.colorScheme.error : Colors.green.shade700;
 
@@ -97,7 +98,7 @@ class _PartyTile extends StatelessWidget {
             if (party.phoneNumber != null && party.phoneNumber!.isNotEmpty)
               party.phoneNumber!,
             if (party.openDocuments > 0)
-              '${party.openDocuments} open document(s)',
+              l10n.openDocumentsCount(party.openDocuments),
           ].join(' · '),
           style: theme.textTheme.bodySmall,
         ),

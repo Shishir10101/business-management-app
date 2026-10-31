@@ -7,6 +7,7 @@ import '../../../../core/utils/nepali_date_utils.dart';
 import '../../domain/entities/purchase_entity.dart';
 import '../providers/purchase_providers.dart';
 import '../../../../l10n/app_localizations.dart';
+import '../../../../core/utils/status_label.dart';
 import '../../../../core/router/nav.dart';
 
 /// Purchases list: search, payment-status filter, and a link to each purchase.
@@ -161,7 +162,7 @@ class _PurchaseTile extends StatelessWidget {
             maxLines: 1,
             overflow: TextOverflow.ellipsis),
         subtitle: Text(
-          '${_date(purchase.purchaseDate)}  •  ${purchase.purchaseType}',
+          '${_date(purchase.purchaseDate)}  •  ${saleTypeLabel(purchase.purchaseType, l10n)}',
           style: theme.textTheme.bodySmall,
         ),
         trailing: Column(

@@ -651,6 +651,14 @@
       }
     }
   },
+  "openDocumentsCount": "Docs: {count}",
+  "@openDocumentsCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "profitAndLoss": "Profit & loss",
   "salesReportTitle": "Sales report",
   "revenueExcludesVat": "Revenue excludes VAT.",
@@ -1227,6 +1235,8 @@
   "roleAdmin": "Admin",
   "roleManager": "Manager",
   "roleAccountant": "Accountant",
+  "roleSalesStaff": "Sales staff",
+  "roleInventoryStaff": "Inventory staff",
   "noBusiness": "No business",
   "couldNotLoadProducts": "Could not load products.\\n{error}",
   "@couldNotLoadProducts": {
