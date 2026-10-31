@@ -6,8 +6,8 @@ COPY backend/src/Khata.Domain/Khata.Domain.csproj Khata.Domain/
 COPY backend/src/Khata.Application/Khata.Application.csproj Khata.Application/
 COPY backend/src/Khata.Infrastructure/Khata.Infrastructure.csproj Khata.Infrastructure/
 COPY backend/src/Khata.Api/Khata.Api.csproj Khata.Api/
-COPY backend/Khata.sln .
-RUN dotnet restore Khata.sln
+COPY backend/Khata.slnx .
+RUN dotnet restore Khata.slnx
 
 # Copy all source and build
 COPY backend/ .

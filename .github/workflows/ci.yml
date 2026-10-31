@@ -1,0 +1,95 @@
+name: CI
+
+# Every release is built from a commit that passed this. The mobile job is the
+# important half: `flutter test` cannot run in the development sandbox this
+# project was built in, so CI is the only place the Dart test suite actually
+# executes. The four Python checkers catch the classes of breakage a compiler
+# does not — unresolvable imports, an ARB key present in one language but not
+# another, and a generated localizations file that is out of date.
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  backend:
+    name: Backend (build + test)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '10.0.x'
+
+      - name: Restore
+        run: dotnet restore backend/Khata.slnx
+
+      # TreatWarningsAsErrors is on in Directory.Build.props, so a warning here
+      # is a failed build by design.
+      - name: Build
+        run: dotnet build backend/Khata.slnx -c Release --no-restore
+
+      # The suite runs on SQLite with Mongo disabled, so it needs no secrets and
+      # no network. That is deliberate: a test that needs credentials does not
+      # run on a pull request.
+      - name: Test
+        run: dotnet test backend/tests/Khata.Tests/Khata.Tests.csproj -c Release --no-build --verbosity normal
+
+  mobile:
+    name: Mobile (analyze + checks + test)
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: apps/mobile
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          cache: true
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Dependencies
+        run: flutter pub get
+
+      - name: Static analysis
+        run: flutter analyze --no-fatal-infos
+
+      # These read the source tree, not the build output, so they run before
+      # anything is compiled and fail fast.
+      - name: Syntax check
+        run: python ../../scripts/check_flutter_syntax.py
+
+      - name: Import resolution
+        run: python ../../scripts/check_flutter_imports.py
+
+      - name: Localization parity
+        run: python ../../scripts/check_localizations.py
+
+      - name: Generated localizations are current
+        run: python ../../scripts/gen_l10n.py --check
+
+      - name: Tests
+        run: flutter test --reporter expanded
+
+  docker:
+    name: API image builds
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      # Catches the failure mode that matters most for deployment: a Dockerfile
+      # that references a file the repository does not have. The image is not
+      # pushed from here — Render builds it — but it must at least build.
+      - name: Build image
+        run: docker build -f infrastructure/Dockerfile.api -t khata-api:ci .

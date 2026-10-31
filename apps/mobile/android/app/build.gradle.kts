@@ -33,11 +33,46 @@ android {
         versionName = flutter.versionName
     }
 
+    // --- Release signing ---
+    // A debug-signed APK cannot be distributed: the debug key is public, so
+    // anyone can build a different app that Android accepts as an update to
+    // this one, and the signature changes the moment a real key is used.
+    //
+    // The keystore is never in the repository. `android/key.properties` is
+    // gitignored and holds the four values below. When it is absent (a fresh
+    // clone, CI, or `flutter run --release` on a dev machine) the build falls
+    // back to the debug key so the project still builds — but
+    // `flutter build appbundle`/`apk --release` for distribution must have it.
+    val keystoreProperties = java.util.Properties()
+    val keystorePropertiesFile = rootProject.file("key.properties")
+    if (keystorePropertiesFile.exists()) {
+        keystorePropertiesFile.inputStream().use { keystoreProperties.load(it) }
+    }
+
+    signingConfigs {
+        if (keystorePropertiesFile.exists()) {
+            create("release") {
+                keyAlias = keystoreProperties.getProperty("keyAlias")
+                keyPassword = keystoreProperties.getProperty("keyPassword")
+                storeFile = keystoreProperties.getProperty("storeFile")?.let { file(it) }
+                storePassword = keystoreProperties.getProperty("storePassword")
+            }
+        }
+    }
+
     buildTypes {
         release {
-            // TODO: Add your own signing config for the release build.
-            // Signing with the debug keys for now, so `flutter run --release` works.
-            signingConfig = signingConfigs.getByName("debug")
+            signingConfig = if (keystorePropertiesFile.exists()) {
+                signingConfigs.getByName("release")
+            } else {
+                // Loud on purpose: a silent debug-signed "release" is how an
+                // un-installable build reaches a shopkeeper.
+                logger.warn(
+                    "WARNING: android/key.properties not found — the release build " +
+                        "is signed with the DEBUG key and must not be distributed."
+                )
+                signingConfigs.getByName("debug")
+            }
         }
     }
 }

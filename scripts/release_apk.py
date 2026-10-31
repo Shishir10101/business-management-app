@@ -5,9 +5,13 @@ The app checks GitHub's *latest release* for updates, so publishing a release
 is the entire act of shipping a version. This script does the four things that
 have to happen in order, so a release is one command rather than a checklist:
 
-    python scripts/release_apk.py --bump patch --notes "Fix sale rounding"
+    python scripts/release_apk.py --bump patch
     python scripts/release_apk.py --version 1.2.0
     python scripts/release_apk.py --bump patch --dry-run
+
+Release notes come from `CHANGELOG.md` — the section for the version being cut
+becomes the GitHub release body, so the two cannot drift apart. `--notes` is an
+override for a one-off, not the normal path.
 
 Why the GitHub REST API and not `gh`: the `gh` CLI is not installed here, and
 adding it would mean a second login. The token comes from the git credential
@@ -21,6 +25,8 @@ history is unrecoverable debt.
 from __future__ import annotations
 
 import argparse
+import datetime
+import ipaddress
 import json
 import mimetypes
 import pathlib
@@ -29,14 +35,25 @@ import shutil
 import subprocess
 import sys
 import urllib.error
+import urllib.parse
 import urllib.request
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 MOBILE = ROOT / "apps" / "mobile"
 PUBSPEC = MOBILE / "pubspec.yaml"
+CHANGELOG = ROOT / "CHANGELOG.md"
 APK = MOBILE / "build" / "app" / "outputs" / "flutter-apk" / "app-release.apk"
 
 VERSION_RE = re.compile(r"^version:\s*(\d+)\.(\d+)\.(\d+)\+(\d+)\s*$", re.MULTILINE)
+
+# `## [1.2.0] - 2026-10-31` or `## [Unreleased]`
+CHANGELOG_HEADING_RE = re.compile(
+    r"^## \[(?P<label>[^\]]+)\](?: - (?P<date>\d{4}-\d{2}-\d{2}))?[ \t]*$",
+    re.MULTILINE,
+)
+CHANGELOG_LINK_RE = re.compile(r"^\[[^\]]+\]:\s*\S+[ \t]*$", re.MULTILINE)
+HTML_COMMENT_RE = re.compile(r"<!--.*?-->", re.DOTALL)
+UNRELEASED_LINK_RE = re.compile(r"^\[Unreleased\]:\s*(?P<base>\S+?)/compare/\S*[ \t]*$", re.MULTILINE)
 
 
 def run(cmd: list[str], cwd: pathlib.Path = ROOT, check: bool = True) -> subprocess.CompletedProcess:
@@ -71,6 +88,65 @@ def bump(current: tuple[int, int, int, int], kind: str) -> tuple[int, int, int]:
     if kind == "patch":
         return major, minor, patch + 1
     return major, minor, patch
+
+
+def changelog_body(text: str, label: str) -> str | None:
+    """Body under `## [label]`, or None. Link definitions are not part of it."""
+    headings = list(CHANGELOG_HEADING_RE.finditer(text))
+    for index, match in enumerate(headings):
+        if match.group("label").strip().lower() != label.strip().lower():
+            continue
+        end = headings[index + 1].start() if index + 1 < len(headings) else len(text)
+        body = HTML_COMMENT_RE.sub("", text[match.end():end])
+        body = CHANGELOG_LINK_RE.sub("", body)
+        return body.strip()
+    return None
+
+
+def promote_unreleased(text: str, version: str, today: str) -> str:
+    """Turn `## [Unreleased]` into `## [version] - today`, leaving a fresh one."""
+    promoted = re.sub(
+        r"^## \[Unreleased\][ \t]*$",
+        f"## [Unreleased]\n\n## [{version}] - {today}",
+        text,
+        count=1,
+        flags=re.MULTILINE,
+    )
+    # Keep the compare links honest: Unreleased now diffs against the new tag.
+    promoted = UNRELEASED_LINK_RE.sub(
+        lambda m: (
+            f"[Unreleased]: {m.group('base')}/compare/v{version}...HEAD\n"
+            f"[{version}]: {m.group('base')}/releases/tag/v{version}"
+        ),
+        promoted,
+        count=1,
+    )
+    return promoted
+
+
+def release_notes(version: str, today: str) -> tuple[str, str | None]:
+    """(release body, new CHANGELOG text or None when nothing needs rewriting).
+
+    The changelog is the single source of truth for release notes, so the notes
+    on GitHub cannot drift from the repository. An explicit `--notes` still wins
+    for the published body, but the version heading is promoted either way.
+    """
+    if not CHANGELOG.exists():
+        raise SystemExit(f"{CHANGELOG} is missing; it is the source of release notes")
+
+    text = CHANGELOG.read_text(encoding="utf-8")
+    existing = changelog_body(text, version)
+    if existing:
+        return existing, None
+
+    unreleased = changelog_body(text, "Unreleased")
+    if not unreleased:
+        raise SystemExit(
+            f"CHANGELOG.md has neither `## [{version}]` nor a non-empty "
+            f"`## [Unreleased]` section — write the notes before releasing"
+        )
+
+    return unreleased, promote_unreleased(text, version, today)
 
 
 def flutter_binary() -> str:
@@ -138,18 +214,74 @@ def upload_asset(owner: str, repo: str, release_id: int, token: str, apk: pathli
         return json.loads(response.read())
 
 
+def require_public_api_base(value: str | None) -> str:
+    """Refuse to publish an APK that cannot reach a server.
+
+    `AppConfig.apiBaseUrl` falls back to `http://localhost:5000` when no
+    `--dart-define` is supplied. Such an APK installs cleanly, shows the login
+    screen, and then fails every request — on the user's phone, after the
+    release is already public. Both checks below catch a mistake that a build
+    log will not.
+    """
+    if not value:
+        raise SystemExit(
+            "--api-base is required. The APK's default API URL is http://localhost:5000, "
+            "which a phone resolves to itself, so the build would install and then be "
+            "unable to reach the server.\n"
+            "  e.g. --api-base https://khata-api.onrender.com\n"
+            "Pass --allow-local-api only for an internal test build."
+        )
+
+    parsed = urllib.parse.urlparse(value)
+    host = (parsed.hostname or "").lower()
+
+    if parsed.scheme != "https":
+        raise SystemExit(
+            f"--api-base must be https:// (got {value!r}). "
+            "android/app/src/main/res/xml/network_security_config.xml refuses cleartext "
+            "HTTP to every host except localhost and the listed dev addresses, so an "
+            "http:// APK cannot connect at all."
+        )
+
+    private = host in {"localhost", "0.0.0.0", "::1"}
+    try:
+        address = ipaddress.ip_address(host)
+        private = private or address.is_private or address.is_loopback or address.is_link_local
+    except ValueError:
+        # A hostname: only the names above are inherently local.
+        pass
+
+    if private and not value.startswith("https://localhost"):
+        raise SystemExit(
+            f"--api-base points at a private/loopback address ({host}); no shop's phone can "
+            "reach it. Deploy the API first, or pass --allow-local-api for an internal build."
+        )
+
+    return value
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description="Cut a versioned APK release.")
     parser.add_argument("--bump", choices=["patch", "minor", "major"], default="patch")
     parser.add_argument("--version", help="explicit X.Y.Z, overrides --bump")
     parser.add_argument("--api-base", default=None,
-                        help="API_BASE_URL compiled into the APK (default: keep the last one)")
-    parser.add_argument("--notes", default="", help="release notes body")
+                        help="API_BASE_URL compiled into the APK. Required for a real "
+                             "build: AppConfig.apiBaseUrl defaults to http://localhost:5000, "
+                             "which every phone resolves to itself.")
+    parser.add_argument("--allow-local-api", action="store_true",
+                        help="permit a loopback/LAN --api-base (internal test builds only)")
+    parser.add_argument("--notes", default="",
+                        help="override the release body (default: the CHANGELOG.md "
+                             "section for this version)")
     parser.add_argument("--flutter", default=None)
     parser.add_argument("--skip-build", action="store_true",
                         help="publish the existing APK without bumping or rebuilding")
     parser.add_argument("--dry-run", action="store_true")
     args = parser.parse_args()
+
+    # Checked before anything is written, so a dry run catches it too.
+    if not args.skip_build and not args.allow_local_api:
+        args.api_base = require_public_api_base(args.api_base)
 
     current = read_version()
     if args.version:
@@ -178,6 +310,17 @@ def main() -> int:
         print(f"version {current[0]}.{current[1]}.{current[2]}+{current[3]} -> "
               f"{'.'.join(map(str, target))}+{build_number}  ({tag})")
 
+    # Resolved before the dry-run exit so a dry run also proves the changelog
+    # has notes for this version.
+    version_text = ".".join(map(str, target))
+    body, promoted_changelog = release_notes(version_text, datetime.date.today().isoformat())
+    if args.notes.strip():
+        print(f"notes     : --notes ({len(args.notes.strip())} chars, overrides CHANGELOG.md)")
+        body = args.notes.strip()
+    else:
+        first = body.splitlines()[0] if body else ""
+        print(f"notes     : CHANGELOG.md [{version_text}] ({len(body)} chars) — {first[:60]}")
+
     if args.dry_run:
         print("dry run: stopping before any write")
         return 0
@@ -191,6 +334,10 @@ def main() -> int:
 
         print("building APK (several minutes)...")
         run(build_cmd, cwd=MOBILE)
+
+    if promoted_changelog is not None:
+        CHANGELOG.write_text(promoted_changelog, encoding="utf-8")
+        print(f"CHANGELOG.md: [Unreleased] promoted to [{version_text}]")
 
     if not APK.exists():
         raise SystemExit(f"{APK} is missing — build first, or drop --skip-build")
@@ -208,7 +355,7 @@ def main() -> int:
     token = github_token()
 
     print("committing and tagging...")
-    run(["git", "add", str(PUBSPEC.relative_to(ROOT))])
+    run(["git", "add", str(PUBSPEC.relative_to(ROOT)), str(CHANGELOG.relative_to(ROOT))])
     staged = run(["git", "diff", "--cached", "--quiet"], check=False).returncode != 0
     if staged:
         run(["git", "commit", "-m", f"Release {tag}"])
@@ -218,12 +365,11 @@ def main() -> int:
     run(["git", "push", "origin", "HEAD"])
     run(["git", "push", "origin", tag])
 
-    notes = args.notes.strip() or f"Khata {'.'.join(map(str, target))}"
     print("creating release...")
     release = api("POST", f"https://api.github.com/repos/{owner}/{repo}/releases", token, {
         "tag_name": tag,
         "name": f"Khata {'.'.join(map(str, target))}",
-        "body": notes,
+        "body": body,
         "draft": False,
         "prerelease": False,
     })

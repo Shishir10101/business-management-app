@@ -10,9 +10,9 @@
 .packages
 .pub-cache/
 .pub/
-pubspec.lock
-*.lock
-!infrastructure/**/*.lock
+# Lock files ARE committed: they pin the dependency graph that was tested.
+# Ignoring pubspec.lock means a release build can silently resolve different
+# package versions than the ones the test suite passed against.
 coverage/
 *.dart.js
 *.js_
@@ -87,6 +87,14 @@ khata_demo.db-wal
 *.key
 !infrastructure/**/*.env.example
 
+# --- Android release signing ---
+# The keystore and its passwords must never enter the repository. Losing them
+# means the app can never be updated in place: Android only accepts an update
+# signed with the same key. Back the keystore up somewhere that is not git.
+**/key.properties
+*.jks
+*.keystore
+
 # --- E2E artifacts ---
 # Written by scripts/e2e/seed_demo_account.py; holds a live account password.
 scripts/e2e/demo_account.json
@@ -94,6 +102,11 @@ scripts/e2e/walk.log
 # Audit run output: regenerable, and dozens of PNGs.
 scripts/e2e/audit_shots/
 scripts/e2e/audit_report.json
+# Newer audit run (audit_all_routes.py) — same reasoning, different filenames.
+scripts/e2e/audit_all_shots/
+scripts/e2e/audit_all_report.json
+# Written by seed_ui_fixtures.py from demo_account.json; ids only, still derived.
+scripts/e2e/ui_fixtures.json
 
 # --- Docker ---
 .docker/
