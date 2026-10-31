@@ -5,9 +5,18 @@
 /// *display* concern: Nepali users read dates in BS, so we convert at the
 /// edge and never let a BS value leak into persistence.
 ///
-/// Everything here is total — none of these calls throw. `NepaliDateTime`
-/// asserts for years outside 1970-2250 BS, and a label must never take a page
-/// down, so out-of-range input degrades to the AD date instead.
+/// Conversion is done here, from an embedded month-length table, rather than
+/// through `nepali_utils`. That library's `toNepaliDateTime()` applies a
+/// "+1 day" compensation whenever the device is in Nepal time (UTC+05:45),
+/// which is this app's primary market: on a Nepali phone every AD -> BS
+/// conversion came out one day late, and its BS -> AD inverse was off by one
+/// in the other direction. Worse, its month table disagrees with the published
+/// calendar for several years (Jestha 2084 is 31 days, not 32), which produced
+/// impossible dates such as 2084-02-32.
+///
+/// The table below is the settled dataset (1975-2100 BS), and the arithmetic
+/// is done entirely in UTC so neither the device timezone nor daylight saving
+/// can shift a date.
 library;
 
 import 'package:nepali_utils/nepali_utils.dart';
@@ -32,51 +41,140 @@ CalendarSystem get activeCalendar => _activeCalendar;
 
 void setActiveCalendar(CalendarSystem calendar) => _activeCalendar = calendar;
 
+/// First and last BS year the table covers.
+const int _firstBsYear = 1975;
+const int _lastBsYear = 2100;
+
+/// Month lengths for [_firstBsYear]..[_lastBsYear], one character per month:
+/// `9` = 29 days, `0` = 30, `1` = 31, `2` = 32. 126 years x 12 months.
+///
+/// Source: the `nepali-datetime` BS dataset, verified against published month
+/// calendars for 2062, 2083 and 2084 (e.g. Jestha 2084 runs 15 May - 14 Jun
+/// 2027, 31 days). Do not edit by hand; regenerate with
+/// `scripts/verify_calendar.py`'s sibling generator if the dataset changes.
+const String _monthLengths =
+    '112210090900121210009901021210009091112111090900112210090900121210009901111211900900112111090900'
+    '112210090900121210009901111211900900112111090900121210090900121210009901111211900900112111090900'
+    '121210009900121210009091112111090900112111090900121210009900121210009091112111090900112111090900'
+    '121210009901021210009091112111090900112210090900121210009901021210009091112111090900112210090900'
+    '121210009901111211900991112111090900112210090900121210009901111211900900112111090900112210090900'
+    '121210009901111211900900112111090900121210090900121210009091111211090900112111090900121210009900'
+    '121210009091111211090900112111090900121210009901021210009091112111090900112120090900121210009901'
+    '021210009091112111090900112210090900121210009901021211900991112111090900112210090900121210009901'
+    '111211900900112111090900112210090900121210009901111211900900112111090900121210090900121210009901'
+    '111211090900112111090900121210009900121210009091111211090900112111090900121210009900121210009091'
+    '112111090900112120090900121210009901021210009091112111090900112210090900121210009901111211909091'
+    '112111090900112210090900121210009901111211900991112111090900112210090900121210009901111211900900'
+    '112111090900121210090900121210009901111211090900112111090900121210009900121210009091111211090900'
+    '112111090900121210009900121210009091112111090900112111090900112110009000121201009000021210009000'
+    '112111090000012201009000021210009000021210009000112111009000012210009000021210009000112110009000'
+    '112111090000012210090900121210009000112111909091112111099000121201090900';
+
+/// BS [year]-01-01 as an AD instant (UTC). BS 1975-01-01 = 1918-04-13, the
+/// anchor the dataset is defined against; BS 2000-01-01 then lands on
+/// 1943-04-14, which is the published Nepali New Year for that year.
+final DateTime _anchor = DateTime.utc(1918, 4, 13);
+
+/// Days in a BS month, or `null` when the year/month is outside the table.
+int? _monthLength(int year, int month) {
+  if (year < _firstBsYear || year > _lastBsYear) return null;
+  if (month < 1 || month > 12) return null;
+  final index = (year - _firstBsYear) * 12 + (month - 1);
+  // '9' encodes 29 (the only length that does not follow the pattern), so
+  // '0'..'2' map to 30..32 and '9' is handled separately.
+  final digit = _monthLengths.codeUnitAt(index) - 0x30;
+  return digit == 9 ? 29 : digit + 30;
+}
+
+/// Cumulative days from BS 1975-01-01 to the first day of each year, plus a
+/// final entry holding the total day count (used as an upper bound).
+final List<int> _yearStarts = _buildYearStarts();
+
+List<int> _buildYearStarts() {
+  final starts = List<int>.filled(_lastBsYear - _firstBsYear + 2, 0);
+  var total = 0;
+  for (var year = _firstBsYear; year <= _lastBsYear; year++) {
+    starts[year - _firstBsYear] = total;
+    for (var month = 1; month <= 12; month++) {
+      total += _monthLength(year, month)!;
+    }
+  }
+  starts[_lastBsYear - _firstBsYear + 1] = total;
+  return starts;
+}
+
 /// BS year/month/day for an AD [dateTime], or `null` when out of range.
 ///
-/// `nepali_utils` 3.0.8 applies an unconditional "+1 day" compensation for
-/// dates after 1986 when the device is in Nepal time (UTC+05:45) — which is
-/// this app's primary market. The result is that AD -> BS comes out one day
-/// ahead (2026-10-18 rendered as 2083-07-02 instead of 2083-07-01), while
-/// BS -> AD is correct. Rather than trusting either direction, convert and
-/// check the round trip; step back a day only when it disagrees.
+/// The date part is compared in UTC, so a device in Nepal time and a device in
+/// UTC produce the same answer for the same calendar day.
 NepaliDateTime? tryToBs(DateTime dateTime) {
   try {
-    var bs = dateTime.toNepaliDateTime();
-    if (!_sameDay(bs.toDateTime(), dateTime)) {
-      bs = DateTime(dateTime.year, dateTime.month, dateTime.day - 1)
-          .toNepaliDateTime();
+    final days = DateTime.utc(dateTime.year, dateTime.month, dateTime.day)
+        .difference(_anchor)
+        .inDays;
+
+    if (days < 0 || days >= _yearStarts.last) return null;
+
+    // Binary search: the last year whose start is <= days.
+    var low = 0;
+    var high = _lastBsYear - _firstBsYear;
+    while (low < high) {
+      final mid = (low + high + 1) >> 1;
+      if (_yearStarts[mid] <= days) {
+        low = mid;
+      } else {
+        high = mid - 1;
+      }
     }
-    // `toNepaliDateTime` can return a value with a zeroed year for inputs
-    // outside the table; treat that as a failure rather than rendering it.
-    if (bs.year < 1970 || bs.year > 2250) return null;
-    return bs;
+
+    final year = _firstBsYear + low;
+    var remaining = days - _yearStarts[low];
+    var month = 1;
+    while (true) {
+      final length = _monthLength(year, month)!;
+      if (remaining < length) break;
+      remaining -= length;
+      month++;
+    }
+
+    return NepaliDateTime(
+      year,
+      month,
+      remaining + 1,
+      dateTime.hour,
+      dateTime.minute,
+      dateTime.second,
+    );
   } catch (_) {
     return null;
   }
 }
 
-bool _sameDay(DateTime a, DateTime b) =>
-    a.year == b.year && a.month == b.month && a.day == b.day;
+/// BS -> AD. Returns `null` when the BS date is outside the supported range or
+/// the day does not exist in that month.
+DateTime? tryToAd(
+  int bsYear,
+  int bsMonth,
+  int bsDay, {
+  int hour = 0,
+  int minute = 0,
+}) {
+  final length = _monthLength(bsYear, bsMonth);
+  if (length == null || bsDay < 1 || bsDay > length) return null;
 
-
-/// BS -> AD. Returns `null` when the BS date is outside the supported range.
-DateTime? tryToAd(int bsYear, int bsMonth, int bsDay,
-    {int hour = 0, int minute = 0}) {
-  try {
-    if (bsYear < 1970 || bsYear > 2250) return null;
-    if (bsMonth < 1 || bsMonth > 12) return null;
-    if (bsDay < 1 || bsDay > 32) return null;
-    final bs = NepaliDateTime(bsYear, bsMonth, bsDay, hour, minute);
-    // Guard against a day that does not exist in that BS month.
-    if (bs.day != bsDay || bs.month != bsMonth) return null;
-    return bs.toDateTime();
-  } catch (_) {
-    return null;
+  var offset = _yearStarts[bsYear - _firstBsYear];
+  for (var month = 1; month < bsMonth; month++) {
+    offset += _monthLength(bsYear, month)!;
   }
+
+  final ad = _anchor.add(Duration(days: offset + bsDay - 1));
+  // Build a *local* midnight from the UTC components: the caller only wants
+  // the calendar day, and constructing from the UTC instant would shift it
+  // for every timezone west of Kathmandu.
+  return DateTime(ad.year, ad.month, ad.day, hour, minute);
 }
 
-/// "2083-06-28" for an AD date, or the AD date when BS is unavailable.
+/// "2083-06-28" for an AD date, or the fallback when BS is unavailable.
 String formatBs(DateTime dateTime, {String fallback = '-'}) {
   final bs = tryToBs(dateTime);
   if (bs == null) return fallback;
@@ -85,8 +183,11 @@ String formatBs(DateTime dateTime, {String fallback = '-'}) {
 
 /// "2083-06-28 BS" — for labels that sit next to an AD date and need to be
 /// unambiguous about which calendar they are in.
-String formatBsLabeled(DateTime dateTime, String bsSuffix,
-    {String fallback = '-'}) {
+String formatBsLabeled(
+  DateTime dateTime,
+  String bsSuffix, {
+  String fallback = '-',
+}) {
   final text = formatBs(dateTime, fallback: fallback);
   return text == fallback ? text : '$text $bsSuffix';
 }
@@ -179,15 +280,7 @@ String bsMonthName(int month, {bool nepali = false}) {
 }
 
 /// Number of days in a BS month, or `null` when out of range.
-int? bsDaysInMonth(int bsYear, int bsMonth) {
-  try {
-    if (bsYear < 1970 || bsYear > 2250) return null;
-    if (bsMonth < 1 || bsMonth > 12) return null;
-    return NepaliDateTime(bsYear, bsMonth, 1).totalDays;
-  } catch (_) {
-    return null;
-  }
-}
+int? bsDaysInMonth(int bsYear, int bsMonth) => _monthLength(bsYear, bsMonth);
 
 String _two(int value) => value.toString().padLeft(2, '0');
 
